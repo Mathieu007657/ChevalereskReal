@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Photos Cloud";
+$pageTitle = "Chevaleresk";
 if (!isset($viewTitle))
     $viewTitle = "";
 if (!isset($viewHeadCustom))
