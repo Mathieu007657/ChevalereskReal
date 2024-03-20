@@ -6,19 +6,16 @@ anonymousAccess(200);
 $viewTitle = "À propos...";
 $viewContent = <<<HTML
      <div class="aboutContainer">
-        <h2>Photos Cloud</h2>
+        <h2>Chevaleresk</h2>
         <hr>
         <p>
-            Chevalresk Projet dirigé
+            Gestionnaire de chevaliers
         </p>
         <p>
-            Auteur: Nicolas Chourot
+            Auteur: Thierry Becker, Philippe Robichaud-Gionet Mathieu Lavallée
         </p>
         <p>
-            Modificateurs: Thierry Becker et Mathieu Lavallée
-        </p>
-        <p>
-            Collège Lionel-Groulx, Hiver 2024
+            Collège Lionel-Groulx, hiver 2024
         </p>
     </div>
 HTML;
