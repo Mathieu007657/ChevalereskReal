@@ -8,7 +8,6 @@ $password = null;
 $avatar = "images/no-avatar.png";
 $userName = "";
 $isAdmin = 0;
-$isBlocked = 0;
 function EmailExist($email)
 {
     if (isset($email)) {
