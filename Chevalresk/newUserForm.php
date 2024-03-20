@@ -1,11 +1,11 @@
 <?php
-    require 'php/sessionManager.php';
-    $viewTitle = "Création de compte";
+require 'php/sessionManager.php';
+$viewTitle = "Création de compte";
 
-    anonymousAccess();
-    $newImage = true;
-    $avatar = "images/no-avatar.png";
-    $viewContent = <<< HTML
+anonymousAccess();
+$newImage = true;
+$avatar = "images/no-avatar.png";
+$viewContent = <<<HTML
 
     <div class="content loginForm">
         <br>
@@ -52,7 +52,7 @@
                         InvalidMessage="Ne correspond pas au mot de passe" />
             </fieldset>
             <fieldset>
-                <legend>Nom</legend>
+                <legend>Informations générales du joueur</legend>
                 <input  type="text" 
                         class="form-control Alpha" 
                         name="Name" 
@@ -61,6 +61,22 @@
                         required 
                         RequireMessage = 'Veuillez entrer votre nom'
                         InvalidMessage = 'Nom invalide'/>
+                <input  type="text" 
+                        class="form-control Alpha" 
+                        name="Prenom" 
+                        id="Prenom"
+                        placeholder="Prenom" 
+                        required 
+                        RequireMessage = 'Veuillez entrer votre prenom'
+                        InvalidMessage = 'Prenom invalide'/>
+                <input  type="text" 
+                        class="form-control Alpha" 
+                        name="Alias" 
+                        id="Alias"
+                        placeholder="Alias" 
+                        required 
+                        RequireMessage = 'Veuillez entrer votre alias'
+                        InvalidMessage = 'Alias invalide'/>
             </fieldset>
             <fieldset>
                 <legend>Avatar</legend>
@@ -82,7 +98,7 @@
 
     </div>
     HTML;
-    $viewScript = <<<HTML
+$viewScript = <<<HTML
         <script src='js/validation.js'></script>
         <script src='js/imageControl.js'></script>
         <script defer>
@@ -91,6 +107,6 @@
             addConflictValidation('testConflict.php', 'Email', 'saveUser' );
         </script>
     HTML;
-    include "views/master.php";
+include "views/master.php";
 
 
