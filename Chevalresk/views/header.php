@@ -9,6 +9,7 @@ if (!isset($viewName))
 
 $loggedUserMenu = "";
 $connectedUserAvatar = "";
+$menuIcon="";
 
 if (isset($_SESSION["validUser"])) {
 
@@ -18,7 +19,7 @@ if (isset($_SESSION["validUser"])) {
     if (isset($_SESSION["isAdmin"]) && (bool) $_SESSION["isAdmin"]) {
         $loggedUserMenu = <<<HTML
             <a href="manageUsers.php" class="dropdown-item">
-                <i class="menuIcon fas fa-user-cog mx-2"></i> Gestion des usagers
+                <i class="menuIcon fas fa-user-cog mx-2"></i> Gestion des Joueurs
             </a>
             <div class="dropdown-divider"></div>
         HTML;
