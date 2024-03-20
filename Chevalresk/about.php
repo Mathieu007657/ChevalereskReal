@@ -9,16 +9,16 @@ $viewContent = <<<HTML
         <h2>Photos Cloud</h2>
         <hr>
         <p>
-            Gestionnaire de photos multi-usagers
+            Chevalresk Projet dirigé
         </p>
         <p>
             Auteur: Nicolas Chourot
         </p>
         <p>
-            Modificateurs: Noah Desjardins-Côté et Mathieu Lavallée
+            Modificateurs: Thierry Becker et Mathieu Lavallée
         </p>
         <p>
-            Collège Lionel-Groulx, automne 2023
+            Collège Lionel-Groulx, Hiver 2024
         </p>
     </div>
 HTML;
