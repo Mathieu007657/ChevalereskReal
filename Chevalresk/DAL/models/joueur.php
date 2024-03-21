@@ -16,8 +16,8 @@ class Joueur extends Record
         $this->Name = "";
         $this->Prename = "";
         $this->Alias = "";
-        $this->Email = "";
-        $this->Password = "";
+        $this->courriel = "";
+        $this->motdepasse = "";
         $this->Avatar = "";
         $this->AccessType = 0;
         $this->setCompareKey('Name');
@@ -36,13 +36,13 @@ class Joueur extends Record
     {
         $this->Alias = $alias;
     }
-    public function setEmail($email)
+    public function setCourriel($email)
     {
-        $this->Email = $email;
+        $this->Courriel = $email;
     }
-    public function setPassword($password)
+    public function setmotdepasse($password)
     {
-        $this->Password = $password;
+        $this->motdepasse = $password;
     }
     public function setAvatar($avatar)
     {
