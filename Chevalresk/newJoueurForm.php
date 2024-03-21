@@ -9,7 +9,7 @@ $viewContent = <<<HTML
 
     <div class="content loginForm">
         <br>
-        <form method='post' action='newUser.php'>
+        <form method='post' action='newJoueur.php'>
         <fieldset>
                 <legend>Adresse ce courriel</legend>
                 <input  type="email" 

@@ -19,7 +19,6 @@ function EmailExist($email)
         $GLOBALS["avatar"] = $user->Avatar;
         $GLOBALS["password"] = $user->Password;
         $GLOBALS["isAdmin"] = $user->isAdmin();
-        $GLOBALS["isBlocked"] = $user->isBlocked();
         return true;
     }
     return false;

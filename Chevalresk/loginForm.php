@@ -47,7 +47,7 @@
         </form>
         <div class="form">
             <hr>
-            <a href="newUserForm.php"><button class="form-control btn-info">Nouveau compte</button>
+            <a href="newJoueurForm.php"><button class="form-control btn-info">Nouveau compte</button>
         </div>
     </div>
     HTML;
