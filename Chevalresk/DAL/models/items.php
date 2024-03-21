@@ -17,8 +17,8 @@ class Item extends Record
     {
         $this->UserId = (int) $userId;
     }
-    public function setItemId($photoId)
+    public function setItemId($itemId)
     {
-        $this->ItemId = (int) $photoId;
+        $this->ItemId = (int) $itemId;
     }
 }
