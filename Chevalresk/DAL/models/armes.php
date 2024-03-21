@@ -17,12 +17,20 @@ class Arme extends Record
         $this->setCompareKey('CreationDate');
         parent::__construct($recordData);
     }
-    public function setUserId($userId)
+    public function setItemId($itemId)
     {
-        $this->UserId = (int) $userId;
+        $this->ItemId = (int) $itemId;
     }
-    public function setItemId($photoId)
+    public function setDescription($description)
     {
-        $this->ItemId = (int) $photoId;
+        $this->Description = (int) $description;
+    }
+    public function setEfficacite($efficacite)
+    {
+        $this->Efficacite = (int) $efficacite;
+    }
+    public function setGenre($genre)
+    {
+        $this->Genre = (int) $genre;
     }
 }
