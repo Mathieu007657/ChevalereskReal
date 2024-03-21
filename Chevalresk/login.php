@@ -11,7 +11,7 @@ $isAdmin = 0;
 function EmailExist($email)
 {
     if (isset($email)) {
-        $user = UsersTable()->findByEmail($email);
+        $user = JoueursTable()->findByEmail($email);
         if ($user == null)
             return false;
         $GLOBALS["id"] = $user->Id;
@@ -26,7 +26,7 @@ function EmailExist($email)
 }
 function passwordOk($password)
 {
-   return UsersTable()->userValid($_POST['Email'], $password);
+   return JoueursTable()->userValid($_POST['Email'], $password);
 }
 
 if (isset($_POST['submit'])) {

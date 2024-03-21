@@ -8,9 +8,9 @@ if (!isset($_GET["id"]))
     redirect("illegalAction.php");
 
 $id = (int) $_GET["id"];
-$user = UsersTable()->get($id);
+$user = JoueursTable()->get($id);
 if (!$user)
     redirect("illegalAction.php");
 
-UsersTable()->delete($id);
+    JoueursTable()->delete($id);
 redirect('manageUsers.php');

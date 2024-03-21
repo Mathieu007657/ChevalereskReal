@@ -82,7 +82,7 @@ if (strcmp($viewName, "photoList") == 0) {
         HTML;
     if ($sortType == "owners") {
         $userOptions = '';
-        $users = UsersTable()->get();
+        $users = JoueursTable()->get();
         foreach ($users as $user) {
             $userId = $user->Id;
             $userName = $user->Name;

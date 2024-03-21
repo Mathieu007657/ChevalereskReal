@@ -1,17 +1,15 @@
 <?php
-include_once 'DAL/models/user.php';
+include_once 'DAL/models/joueur.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
-include_once 'DAL/PhotosTable.php';
-include_once 'DAL/LikesTable.php';
 
 const avatarsPath = "data/images/avatars/";
 
-final class UsersTable extends MySQLTable
+final class JoueursTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new User());
+        parent::__construct(DB(), new Joueurs());
     }
     public function emailExist($email)
     {
@@ -53,9 +51,6 @@ final class UsersTable extends MySQLTable
         $userToRemove = $this->get($id);
         if ($userToRemove != null) {
             $userId = $userToRemove->Id;
-            LikesTable()->deleteWhere("UserId = $userId");
-            PhotosTable()->deleteWhere("OwnerId = $userId");
-            LikesTable()->updatePhotosLikesCount();
             unlink($userToRemove->Avatar);
             return parent::delete($id);
         }

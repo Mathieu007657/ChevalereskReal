@@ -5,7 +5,7 @@ require 'DAL/ChevalereskDB.php';
 adminAccess();
 
 $viewTitle = "Gestion des usagers";
-$list = UsersTable()->get();
+$list = JoueursTable()->get();
 $viewContent = "";
 
 foreach ($list as $User) {

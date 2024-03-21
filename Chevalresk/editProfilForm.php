@@ -5,7 +5,7 @@
     
     userAccess();
 
-    $user = UsersTable()->get($_SESSION['currentUserId']);
+    $user = JoueursTable()->get($_SESSION['currentUserId']);
     $id = $user->Id;
     $name = $user->Name;
     $email = $user->Email;

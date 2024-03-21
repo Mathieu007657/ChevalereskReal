@@ -9,7 +9,7 @@
         redirect("illegalAction.php");
 
     $id = (int) $_GET["id"];
-    $user = UsersTable()->get($id);
+    $user = JoueursTable()->get($id);
     if (!$user)
         redirect("illegalAction.php");
 
