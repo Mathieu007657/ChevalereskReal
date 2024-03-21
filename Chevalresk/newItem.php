@@ -1,7 +1,7 @@
 <?php
 require 'php/sessionManager.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 
 userAccess();
 PhotosTable()->insert(new Photo($_POST));
-redirect('photosList.php'); 
+redirect('itemsList.php'); 

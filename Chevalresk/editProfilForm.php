@@ -1,6 +1,6 @@
 <?php
     include 'php/sessionManager.php';
-    require 'DAL/PhotosCloudDB.php';
+    require 'DAL/ChevalereskDB.php';
     $viewTitle = "Profil";
     
     userAccess();
@@ -87,7 +87,7 @@
                 
         </form>
         <div class="cancel">
-        <a href="photosList.php">
+        <a href="itemsList.php">
             <button class="form-control btn-secondary">Annuler</button>
         </a>
 

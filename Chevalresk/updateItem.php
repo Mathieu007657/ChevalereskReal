@@ -1,6 +1,6 @@
 <?php
 include 'php/sessionManager.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 userAccess();
 PhotosTable()->update(new Photo($_POST));
-redirect('photosList.php');
+redirect('itemsList.php');

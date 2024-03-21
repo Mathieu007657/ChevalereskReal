@@ -2,7 +2,7 @@
 include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 
 $viewName = "photoList";
 userAccess();
@@ -123,10 +123,10 @@ $viewContent = $viewContent . "</div>";
 $viewScript = <<<HTML
     <script defer>
         $("#setPhotoOwnerSearchIdCmd").on("click", function() {
-            window.location = "photosList.php?id=" + $("#userSelector").val();
+            window.location = "itemssList.php?id=" + $("#userSelector").val();
         });
         $("#setSearchKeywordsCmd").on("click", function() {
-            window.location = "photosList.php?keywords=" + $("#keywords").val();
+            window.location = "itemsList.php?keywords=" + $("#keywords").val();
         });
     </script>
 HTML;

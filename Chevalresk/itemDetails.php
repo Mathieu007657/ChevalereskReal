@@ -1,7 +1,7 @@
 <?php
 include 'php/sessionManager.php';
 include 'php/date.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 $viewTitle = "Détails de photo";
 
 userAccess();
