@@ -63,8 +63,8 @@ $viewContent = <<<HTML
                         InvalidMessage = 'Nom invalide'/>
                 <input  type="text" 
                         class="form-control Alpha" 
-                        name="Prenom" 
-                        id="Prenom"
+                        name="Prename" 
+                        id="Prename"
                         placeholder="Prenom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre prenom'
