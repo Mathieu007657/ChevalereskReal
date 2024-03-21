@@ -3,7 +3,7 @@
     include_once 'DAL/JoueursTable.php';
     function DB()
     {
-        return MySQLDataBase::getInstance('ChevalereskDB');
+        return MySQLDataBase::getInstance('dbchevalersk8');
     }
     function JoueursTable()
     {
