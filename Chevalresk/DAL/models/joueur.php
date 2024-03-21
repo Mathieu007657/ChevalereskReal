@@ -2,7 +2,7 @@
 
 include_once 'DAL/models/record.php';
 
-class Joueurs extends Record
+class Joueur extends Record
 {
     public $Name;
     public $Prename;
