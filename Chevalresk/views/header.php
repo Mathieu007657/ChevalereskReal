@@ -34,7 +34,7 @@ if (isset($_SESSION["validUser"])) {
         </a>
         <div class="dropdown-divider"></div>
         <a href="photosList.php" class="dropdown-item">
-            <i class="menuIcon fa fa-image mx-2"></i> Liste des photos
+            <i class="menuIcon fa fa-image mx-2"></i> Magasin
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML

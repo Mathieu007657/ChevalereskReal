@@ -1,6 +1,6 @@
 <?php
 include 'php/sessionManager.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 $viewTitle = "Retrait de photo";
 
 userAccess(200);

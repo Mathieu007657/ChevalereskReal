@@ -1,6 +1,6 @@
 <?php
 require 'php/sessionManager.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 adminAccess();
 
 $user = UsersTable()->get((int) $_GET["id"]);

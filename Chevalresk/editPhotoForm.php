@@ -1,6 +1,6 @@
 <?php
 include 'php/sessionManager.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 userAccess();
 
 $viewTitle = "Modification de photo";
@@ -27,7 +27,7 @@ $likes = $photo->Likes;
 $viewContent = <<<HTML
     <div class="content">
         <br>
-        <form method='post' action='updatePhoto.php'>
+        <form method='post' action='updateItem.php'>
             <input type="hidden" name = "Id" value=$id>
             <input type="hidden" name = "CreationDate" value="$creationDate">
             <input type="hidden" name = "OwnerId" value="$ownerId" >

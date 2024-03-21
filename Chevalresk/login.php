@@ -1,7 +1,7 @@
 <?php
 include 'php/sessionManager.php';
 include 'php/formUtilities.php';
-require 'DAL/PhotosCloudDB.php';
+require 'DAL/ChevalereskDB.php';
 
 $id = 0;
 $password = null;
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['userName'] = $userName;
         $_SESSION['avatar'] = $avatar;
         $_SESSION["photoSortType"] = "date";
-        redirect('photosList.php');
+        redirect('itemsList.php');
     }
 }
 
