@@ -5,6 +5,8 @@ include_once 'DAL/models/record.php';
 class User extends Record
 {
     public $Name;
+    public $Prename;
+    public $Alias;
     public $Email;
     public $Password;
     public $Avatar;
@@ -13,6 +15,8 @@ class User extends Record
     public function __construct($recordData = null)
     {
         $this->Name = "";
+        $this->Prename = "";
+        $this->Alias = "";
         $this->Email = "";
         $this->Password = "";
         $this->Avatar = "";
@@ -25,6 +29,14 @@ class User extends Record
     public function setName($name)
     {
         $this->Name = $name;
+    }
+    public function setPrename($prename)
+    {
+        $this->Prename = $prename;
+    }
+    public function setAlias($alias)
+    {
+        $this->Alias = $alias;
     }
     public function setEmail($email)
     {
