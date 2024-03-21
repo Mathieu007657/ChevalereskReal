@@ -14,7 +14,6 @@ class Potion extends Record
         $this->Duree = 0;
         $this->Effet = '';
         $this->TypePotion = '';
-        $this->setCompareKey('CreationDate');
         parent::__construct($recordData);
     }
     public function setItemId($itemId)
@@ -27,10 +26,10 @@ class Potion extends Record
     }
     public function setEffet($effet)
     {
-        $this->Effet = (int) $effet;
+        $this->Effet = $effet;
     }
     public function setGenre($typePotion)
     {
-        $this->TypePotion = (int) $typePotion;
+        $this->TypePotion = $typePotion;
     }
 }
