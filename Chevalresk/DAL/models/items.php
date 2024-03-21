@@ -10,7 +10,6 @@ class Item extends Record
     {
         $this->UserId = 0;
         $this->ItemId = 0;
-        $this->setCompareKey('CreationDate');
         parent::__construct($recordData);
     }
     public function setUserId($userId)
