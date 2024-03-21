@@ -12,7 +12,6 @@ class Armure extends Record
         $this->ItemId = 0;
         $this->Taille = '';
         $this->Matiere = '';
-        $this->setCompareKey('CreationDate');
         parent::__construct($recordData);
     }
     public function setItemId($photoId)
