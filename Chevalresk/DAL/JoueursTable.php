@@ -7,11 +7,11 @@ include_once 'DAL/LikesTable.php';
 
 const avatarsPath = "data/images/avatars/";
 
-final class UsersTable extends MySQLTable
+final class JoueursTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new User());
+        parent::__construct(DB(), new Joueurs());
     }
     public function emailExist($email)
     {
