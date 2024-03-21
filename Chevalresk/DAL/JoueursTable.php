@@ -1,5 +1,5 @@
 <?php
-include_once 'DAL/models/user.php';
+include_once 'DAL/models/joueur.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
 include_once 'DAL/PhotosTable.php';
