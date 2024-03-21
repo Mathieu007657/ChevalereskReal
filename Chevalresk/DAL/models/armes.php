@@ -14,7 +14,6 @@ class Arme extends Record
         $this->Description = '';
         $this->Efficacite = '';
         $this->Genre = '';
-        $this->setCompareKey('CreationDate');
         parent::__construct($recordData);
     }
     public function setItemId($itemId)
