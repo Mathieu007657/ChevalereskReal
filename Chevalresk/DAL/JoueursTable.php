@@ -23,11 +23,15 @@ final class JoueursTable extends MySQLTable
             return $user[0];
         return null;
     }
-    public function userValid($email, $password)
+    public function userValid($email, $motdepasse)
     {
         $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0])) {
+<<<<<<< Updated upstream
             return password_verify($password, $user[0]->motdepasse);
+=======
+            return password_verify($motdepasse, $user[0]->Password);
+>>>>>>> Stashed changes
         }
         return false;
     }
