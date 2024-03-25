@@ -7,8 +7,8 @@ class Joueur extends Record
     public $Name;
     public $Prename;
     public $Alias;
-    public $Email;
-    public $Password;
+    public $Courriel;
+    public $motdepasse;
     public $Avatar;
     public $AccessType = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
@@ -16,12 +16,12 @@ class Joueur extends Record
         $this->Name = "";
         $this->Prename = "";
         $this->Alias = "";
-        $this->courriel = "";
+        $this->Courriel = "";
         $this->motdepasse = "";
         $this->Avatar = "";
         $this->AccessType = 0;
         $this->setCompareKey('Name');
-        $this->setUniqueKey('Email');
+        $this->setUniqueKey('Courriel');
         parent::__construct($recordData);
     }
     public function setName($name)

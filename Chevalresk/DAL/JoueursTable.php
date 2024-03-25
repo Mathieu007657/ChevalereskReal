@@ -27,11 +27,7 @@ final class JoueursTable extends MySQLTable
     {
         $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0])) {
-<<<<<<< Updated upstream
-            return password_verify($password, $user[0]->motdepasse);
-=======
-            return password_verify($motdepasse, $user[0]->Password);
->>>>>>> Stashed changes
+            return password_verify($motdepasse, $user[0]->motdepasse);
         }
         return false;
     }
