@@ -4,6 +4,7 @@ include_once 'DAL/models/record.php';
 
 class Joueur extends Record
 {
+    public $UserId;
     public $Name;
     public $Prename;
     public $Alias;
@@ -13,6 +14,7 @@ class Joueur extends Record
     public $AccessType = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
     {
+        $this->UserId = 0;
         $this->Name = "";
         $this->Prename = "";
         $this->Alias = "";
@@ -24,6 +26,10 @@ class Joueur extends Record
         $this->setUniqueKey('Email');
         $this->setUniqueKey('Alias');
         parent::__construct($recordData);
+    }
+    public function setUserId($userId)
+    {
+        $this->UserId = (int) $userId;
     }
     public function setName($name)
     {
