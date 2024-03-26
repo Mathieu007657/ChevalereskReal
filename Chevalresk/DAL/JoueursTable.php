@@ -13,19 +13,19 @@ final class JoueursTable extends MySQLTable
     }
     public function emailExist($email)
     {
-        $user = $this->selectWhere("Email = '$email'");
+        $user = $this->selectWhere("courriel = '$email'");
         return isset($user[0]);
     }
     public function findByEmail($email)
     {
-        $user = $this->selectWhere("Email = '$email'");
+        $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0]))
             return $user[0];
         return null;
     }
     public function userValid($email, $password)
     {
-        $user = $this->selectWhere("Email = '$email'");
+        $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0])) {
             return password_verify($password, $user[0]->Password);
         }
