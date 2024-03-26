@@ -27,7 +27,10 @@ final class JoueursTable extends MySQLTable
     {
         $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0])) {
-            return password_verify($motdepasse, $user[0]->motdepasse);
+            if($motdepasse == $user[0].$motdepasse)
+            {
+                return true;
+            }
         }
         return false;
     }
