@@ -24,6 +24,7 @@ class Joueur extends Record
         $this->AccessType = 0;
         $this->setCompareKey('Name');
         $this->setUniqueKey('Email');
+        $this->setUniqueKey('Alias');
         parent::__construct($recordData);
     }
     public function setUserId($userId)

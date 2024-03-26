@@ -3,18 +3,25 @@
 include_once 'DAL/models/record.php';
 class Item extends Record
 {
-    public $UserId; 
     public $ItemId;
+    public $Name;
+    public $QuantiteStock;
+    public $Prix;
+    public $TypeItem;
+    public $Photo;
+    public $FlagDispo;
+
    
     public function __construct($recordData = null)
     {
-        $this->UserId = 0;
         $this->ItemId = 0;
+        $this->Name="";
+        $this->QuantiteStock=0;
+        $this->Prix =0;
+        $this->TypeItem="";
+        $this->FlagDispo="";
+        $this->Photo ="";
         parent::__construct($recordData);
-    }
-    public function setUserId($userId)
-    {
-        $this->UserId = (int) $userId;
     }
     public function setItemId($itemId)
     {

@@ -7,23 +7,34 @@ class Panier extends Record
     public $UserId;
     public $QuantiteAchat;
    
-    public function __construct($recordData = null)
-    {
+    public function __construct($recordData = null){
         $this->ItemId = 0;
         $this->UserId = 0;
         $this->QuantiteAchat = 0;
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
-    {
+    //SET Item ID
+    public function setItemId($itemId){
         $this->ItemId = (int) $itemId;
     }
-    public function setUserId($userId)
-    {
+    //GET Item ID
+    public function getItemId(){
+        return $this->ItemId;
+    }
+    //SET User ID
+    public function setUserId($userId){
         $this->UserId = (int) $userId;
     }
-    public function setQuantiteAchat($quantiteAchat)
-    {
+    //GET User ID
+    public function getUserId(){
+        return $this->UserId;
+    }
+    //SET Quantité Achat
+    public function setQuantiteAchat($quantiteAchat){
         $this->QuantiteAchat = (int) $quantiteAchat;
+    }
+    //GET Quantité Achat
+    public function getQuantiteAchat(){
+        return $this->QuantiteAchat;
     }
 }
