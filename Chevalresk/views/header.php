@@ -33,7 +33,7 @@ if (isset($_SESSION["validUser"])) {
             <i class="menuIcon fa fa-user-edit mx-2"></i> Modifier votre profil
         </a>
         <div class="dropdown-divider"></div>
-        <a href="photosList.php" class="dropdown-item">
+        <a href="itemsList.php" class="dropdown-item">
             <i class="menuIcon fa fa-image mx-2"></i> Magasin
         </a>
         <a href="Paniers.php" class="dropdown-item">
