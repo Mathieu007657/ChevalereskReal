@@ -1,48 +1,50 @@
 <?php
     include 'php/sessionManager.php';
+    include_once 'DAL/models/joueur.php';
     require 'DAL/ChevalereskDB.php';
     $viewTitle = "Profil";
     
     userAccess();
 
     $user = JoueursTable()->get($_SESSION['currentUserId']);
-    $id = $user->Id;
+    $id = $user->UserId;
     $name = $user->Name;
     $email = $user->Email;
+    $confirmEmail = $email;
     $newImage = false;
     $avatar = $user->Avatar;
-    $type = $user->AccessType;
-    $blocked = $user->Blocked;
+
+    //Reste à changer pour mettre le vrai avatar pas nécessairement le no-avatar.png
+    $avatar = "images/no-avatar.png";
+
+
     $viewContent = <<< HTML
     <div class="content">
         <br>
-        <form method='post' action='updateProfil.php'>
-            <input type="hidden" name="Id" id="Id" value="$id"/>
-            <input type="hidden" name="Type" id="Type" value="$type"/>
-            <input type="hidden" name="Blocked" id="Blocked" value="$blocked"/>
-            <fieldset>
+        <form method='post' action='newJoueur.php'>
+        <fieldset>
                 <legend>Adresse ce courriel</legend>
                 <input  type="email" 
                         class="form-control Email" 
                         name="Email" 
                         id="Email"
+                        value="$email"
                         placeholder="Courriel" 
                         required 
                         RequireMessage = 'Veuillez entrer votre courriel'
                         InvalidMessage = 'Courriel invalide'
-                        CustomErrorMessage ="Ce courriel est déjà utilisé"
-                        value="$email" >
+                        CustomErrorMessage ="Ce courriel est déjà utilisé"/>
 
                 <input  class="form-control MatchedInput" 
                         type="text" 
                         matchedInputId="Email"
                         name="matchedEmail" 
                         id="matchedEmail" 
+                        value="$confirmEmail"
                         placeholder="Vérification" 
                         required
                         RequireMessage = 'Veuillez entrez de nouveau votre courriel'
-                        InvalidMessage="Les courriels ne correspondent pas" 
-                        value="$email" >
+                        InvalidMessage="Les courriels ne correspondent pas" />
             </fieldset>
             <fieldset>
                 <legend>Mot de passe</legend>
@@ -51,18 +53,20 @@
                         name="Password" 
                         id="Password"
                         placeholder="Mot de passe" 
-                        InvalidMessage = 'Mot de passe trop court' >
+                        required 
+                        RequireMessage = 'Veuillez entrer un mot de passe'
+                        InvalidMessage = 'Mot de passe trop court'/>
 
                 <input  class="form-control MatchedInput" 
                         type="password" 
                         matchedInputId="Password"
                         name="matchedPassword" 
                         id="matchedPassword" 
-                        placeholder="Vérification" 
-                        InvalidMessage="Ne correspond pas au mot de passe" >
+                        placeholder="Vérification" required
+                        InvalidMessage="Ne correspond pas au mot de passe" />
             </fieldset>
             <fieldset>
-                <legend>Nom</legend>
+                <legend>Informations générales du joueur</legend>
                 <input  type="text" 
                         class="form-control Alpha" 
                         name="Name" 
@@ -70,8 +74,23 @@
                         placeholder="Nom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre nom'
-                        InvalidMessage = 'Nom invalide'
-                        value="$name" >
+                        InvalidMessage = 'Nom invalide'/>
+                <input  type="text" 
+                        class="form-control Alpha" 
+                        name="Prename" 
+                        id="Prename"
+                        placeholder="Prenom" 
+                        required 
+                        RequireMessage = 'Veuillez entrer votre prenom'
+                        InvalidMessage = 'Prenom invalide'/>
+                <input  type="text" 
+                        class="form-control Alpha" 
+                        name="Alias" 
+                        id="Alias"
+                        placeholder="Alias" 
+                        required 
+                        RequireMessage = 'Veuillez entrer votre alias'
+                        InvalidMessage = 'Alias invalide'/>
             </fieldset>
             <fieldset>
                 <legend>Avatar</legend>
@@ -82,31 +101,24 @@
                         waitingImage="images/Loading_icon.gif">
             </div>
             </fieldset>
-        
+   
             <input type='submit' name='submit' id='saveUser' value="Enregistrer" class="form-control btn-primary">
-                
         </form>
         <div class="cancel">
-        <a href="itemsList.php">
-            <button class="form-control btn-secondary">Annuler</button>
-        </a>
-
-        <div class="cancel">
-            <hr>
-            <a href="confirmDeleteProfil.php">
-                <button class="form-control btn-warning">Effacer le compte</button>
+            <a href="loginForm.php">
+                <button class="form-control btn-secondary">Annuler</button>
             </a>
         </div>
+
     </div>
     HTML;
-    $viewScript = <<<HTML
+$viewScript = <<<HTML
         <script src='js/validation.js'></script>
         <script src='js/imageControl.js'></script>
         <script defer>
+            initFormValidation();
             $("#addPhotoCmd").hide();
             addConflictValidation('testConflict.php', 'Email', 'saveUser' );
         </script>
     HTML;
-    include "views/master.php";
-
-
+include "views/master.php";

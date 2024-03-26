@@ -1,6 +1,6 @@
 <?php
     require 'php/sessionManager.php';
-    $viewTitle = "Ajout de photo";
+    $viewTitle = "Ajout d'item";
     $currentUserId = (int)$_SESSION["currentUserId"];
     userAccess();
     $newImage = true;
@@ -9,7 +9,7 @@
 
     <div class="content loginForm">
         <br>
-        <form method='post' action='newPhoto.php'>
+        <form method='post' action='newItem.php'>
             <input type="hidden" name = "OwnerId" value=$currentUserId >
             <fieldset>
                 <legend>Informations</legend>
@@ -28,13 +28,8 @@
                             placeholder="Description" 
                             rows="4"
                             required 
-                            RequireMessage = 'Veuillez entrer une Description'></textarea>
-               
-                <input  type="checkbox" 
-                        class="" 
-                        name="Shared" 
-                        id="Shared"  />  
-                <label for="Shared">Partagée</label>
+                            RequireMessage = 'Veuillez entrer une Description'>
+                </textarea>
             </fieldset>
             <fieldset>
                 <legend>Image</legend>
