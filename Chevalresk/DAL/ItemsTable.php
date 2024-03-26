@@ -26,22 +26,16 @@ final class ItemTable extends MySQLTable
         $item->setAvatar(saveImage(avatarsPath, $item->Avatar));
         parent::insert($item);
     }
-    public function update($user)
+    public function update($item)
     {
-        $userToUpdate = $this->get($user->Id);
-        if ($user->motdepasse == "")
-            $user->motdepasse = $userToUpdate->motdepasse;
-        if ($userToUpdate != null) {
-            $user->setAvatar(saveImage(avatarsPath, $user->Avatar, $userToUpdate->Avatar));
-            parent::update($user);
-        }
+
     }
     public function delete($id)
     {
-        $userToRemove = $this->get($id);
-        if ($userToRemove != null) {
-            $userId = $userToRemove->Id;
-            unlink($userToRemove->Avatar);
+        $itemToRemove = $this->get($id);
+        if ($itemToRemove != null) {
+            $itemId = $itemToRemove->Id;
+            unlink($itemToRemove->Avatar);
             return parent::delete($id);
         }
         return false;
