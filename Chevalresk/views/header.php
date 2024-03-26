@@ -36,6 +36,9 @@ if (isset($_SESSION["validUser"])) {
         <a href="photosList.php" class="dropdown-item">
             <i class="menuIcon fa fa-image mx-2"></i> Magasin
         </a>
+        <a href="Paniers.php" class="dropdown-item">
+            <i class="menuIcon fa fas fa-shopping-basket mx-2"></i> Paniers
+        </a>
     HTML;
     $connectedUserAvatar = <<<HTML
         <div class="UserAvatarSmall" style="background-image:url('$avatar')" title="$userName"></div>
