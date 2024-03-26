@@ -6,8 +6,7 @@
     
     userAccess();
 
-    $user = JoueursTable()->get($_SESSION['currentUserId']);
-    $id = $user->UserId;
+    $user = JoueursTable()->get(1);
     $name = $user->Name;
     $email = $user->Email;
     $confirmEmail = $email;
