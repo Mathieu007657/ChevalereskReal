@@ -9,3 +9,7 @@
     {
         return new JoueursTable();
     }
+    function ItemsTable()
+    {
+        return new ItemTable();
+    }

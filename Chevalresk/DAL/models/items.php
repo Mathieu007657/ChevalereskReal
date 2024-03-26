@@ -27,4 +27,8 @@ class Item extends Record
     {
         $this->ItemId = (int) $itemId;
     }
+    public function setPhoto($photo)
+    {
+        $this->Photo = $photo;
+    }
 }

@@ -10,6 +10,9 @@ $viewTitle = "Items";
 $viewContent = "<div class='photosLayout'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
 
+foreach($list as $item){
+    
+}
 
 $viewContent = $viewContent . "</div>";
 $viewScript = <<<HTML

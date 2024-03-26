@@ -3,6 +3,7 @@ include_once 'DAL/models/items.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
 
+const PhotoPath= "data/images/photoItem/";
 final class ItemTable extends MySQLTable
 {
     public function __construct()
@@ -23,20 +24,24 @@ final class ItemTable extends MySQLTable
     }
     public function insert($item)
     {
-        $item->setAvatar(saveImage(avatarsPath, $item->Avatar));
+        $item->setPhoto(saveImage(PhotoPath, $item->Photo));
         parent::insert($item);
     }
     public function update($item)
     {
-
+        $itemToUpdate = $this->get($item->Id);
+        if ($itemToUpdate != null) {
+            $item->setAvatar(saveImage(PhotoPath, $item->Photo, $itemToUpdate->Photo));
+            parent::update($item);
+        }
     }
-    public function delete($id)
+    public function delete($itemId)
     {
-        $itemToRemove = $this->get($id);
+        $itemToRemove = $this->get($itemId);
         if ($itemToRemove != null) {
-            $itemId = $itemToRemove->Id;
-            unlink($itemToRemove->Avatar);
-            return parent::delete($id);
+            $itemId = $itemToRemove->ItemId;
+            unlink($itemToRemove->Photo);
+            return parent::delete($itemId);
         }
         return false;
     }
