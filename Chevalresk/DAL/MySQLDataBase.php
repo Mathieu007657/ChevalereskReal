@@ -479,7 +479,7 @@ final class MySQLDataBase
         $this->host = '167.114.152.54';
         $this->username = 'chevalier8';
         $this->password = 's73bsa46';
-        $this->dbName = $dbName;
+        $this->dbName = 'dbchevalersk8';
         $this->autoCommit = true;
         $this->conn = null;
     }

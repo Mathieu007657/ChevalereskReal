@@ -2,13 +2,13 @@
 
 include_once 'DAL/models/record.php';
 
-class Joueurs extends Record
+class Joueur extends Record
 {
     public $Name;
     public $Prename;
     public $Alias;
-    public $Email;
-    public $Password;
+    public $Courriel;
+    public $motdepasse;
     public $Avatar;
     public $AccessType = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
@@ -16,12 +16,12 @@ class Joueurs extends Record
         $this->Name = "";
         $this->Prename = "";
         $this->Alias = "";
-        $this->Email = "";
-        $this->Password = "";
+        $this->Courriel = "";
+        $this->motdepasse = "";
         $this->Avatar = "";
         $this->AccessType = 0;
         $this->setCompareKey('Name');
-        $this->setUniqueKey('Email');
+        $this->setUniqueKey('Courriel');
         parent::__construct($recordData);
     }
     public function setName($name)
@@ -36,13 +36,13 @@ class Joueurs extends Record
     {
         $this->Alias = $alias;
     }
-    public function setEmail($email)
+    public function setCourriel($email)
     {
-        $this->Email = $email;
+        $this->Courriel = $email;
     }
-    public function setPassword($password)
+    public function setmotdepasse($password)
     {
-        $this->Password = $password;
+        $this->motdepasse = $password;
     }
     public function setAvatar($avatar)
     {

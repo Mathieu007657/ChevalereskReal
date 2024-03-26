@@ -9,7 +9,7 @@ final class JoueursTable extends MySQLTable
 {
     public function __construct()
     {
-        parent::__construct(DB(), new Joueurs());
+        parent::__construct(DB(), new Joueur());
     }
     public function emailExist($email)
     {
@@ -23,11 +23,11 @@ final class JoueursTable extends MySQLTable
             return $user[0];
         return null;
     }
-    public function userValid($email, $password)
+    public function userValid($email, $motdepasse)
     {
         $user = $this->selectWhere("courriel = '$email'");
         if (isset($user[0])) {
-            return password_verify($password, $user[0]->Password);
+            return password_verify($motdepasse, $user[0]->motdepasse);
         }
         return false;
     }
@@ -39,8 +39,8 @@ final class JoueursTable extends MySQLTable
     public function update($user)
     {
         $userToUpdate = $this->get($user->Id);
-        if ($user->Password == "")
-            $user->Password = $userToUpdate->Password;
+        if ($user->motdepasse == "")
+            $user->motdepasse = $userToUpdate->motdepasse;
         if ($userToUpdate != null) {
             $user->setAvatar(saveImage(avatarsPath, $user->Avatar, $userToUpdate->Avatar));
             parent::update($user);
