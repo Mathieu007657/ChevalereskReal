@@ -6,10 +6,11 @@
     
     userAccess();
 
-    $user = JoueursTable()->get(0);
-    $id = $user->Id;
+    $user = JoueursTable()->get($_SESSION['currentUserId']);
+    $id = $user->UserId;
     $name = $user->Name;
     $email = $user->Email;
+    $confirmEmail = $email;
     $newImage = false;
     $avatar = $user->Avatar;
 
@@ -39,6 +40,7 @@
                         matchedInputId="Email"
                         name="matchedEmail" 
                         id="matchedEmail" 
+                        value="$confirmEmail"
                         placeholder="Vérification" 
                         required
                         RequireMessage = 'Veuillez entrez de nouveau votre courriel'
