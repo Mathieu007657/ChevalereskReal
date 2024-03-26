@@ -23,13 +23,6 @@ final class JoueursTable extends MySQLTable
             return $user[0];
         return null;
     }
-    public function findByID($id)
-    {
-        $user = $this->selectWhere("idJoueurs = '$id'");
-        if (isset($user[0]))
-            return $user[0];
-        return null;
-    }
     public function userValid($email, $motdepasse)
     {
         $user = $this->selectWhere("courriel = '$email'");
