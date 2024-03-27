@@ -17,8 +17,7 @@ final class PaniersTable extends MySQLTable
     }
 
     public function insert($item)
-    {
-        
+    {       
         parent::insert($item);
     }
 
