@@ -104,6 +104,9 @@
     height: 40px;
     margin-right: 10px;
 }
+.imgEcu{
+    height: 20px;
+}
 
 @media screen and (min-width:650px) {
 

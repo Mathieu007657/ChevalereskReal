@@ -21,11 +21,11 @@ final class PaniersTable extends MySQLTable
         parent::insert($item);
     }
 
-    public function update($item)
+    public function update($itemPanier)
     {
-        $ItemToUpdate = $this->get($item->Id);
+        $ItemToUpdate = $this->get2($itemPanier->idItem,$itemPanier->idJoueurs);
         if ($ItemToUpdate != null) {
-            parent::update($item);
+            parent::update($itemPanier);
         }
     }
     public function delete($id)

@@ -112,9 +112,9 @@ if (strcmp($viewName, "photoList") == 0) {
 }
 
 $viewHead = <<<HTML
-        <a href="itemsList.php" title="Liste des photos"><img src="images/PhotoCloudLogo.png" class="appLogo"></a>
-        <span class="viewTitle">$viewTitle 
-            <a href="newPhotoForm.php" class="cmdIcon fa fa-plus" id="addPhotoCmd" title="Ajouter une photo"></a>
+        <a href="itemsList.php" title="Liste des Items"><img src="images/PhotoCloudLogo.png" class="appLogo"></a>
+        <span class="viewTitle">
+            $viewTitle 
         </span>
         
         <div class="headerMenusContainer">
