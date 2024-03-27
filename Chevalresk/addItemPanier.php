@@ -8,8 +8,4 @@ if (!isset($_GET["id"]))
 
 $id = (int) $_GET["id"];
 $item = ItemTable()->findById($id);
-
-//implémenter que ça va chercher le id
-$user = JoueursTable()->get(0);
 PanierTable()->insert($item);
-redirect('Paniers.php');
