@@ -3,7 +3,7 @@ include_once 'DAL/models/paniers.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
 
-final class JoueursTable extends MySQLTable
+final class PaniersTable extends MySQLTable
 {
     public function __construct()
     {
