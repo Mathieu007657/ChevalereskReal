@@ -16,7 +16,6 @@
     {
         return new ItemTable();
     }
-    function PanierTable()
-    {
+    function PanierTable(){
         return new PaniersTable();
     }
