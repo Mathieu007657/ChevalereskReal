@@ -2,6 +2,7 @@
     include_once 'DAL/MySQLDataBase.php';
     include_once 'DAL/JoueursTable.php';
     include_once 'DAL/ItemsTable.php';
+    include_once 'DAL/PaniersTable.php';
 
     function DB()
     {
@@ -14,4 +15,8 @@
     function ItemTable()
     {
         return new ItemTable();
+    }
+    function PanierTable()
+    {
+        return new PaniersTable();
     }
