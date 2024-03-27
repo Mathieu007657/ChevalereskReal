@@ -34,14 +34,14 @@ if (isset($_SESSION["validUser"])) {
         </a>
         <div class="dropdown-divider"></div>
         <a href="itemsList.php" class="dropdown-item">
-            <i class="menuIcon fa fa-image mx-2"></i> Magasin
+            <i class="menuIcon fa-solid fa-store"></i> Magasin
         </a>
         <a href="Paniers.php" class="dropdown-item">
             <i class="menuIcon fa fas fa-shopping-basket mx-2"></i> Paniers
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML
-        <div class="UserAvatarSmall" style="background-image:url('$avatar')" title="$userName"></div>
+        <div class="UserAvatarSmall" style="background-image:url('/data/avatars/$avatar')" title="$userName"></div>
     HTML;
 } else {
     $loggedUserMenu = <<<HTML
@@ -66,23 +66,6 @@ if (strcmp($viewName, "photoList") == 0) {
     $sortByOwners = ($sortType == "owners") ? $checkIcon : $uncheckIcon;
     $sortByKeywords = ($sortType == "keywords") ? $checkIcon : $uncheckIcon;
     $ownerOnly = ($sortType == "owner") ? $checkIcon : $uncheckIcon;
-    $viewMenu = <<<HTML
-         <a href="photosList.php?sort=date" class="dropdown-item">
-            $sortByDateCheck <i class="menuIcon fa fa-calendar mx-2"></i>Photos par date de création
-         </a>
-         <a href="photosList.php?sort=likes" class="dropdown-item">
-            $sortByLikeCheck <i class="menuIcon fa fa-heart mx-2"></i>Photos les plus aimées
-         </a>
-         <a href="photosList.php?sort=keywords" class="dropdown-item">
-            $sortByKeywords <i class="menuIcon fa fa-search mx-2"></i>Photos par mots-clés
-         </a> 
-         <a href="photosList.php?sort=owners" class="dropdown-item">
-            $sortByOwners <i class="menuIcon fa fa-users mx-2"></i>Photos par créateur
-         </a>
-         <a href="photosList.php?sort=owner" class="dropdown-item">
-            $ownerOnly <i class="menuIcon fa fa-user mx-2"></i>Mes photos
-         </a>
-        HTML;
     if ($sortType == "owners") {
         $userOptions = '';
         $users = JoueursTable()->get();

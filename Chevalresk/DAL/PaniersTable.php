@@ -16,7 +16,12 @@ final class PaniersTable extends MySQLTable
         return isset($user[0]);
     }
 
+<<<<<<< HEAD
+    public function insert($item)
+    {       
+=======
     public function insert($item){
+>>>>>>> f305c4973b0a4cee07b00adcff0900569925e769
         parent::insert($item);
     }
 
