@@ -7,16 +7,22 @@ require 'DAL/ChevalereskDB.php';
 $viewName = "itemList";
 userAccess();
 $viewTitle = "Panier";
-$viewContent = <<< HTML
-
-
-
-
-
-HTML;
+$viewContent = "<div class='photosLayout'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
+$idPlayer = $_SESSION['currentUserId'];
+$list = PanierTable()->get($idPlayer);
 
+foreach ($list as $item) {
+    $idItemPan = $item->idItem;
+    $quantity = $item->quantiteAchat;
+    $ItemSelect = ItemTable()->get($idItemPan);
 
+    $nom = $ItemSelect->nom;
+    $prix = $ItemSelect->prix;
+    $photo = $ItemSelect->photo;
+    
+    
+}
 $viewContent = $viewContent . "</div>";
 $viewScript = <<<HTML
     <script defer>

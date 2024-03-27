@@ -16,27 +16,23 @@ final class PaniersTable extends MySQLTable
         return isset($user[0]);
     }
 
-    public function insert($item)
-    {
-        
+    public function insert($item){
         parent::insert($item);
     }
 
-    public function update($itemPanier)
-    {
+    public function update($itemPanier){
         $ItemToUpdate = $this->get2($itemPanier->idItem,$itemPanier->idJoueurs);
         if ($ItemToUpdate != null) {
             parent::update($itemPanier);
         }
     }
-    public function delete($id)
-    {
-        $userToRemove = $this->get($id);
+    public function deletePanier($id1,$id2){
+        $userToRemove = $this->get2($id1,$id2);
 
         if ($userToRemove != null) {
             $userId = $userToRemove->Id;
             unlink($userToRemove->Avatar);
-            return parent::delete($id);
+            return parent::delete2($id1,$id2);
         }
         return false;
     }
