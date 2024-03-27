@@ -16,3 +16,11 @@
     {
         return new ItemTable();
     }
+<<<<<<< HEAD
+    function PanierTable(){
+=======
+    function PanierTable()
+    {
+>>>>>>> 8b9d5e2f12cbe76dbba6df8ec5ed378d5d4e8421
+        return new PaniersTable();
+    }
