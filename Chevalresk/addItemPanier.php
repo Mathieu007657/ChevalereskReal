@@ -2,17 +2,14 @@
 include 'php/sessionManager.php';
 require 'DAL/ChevalereskDB.php';
 
-adminAccess();
 
 if (!isset($_GET["id"]))
     redirect("illegalAction.php");
 
 $id = (int) $_GET["id"];
+$item = ItemTable()->findById($id);
 
-//implémenter que le get id fonctionne
+//implémenter que ça va chercher le id
 $user = JoueursTable()->get(0);
-if (!$user)
-    redirect("illegalAction.php");
-
-    JoueursTable()->delete($id);
+PanierTable()->insert($item);
 redirect('Paniers.php');
