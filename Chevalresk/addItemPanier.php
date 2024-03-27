@@ -9,3 +9,4 @@ if (!isset($_GET["id"]))
 $id = (int) $_GET["id"];
 $item = ItemTable()->findById($id);
 PanierTable()->insert($item);
+redirect("Paniers.php");
