@@ -21,6 +21,7 @@ class Item extends Record
         $this->TypeItem="";
         $this->FlagDispo="";
         $this->Photo ="";
+        $this->setCompareKey('ItemId');
         parent::__construct($recordData);
     }
     public function setItemId($itemId)

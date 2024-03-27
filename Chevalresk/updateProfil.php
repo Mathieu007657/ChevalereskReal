@@ -7,4 +7,4 @@ $user = JoueursTable()->get($_SESSION['currentUserId']);
 $_SESSION["name"] = $user->Name;
 $_SESSION["avatar"] = $user->Avatar;
 $_SESSION['Email'] = $user->Email;
-redirect('photosList.php');
+redirect('itemsList.php');

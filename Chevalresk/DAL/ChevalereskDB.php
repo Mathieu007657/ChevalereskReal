@@ -1,6 +1,8 @@
 <?php
     include_once 'DAL/MySQLDataBase.php';
     include_once 'DAL/JoueursTable.php';
+    include_once 'DAL/ItemsTable.php';
+
     function DB()
     {
         return MySQLDataBase::getInstance('dbchevalersk8');
@@ -9,7 +11,7 @@
     {
         return new JoueursTable();
     }
-    function ItemsTable()
+    function ItemTable()
     {
         return new ItemTable();
     }

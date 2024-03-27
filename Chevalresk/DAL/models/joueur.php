@@ -22,7 +22,7 @@ class Joueur extends Record
         $this->Password = "";
         $this->Avatar = "";
         $this->AccessType = 0;
-        $this->setCompareKey('Name');
+        $this->setCompareKey('UserId');
         $this->setUniqueKey('Email');
         $this->setUniqueKey('Alias');
         parent::__construct($recordData);
