@@ -18,7 +18,7 @@ foreach($list as $item){
     $type = $item->Type;
     $Dispo = $item->FlagDispo;
     $photo = $item->Photo;
-    $lienEcu="";
+    $lienEcu="images/ecu.png";
     $lienPhoto="data/images/photoItem/"."$photo";
 
     $photoHTML = <<<HTML
@@ -28,7 +28,11 @@ foreach($list as $item){
                     </div>
                     <a href="addItemPanier.php?id=$id">
                         <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
-                        <div>Prix: $prix écus <img src="$lienEcu"></div>
+                        <div>
+                            <div>
+                                Prix: $prix écus <img src="$lienEcu" class="appLogo">
+                            </div>
+                        </div>
                     </a>
                 </div>           
             HTML;
