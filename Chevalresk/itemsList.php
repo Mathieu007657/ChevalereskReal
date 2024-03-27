@@ -28,7 +28,11 @@ foreach($list as $item){
                     </div>
                     <a href="addItemPanier.php?id=$id">
                         <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
-                        <div>Prix: $prix écus <img src="$lienEcu" class="imgEcu"></div>
+                        <div>
+                            <div>
+                                Prix: $prix écus <img src="$lienEcu" class="appLogo">
+                            </div>
+                        </div>
                     </a>
                 </div>           
             HTML;
