@@ -12,12 +12,13 @@ $list = ItemTable()->get();
 
 foreach($list as $item){
     $id = $item->ItemId;
-    $name = $item->Name;
-    $quantite = $item->QuantiteStock;
+    $name = $item->Nom;
+    $quantite = $item->Quantite;
     $prix = $item->Prix;
-    $type = $item->TypeItem;
+    $type = $item->Type;
     $Dispo = $item->FlagDispo;
     $photo = $item->Photo;
+    $lienEcu="";
     $lienPhoto="data/images/photoItem/"."$photo";
 
     $photoHTML = <<<HTML
@@ -27,6 +28,7 @@ foreach($list as $item){
                     </div>
                     <a href="addItemPanier.php?id=$id">
                         <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
+                        <div>Prix: $prix écus <img src="$lienEcu"></div>
                     </a>
                 </div>           
             HTML;
