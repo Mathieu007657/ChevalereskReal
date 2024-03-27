@@ -275,10 +275,21 @@ abstract class MySQLTable
             $this->_DB->nonQuerySqlCmd($this->create_Table(), false);
         }
     }
-    public function get($id = '')
-    {
+    public function get($id = ''){
         if ($id !== '') {
             $data = $this->selectById($id);
+            if (isset($data[0]))
+                return $data[0];
+            else
+                return null;
+        } else {
+            $data = $this->selectAll();
+            return $data;
+        }
+    }
+    public function get2($id1 = '',$id2 = ''){
+        if ($id1 !== '' || $id2 !== '') {
+            $data = $this->selectByIdFusion($id1,$id2);
             if (isset($data[0]))
                 return $data[0];
             else
@@ -319,6 +330,15 @@ abstract class MySQLTable
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $tableName = $this->tableName();
         $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $this->toObjectArray($data);
+    }
+    public function selectByIdFusion($id1,$id2){
+        $id1 = filter_var($id1, FILTER_SANITIZE_NUMBER_INT);
+        $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
+
+        $tableName = $this->tableName();
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id1 And idItem = $id2";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
@@ -412,8 +432,7 @@ abstract class MySQLTable
         }
         return false;
     }
-    public function delete($id)
-    {
+    public function delete($id){
         if (isset($id)) {
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
             $tableName = $this->tableName();
@@ -421,14 +440,22 @@ abstract class MySQLTable
             $this->_DB->nonQuerySqlCmd($sql);
         }
     }
-    public function deleteWhere($criteria)
-    {
+    public function delete2($id1,$id2){
+        if (isset($id1) && isset($id2)) {
+            $id1 = filter_var($id1, FILTER_SANITIZE_NUMBER_INT);
+            $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
+
+            $tableName = $this->tableName();
+            $sql = "DELETE FROM $tableName WHERE idJoueurs = $id1 AND idItem = $id2";
+            $this->_DB->nonQuerySqlCmd($sql);
+        }
+    }
+    public function deleteWhere($criteria){
         $tableName = $this->tableName();
         $sql = "DELETE FROM $tableName WHERE $criteria";
         $this->_DB->nonQuerySqlCmd($sql);
     }
-    public function deleteAll()
-    {
+    public function deleteAll(){
         $tableName = $this->tableName();
         $sql = "DELETE FROM $tableName";
         $this->_DB->nonQuerySqlCmd($sql);
