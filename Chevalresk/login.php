@@ -3,13 +3,13 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 require 'DAL/ChevalereskDB.php';
 
+
 $id = 0;
 $password = null;
 $avatar = "images/no-avatar.png";
 $userName = "";
 $isAdmin = 0;
-function EmailExist($email)
-{
+function EmailExist($email){
     if (isset($email)) {
         $user = JoueursTable()->findByEmail($email);
         if ($user == null)
@@ -23,8 +23,7 @@ function EmailExist($email)
     }
     return false;
 }
-function passwordOk($password)
-{
+function passwordOk($password){
    return JoueursTable()->userValid($_POST['Email'], $password);
 }
 
@@ -44,11 +43,13 @@ if (isset($_POST['submit'])) {
         $_SESSION['passwordError'] = 'Mot de passe incorrect';
     }
     if ($validUser) {
+        $User = JoueursTable()->findByEmail($_SESSION['Email']);
+
         $_SESSION['validUser'] = true;
-        $_SESSION['isAdmin'] = $isAdmin;
-        $_SESSION['currentUserId'] = $id;
-        $_SESSION['userName'] = $userName;
-        $_SESSION['avatar'] = $avatar;
+        $_SESSION['isAdmin'] = $User->isAdmin();
+        $_SESSION['currentUserId'] = $User->UserId;
+        $_SESSION['userName'] = $User->Name;
+        $_SESSION['avatar'] = $User->Avatar;
         $_SESSION["photoSortType"] = "date";
         redirect('itemsList.php');
     }
