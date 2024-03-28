@@ -16,7 +16,10 @@ final class PaniersTable extends MySQLTable
         return isset($user[0]);
     }
 
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
     public function insert($item){
         parent::insert($item);
     }
