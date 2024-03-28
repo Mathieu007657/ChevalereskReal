@@ -34,7 +34,7 @@ if (isset($_SESSION["validUser"])) {
         </a>
         <div class="dropdown-divider"></div>
         <a href="itemsList.php" class="dropdown-item">
-            <i class="menuIcon fa-solid fa-store"></i> Magasin
+            <i class="menuIcon fa-solid fa-store mx-2"></i> Magasin
         </a>
         <a href="Paniers.php" class="dropdown-item">
             <i class="menuIcon fa fas fa-shopping-basket mx-2"></i> Paniers
@@ -101,7 +101,7 @@ $viewHead = <<<HTML
         </span>
         
         <div class="headerMenusContainer">
-            <span>&nbsp</span> <!--filler-->
+            <span class="viewTitle">Chevaleresk</span> <!--filler-->
             <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar </a>         
             <div class="dropdown ms-auto dropdownLayout">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
