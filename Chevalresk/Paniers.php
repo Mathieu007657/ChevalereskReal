@@ -33,6 +33,7 @@ foreach ($list as $item) {
                             <div>
                                 Prix: $prix écus <img src="$lienEcu" class="appLogo">
                             </div>
+                            <input class="quantity" id="id_form-0-quantity" min="0" name="form-0-quantity" value="1" type="number">
                         </div>
                 </div>
     HTML;
