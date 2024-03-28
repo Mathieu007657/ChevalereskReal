@@ -34,17 +34,14 @@ if (isset($_POST['submit'])) {
         $validUser = false;
         $_SESSION['EmailError'] = 'Ce courriel n\'existe pas';
     }
-    if ($isBlocked) {
-        $validUser = false;
-        $_SESSION['EmailError'] = 'Votre compte a été blocké par le modérateur';
-    }
     if (!passwordOk(sanitizeString($_POST['Password']))) {
         $validUser = false;
         $_SESSION['passwordError'] = 'Mot de passe incorrect';
     }
     if ($validUser) {
         $User = JoueursTable()->findByEmail($_SESSION['Email']);
-
+        echo "<script>console.log('Debug Objects: " . $User->UserId . "' );</script>";
+        
         $_SESSION['validUser'] = true;
         $_SESSION['isAdmin'] = $User->isAdmin();
         $_SESSION['currentUserId'] = $User->UserId;
