@@ -4,14 +4,14 @@ include_once 'DAL/models/record.php';
 class Commentaire extends Record
 {
     public $ItemId;
-    public $UserId;
+    public $JoueurId;
     public $Commentaire;
     public $NbEtoiles;
    
     public function __construct($recordData = null)
     {
         $this->ItemId = 0;
-        $this->UserId = 0;
+        $this->JoueurId = 0;
         $this->Commentaire = '';
         $this->NbEtoiles = 0;
         parent::__construct($recordData);
@@ -20,9 +20,9 @@ class Commentaire extends Record
     {
         $this->ItemId = (int) $itemId;
     }
-    public function setUserId($userId)
+    public function setJoueurId($JoueurId)
     {
-        $this->UserId = (int) $userId;
+        $this->JoueurId = (int) $JoueurId;
     }
     public function setCommentaire($commentaire)
     {

@@ -4,12 +4,12 @@ include_once 'DAL/models/record.php';
 class Panier extends Record
 {
     public $ItemId;
-    public $UserId;
+    public $JoueurId;
     public $QuantiteAchat;
    
     public function __construct($recordData = null){
         $this->ItemId = 0;
-        $this->UserId = 0;
+        $this->JoueurId = 0;
         $this->QuantiteAchat = 0;
         parent::__construct($recordData);
     }
@@ -22,12 +22,12 @@ class Panier extends Record
         return $this->ItemId;
     }
     //SET User ID
-    public function setUserId($userId){
-        $this->UserId = (int) $userId;
+    public function setJoueurId($JoueurId){
+        $this->JoueurId = (int) $JoueurId;
     }
     //GET User ID
-    public function getUserId(){
-        return $this->UserId;
+    public function getJoueurId(){
+        return $this->JoueurId;
     }
     //SET Quantité Achat
     public function setQuantiteAchat($quantiteAchat){
