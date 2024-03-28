@@ -3,13 +3,13 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 require 'DAL/ChevalereskDB.php';
 
+
 $id = 0;
 $password = null;
 $avatar = "images/no-avatar.png";
 $userName = "";
 $isAdmin = 0;
-function EmailExist($email)
-{
+function EmailExist($email){
     if (isset($email)) {
         $user = JoueursTable()->findByEmail($email);
         if ($user == null)
@@ -23,8 +23,7 @@ function EmailExist($email)
     }
     return false;
 }
-function passwordOk($password)
-{
+function passwordOk($password){
    return JoueursTable()->userValid($_POST['Email'], $password);
 }
 
@@ -35,20 +34,19 @@ if (isset($_POST['submit'])) {
         $validUser = false;
         $_SESSION['EmailError'] = 'Ce courriel n\'existe pas';
     }
-    if ($isBlocked) {
-        $validUser = false;
-        $_SESSION['EmailError'] = 'Votre compte a été blocké par le modérateur';
-    }
     if (!passwordOk(sanitizeString($_POST['Password']))) {
         $validUser = false;
         $_SESSION['passwordError'] = 'Mot de passe incorrect';
     }
     if ($validUser) {
+        $User = JoueursTable()->findByEmail($_SESSION['Email']);
+        echo "<script>console.log('Debug Objects: " . $User->UserId . "' );</script>";
+        
         $_SESSION['validUser'] = true;
-        $_SESSION['isAdmin'] = $isAdmin;
-        $_SESSION['currentUserId'] = $id;
-        $_SESSION['userName'] = $userName;
-        $_SESSION['avatar'] = $avatar;
+        $_SESSION['isAdmin'] = $User->isAdmin();
+        $_SESSION['currentUserId'] = $User->UserId;
+        $_SESSION['userName'] = $User->Name;
+        $_SESSION['avatar'] = $User->Avatar;
         $_SESSION["photoSortType"] = "date";
         redirect('itemsList.php');
     }
