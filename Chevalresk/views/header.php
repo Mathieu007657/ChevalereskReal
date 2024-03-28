@@ -1,4 +1,5 @@
 <?php
+include_once "DAL/MySQLDataBase.php";
 $pageTitle = "Chevaleresk";
 if (!isset($viewTitle))
     $viewTitle = "";
@@ -10,11 +11,13 @@ if (!isset($viewName))
 $loggedUserMenu = "";
 $connectedUserAvatar = "";
 $menuIcon="";
+$solde = 1000;
 
 if (isset($_SESSION["validUser"])) {
-
-    $avatar = $_SESSION["avatar"];
+    $Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
+    //$avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
+    $avatar = $Joueur->Avatar;
     $loggedUserMenu = "";
     if (isset($_SESSION["isAdmin"]) && (bool) $_SESSION["isAdmin"]) {
         $loggedUserMenu = <<<HTML
@@ -42,6 +45,7 @@ if (isset($_SESSION["validUser"])) {
     HTML;
     $connectedUserAvatar = <<<HTML
         <div class="UserAvatarSmall" style="background-image:url('/data/avatars/$avatar')" title="$userName"></div>
+        <div>$solde <img src="images/ecu.png" class="imgEcu"></div>
     HTML;
 } else {
     $loggedUserMenu = <<<HTML
@@ -79,7 +83,8 @@ $viewHead = <<<HTML
         
         <div class="headerMenusContainer">
             <span class="viewTitle">Chevaleresk</span> <!--filler-->
-            <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar </a>         
+            <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar
+                </a>         
             <div class="dropdown ms-auto dropdownLayout">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="cmdIcon fa fa-ellipsis-vertical"></i>
