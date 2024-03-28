@@ -17,7 +17,7 @@ final class ItemTable extends MySQLTable
     }
     public function findById($id)
     {
-        $item = $this->selectWhere("ItemId = '$id'");
+        $item = $this->selectWhere("ItemId = $id");
         if (isset($item[0]))
             return $item[0];
         return null;
