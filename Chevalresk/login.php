@@ -40,11 +40,12 @@ if (isset($_POST['submit'])) {
     }
     if ($validUser) {
         $User = JoueursTable()->findByEmail($_SESSION['Email']);
-        echo "<script>console.log('Debug Objects: " . $User->UserId . "' );</script>";
+        echo "<script>console.log('Debug Objects: " . gettype($User) . "' );</script>";
         
         $_SESSION['validUser'] = true;
         $_SESSION['isAdmin'] = $User->isAdmin();
-        $_SESSION['currentUserId'] = $User->UserId;
+        $_SESSION['currentUserId'] = $User->JoueurId+1;
+        //$_SESSION['currentUserId']=$_SESSION['currentUserId']+1;
         $_SESSION['userName'] = $User->Name;
         $_SESSION['avatar'] = $User->Avatar;
         $_SESSION["photoSortType"] = "date";

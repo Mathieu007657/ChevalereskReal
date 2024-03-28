@@ -38,6 +38,6 @@ final class PaniersTable extends MySQLTable
     }
 
     public function findByidPanierPlayer($id){
-        return $this->selectWhere("idJoueurs = $id");       
+        return $this->selectById($id);       
     }
 }
