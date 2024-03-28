@@ -333,6 +333,14 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
+    public function selectEcusById($id)
+    {
+        $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $tableName = $this->tableName();
+        $sql = "SELECT solde FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $this->toObjectArray($data);
+    }
     public function selectByIdFusion($id1,$id2){
         $id1 = filter_var($id1, FILTER_SANITIZE_NUMBER_INT);
         $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
