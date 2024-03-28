@@ -9,8 +9,8 @@ userAccess();
 $viewTitle = "Panier";
 $viewContent = "<div class='photosLayout'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
-$idPlayer = $_SESSION["id"];
-$list = PanierTable()->get($idPlayer);
+$idPlayer = $_SESSION["currentUserId"];
+$list = PanierTable()->findByidPanierPlayer($idPlayer);
 
 foreach ($list as $item) {
     $idItemPan = $item->idItem;
@@ -38,7 +38,7 @@ foreach ($list as $item) {
                     </a>
                 </div>
     HTML;
-    $viewContent = $viewContent . $photoHTML;
+    $viewContent = $viewContent . $ItemPanier;
     
 }
 $viewContent = $viewContent . "</div>";
