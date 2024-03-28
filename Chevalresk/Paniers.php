@@ -12,13 +12,14 @@ $isAdmin = (bool) $_SESSION["isAdmin"];
 $idPlayer = $_SESSION["currentUserId"];
 $list = PanierTable()->findByidPanierPlayer($idPlayer);
 foreach ($list as $item) {
-    $idItemPan = $item->idItem;
-    $quantity = $item->quantiteAchat;
+    $idItemPan = $item->ItemId;
+    $quantity = $item->QuantiteAchat;
     $ItemSelect = ItemTable()->findById($idItemPan);
-    $id = $ItemSelect->idItem;
-    $nom = $ItemSelect->nom;
-    $prix = $ItemSelect->prix;
-    $photo = $ItemSelect->photo;
+    echo "<script>console.log('Debug Objects: " . get_class($ItemSelect) . "' );</script>";
+    $id = $ItemSelect->ItemId;
+    $nom = $ItemSelect->Nom;
+    $prix = $ItemSelect->Prix;
+    $photo = $ItemSelect->Photo;
     $lienEcu="images/ecu.png";
     $lienPhoto="data/images/photoItem/"."$photo";
 
@@ -32,6 +33,7 @@ foreach ($list as $item) {
                             <div>
                                 Prix: $prix écus <img src="$lienEcu" class="appLogo">
                             </div>
+                            <input class="quantity" id="id_form-0-quantity" min="0" name="form-0-quantity" value="1" type="number">
                         </div>
                 </div>
     HTML;

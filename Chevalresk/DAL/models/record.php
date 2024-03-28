@@ -3,7 +3,7 @@ include_once "php/formUtilities.php";
 abstract class Record
 {
     public $Id = 0;
-    public $_compareKey = "";
+    public $_CompareKey = "";
     public $_UniqueKey = "";
     public function __construct($formData = null)
     {

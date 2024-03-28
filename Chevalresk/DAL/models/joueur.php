@@ -24,9 +24,9 @@ class Joueur extends Record
         $this->Solde=0;
         $this->Avatar = "";
         $this->AccessType = 0;
-        $this->setCompareKey('UserId');
-        $this->setUniqueKey('Email');
-        $this->setUniqueKey('Alias');
+        $this->setUniqueKey('UserId');
+        //$this->setUniqueKey('Email');
+        //$this->setUniqueKey('Alias');
         parent::__construct($recordData);
     }
     public function setJoueurId($JoueurId)

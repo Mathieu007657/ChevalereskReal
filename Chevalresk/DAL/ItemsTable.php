@@ -12,12 +12,12 @@ final class ItemTable extends MySQLTable
     }
     public function itemExist($id)
     {
-        $item = $this->selectWhere("ItemId = '$id'");
+        $item = $this->selectWhere("idItem = '$id'");
         return isset($item[0]);
     }
     public function findById($id)
     {
-        $item = $this->selectWhere("ItemId = $id");
+        $item = $this->selectWhere("idItem = $id");
         if (isset($item[0]))
             return $item[0];
         return null;

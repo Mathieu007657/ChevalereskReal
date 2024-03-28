@@ -39,6 +39,10 @@ final class JoueursTable extends MySQLTable
         $user->setAvatar(saveImage(avatarsPath, $user->Avatar));
         parent::insert($user);
     }
+    public function ajouterJoueur($Joueur)
+    {
+        
+    }
     public function update($user)
     {
         $userToUpdate = $this->get($user->Id);

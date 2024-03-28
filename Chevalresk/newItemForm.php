@@ -45,7 +45,7 @@
             <input type='submit' name='submit' value="Enregistrer" class="form-control btn-primary">
         </form>
         <div class="cancel">
-            <a href="photosList.php">
+            <a href="itemsList.php">
                 <button class="form-control btn-secondary">Annuler</button>
             </a>
         </div>
