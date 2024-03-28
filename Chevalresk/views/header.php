@@ -12,9 +12,10 @@ $connectedUserAvatar = "";
 $menuIcon="";
 
 if (isset($_SESSION["validUser"])) {
-
-    $avatar = $_SESSION["avatar"];
+    $Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
+    //$avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
+    $avatar = $Joueur->Avatar;
     $loggedUserMenu = "";
     if (isset($_SESSION["isAdmin"]) && (bool) $_SESSION["isAdmin"]) {
         $loggedUserMenu = <<<HTML
@@ -41,7 +42,7 @@ if (isset($_SESSION["validUser"])) {
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML
-        <div class="UserAvatarSmall" style="background-image:url('/data/avatars/$avatar')" title="$userName"></div>
+        <div class="UserAvatarSmall" style="background-image:url('/data/images/avatars/$avatar')" title="$userName"></div>
     HTML;
 } else {
     $loggedUserMenu = <<<HTML
