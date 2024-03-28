@@ -44,12 +44,7 @@ if (isset($_SESSION["validUser"])) {
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML
-<<<<<<< HEAD
         <div class="UserAvatarSmall" style="background-image:url('data/images/avatars/$avatar')" title="$userName"></div>
-=======
-        <div class="UserAvatarSmall" style="background-image:url('/data/avatars/$avatar')" title="$userName"></div>
-        <div>$solde <img src="images/ecu.png" class="imgEcu"></div>
->>>>>>> 02a03b4c6945ed7af984877e6e052ea757a0e258
     HTML;
 } else {
     $loggedUserMenu = <<<HTML
