@@ -3,31 +3,31 @@
 include_once 'DAL/models/record.php';
 class Panier extends Record
 {
-    public $idItem;
-    public $idJoueurs;
+    public $ItemId;
+    public $JoueurId;
     public $QuantiteAchat;
    
     public function __construct($recordData = null){
-        $this->idItem = 0;
-        $this->idJoueurs = 0;
+        $this->ItemId = 0;
+        $this->JoueurId = 0;
         $this->QuantiteAchat = 0;
         parent::__construct($recordData);
     }
     //SET Item ID
-    public function setItemId($itemId){
-        $this->idItem = (int) $itemId;
+    public function setItemId($ItemId){
+        $this->ItemId = (int) $ItemId;
     }
     //GET Item ID
     public function getItemId(){
-        return $this->idItem;
+        return $this->ItemId;
     }
     //SET User ID
-    public function setidJoueurs($userId){
-        $this->idJoueurs = (int) $userId;
+    public function setJoueurId($JoueurId){
+        $this->JoueurId = (int) $JoueurId;
     }
     //GET User ID
-    public function getidJoueurs(){
-        return $this->idJoueurs;
+    public function getJoueurId(){
+        return $this->JoueurId;
     }
     //SET Quantité Achat
     public function setQuantiteAchat($quantiteAchat){

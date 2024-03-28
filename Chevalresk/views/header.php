@@ -34,7 +34,7 @@ if (isset($_SESSION["validUser"])) {
         </a>
         <div class="dropdown-divider"></div>
         <a href="itemsList.php" class="dropdown-item">
-            <i class="menuIcon fa-solid fa-store"></i> Magasin
+            <i class="menuIcon fa-solid fa-store mx-2"></i> Magasin
         </a>
         <a href="Paniers.php" class="dropdown-item">
             <i class="menuIcon fa fas fa-shopping-basket mx-2"></i> Paniers
@@ -48,6 +48,9 @@ if (isset($_SESSION["validUser"])) {
         <a href="loginForm.php" class="dropdown-item" id="loginCmd">
             <i class="menuIcon fa fa-sign-in mx-2"></i> Connexion
         </a> 
+        <a href="itemsList.php" class="dropdown-item">
+            <i class="menuIcon fa-solid fa-store"></i> Magasin
+        </a>
     HTML;
     $connectedUserAvatar = <<<HTML
         <div>&nbsp;</div>
@@ -57,33 +60,7 @@ if (isset($_SESSION["validUser"])) {
 
 
 $viewMenu = "";
-if (strcmp($viewName, "photoList") == 0) {
-    $sortType = isset($_SESSION["photoSortType"]) ? $_SESSION["photoSortType"] : "date";
-    $checkIcon = '<i class="menuIcon fa fa-check mx-2"></i>';
-    $uncheckIcon = '<i class="menuIcon fa fa-fw mx-2"></i>';
-    $sortByDateCheck = ($sortType == "date") ? $checkIcon : $uncheckIcon;
-    $sortByLikeCheck = ($sortType == "likes") ? $checkIcon : $uncheckIcon;
-    $sortByOwners = ($sortType == "owners") ? $checkIcon : $uncheckIcon;
-    $sortByKeywords = ($sortType == "keywords") ? $checkIcon : $uncheckIcon;
-    $ownerOnly = ($sortType == "owner") ? $checkIcon : $uncheckIcon;
-    if ($sortType == "owners") {
-        $userOptions = '';
-        $users = JoueursTable()->get();
-        foreach ($users as $user) {
-            $userId = $user->Id;
-            $userName = $user->Name;
-            $userOptions .= "<option value=\"$userId\">$userName</option>";
-        }
-        $viewHeadCustom = <<<HTML
-            <div class="searchContainer">
-                <select class="form-select userSelector" id="userSelector"> 
-                    <option value="0"> Tous les usagers</option>
-                    $userOptions;
-                </select>
-                <i class="cmdIcon fa fa-search" id="setPhotoOwnerSearchIdCmd"></i>
-            </div>
-        HTML;
-    }
+if (strcmp($viewName, "itemList") == 0) {
     if ($sortType == "keywords") {
         $viewHeadCustom = <<<HTML
            <div class="searchContainer">
@@ -101,7 +78,7 @@ $viewHead = <<<HTML
         </span>
         
         <div class="headerMenusContainer">
-            <span>&nbsp</span> <!--filler-->
+            <span class="viewTitle">Chevaleresk</span> <!--filler-->
             <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar </a>         
             <div class="dropdown ms-auto dropdownLayout">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
