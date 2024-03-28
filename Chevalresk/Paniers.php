@@ -9,7 +9,7 @@ userAccess();
 $viewTitle = "Panier";
 $viewContent = "<div class='photosLayout'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
-$idPlayer = $_SESSION['currentUserId'] +1;
+$idPlayer = $GLOBALS["id"];
 $list = PanierTable()->get($idPlayer);
 
 foreach ($list as $item) {

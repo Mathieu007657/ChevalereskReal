@@ -8,6 +8,7 @@ $viewName = "itemList";
 $viewTitle = "Items";
 $viewContent = "<div class='photosLayout'>";
 //$isAdmin = (bool) $_SESSION["isAdmin"];
+$sortType ="";
 $list = ItemTable()->get();
 
 foreach($list as $item){

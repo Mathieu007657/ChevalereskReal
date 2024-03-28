@@ -4,22 +4,24 @@ include_once 'DAL/models/record.php';
 
 class Joueur extends Record
 {
-    public $UserId;
+    public $JoueurId;
     public $Name;
     public $Prename;
     public $Alias;
     public $Email;
     public $Password;
     public $Avatar;
+    public $Solde;
     public $AccessType = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
     {
-        $this->UserId = 0;
+        $this->JoueurId = 0;
         $this->Name = "";
         $this->Prename = "";
         $this->Alias = "";
         $this->Email = "";
         $this->Password = "";
+        $this->Solde=0;
         $this->Avatar = "";
         $this->AccessType = 0;
         $this->setCompareKey('UserId');
@@ -27,13 +29,17 @@ class Joueur extends Record
         $this->setUniqueKey('Alias');
         parent::__construct($recordData);
     }
-    public function setUserId($userId)
+    public function setJoueurId($JoueurId)
     {
-        $this->UserId = (int) $userId;
+        $this->JoueurId = (int) $JoueurId;
     }
     public function setName($name)
     {
         $this->Name = $name;
+    }
+    public function setSolde($solde)
+    {
+        $this->Solde=$solde;
     }
     public function setPrename($prename)
     {
