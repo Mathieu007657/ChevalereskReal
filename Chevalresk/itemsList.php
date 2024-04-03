@@ -11,6 +11,31 @@ $viewContent = "<div class='photosLayout'>";
 $sortType ="";
 $list = ItemTable()->get();
 
+// Récupérer les paramètres de requête GET
+$filter = $_GET['filter'] ?? null;
+$sort = $_GET['sort'] ?? null;
+
+// Filtrer la liste si un filtre est spécifié
+if ($filter) {
+    $list = array_filter($list, function ($item) use ($filter) {
+        return $item->Type === $filter;
+    });
+}
+
+// Trier la liste si un type de tri est spécifié
+if ($sort) {
+    if ($sort === 'asc') {
+        usort($list, function ($a, $b) {
+            return $a->Prix <=> $b->Prix;
+        });
+    } elseif ($sort === 'desc') {
+        usort($list, function ($a, $b) {
+            return $b->Prix <=> $a->Prix;
+        });
+    }
+}
+
+// Afficher la liste filtrée/trieée des articles
 foreach($list as $item){
     $id = $item->IdItem;
     $name = $item->Nom;
@@ -23,24 +48,24 @@ foreach($list as $item){
     $lienPhoto="data/images/photoItem/"."$photo";
     
     $photoHTML = <<<HTML
-                <div class="photoLayout" photo_id="$id">
-                    <div class="photoTitleContainer">
-                        <div class="photoTitle ellipsis">$name</div>
+        <div class="photoLayout" photo_id="$id">
+            <div class="photoTitleContainer">
+                <div class="photoTitle ellipsis">$name</div>
+            </div>
+            <a href="addItemPanier.php?id=$id">
+                <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
+                <div>
+                    <div>
+                        Prix: $prix écus <img src="$lienEcu" class="appLogo">
                     </div>
-                    <a href="addItemPanier.php?id=$id">
-                        <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
-                        <div>
-                            <div>
-                                Prix: $prix écus <img src="$lienEcu" class="appLogo">
-                            </div>
-                        </div>
-                    </a>
-                </div>           
-            HTML;
-            $viewContent = $viewContent . $photoHTML;
+                </div>
+            </a>
+        </div>           
+    HTML;
+    $viewContent .= $photoHTML;
 }
 
-$viewContent = $viewContent . "</div>";
+$viewContent .= "</div>";
 $viewScript = <<<HTML
     <script defer>
         //on utilise pas
@@ -53,4 +78,6 @@ $viewScript = <<<HTML
         });
     </script>
 HTML;
+
 include "views/master.php";
+?>
