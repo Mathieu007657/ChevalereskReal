@@ -10,7 +10,7 @@ if (!isset($viewName))
 
 $loggedUserMenu = "";
 $connectedUserAvatar = "";
-$menuIcon="";
+$menuIcon = "";
 $solde = 1000;
 
 if (isset($_SESSION["validUser"])) {
@@ -64,15 +64,35 @@ if (isset($_SESSION["validUser"])) {
 
 $viewMenu = "";
 if (strcmp($viewName, "itemList") == 0) {
-    if ($sortType == "keywords") {
         $viewHeadCustom = <<<HTML
-           <div class="searchContainer">
-                <input type="search" class="form-control" placeholder="Recherche par mots-clés" id="keywords" />
-                <i class="cmdIcon fa fa-search" id="setSearchKeywordsCmd"></i>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Nom
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Arme
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Armure
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Potion
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Element
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Prix (croissant)
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Prix (décroissant)
+                </label>
+                <label style="color: white;">
+                <input type="checkbox" name="agree"> Disponibilité
+                </label>
             </div>
         HTML;
     }
-}
 
 $viewHead = <<<HTML
         <a href="itemsList.php" title="Liste des Items"><img src="images/PhotoCloudLogo.png" class="appLogo"></a>

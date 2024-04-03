@@ -21,7 +21,7 @@ foreach($list as $item){
     $photo = $item->Photo;
     $lienEcu="images/ecu.png";
     $lienPhoto="data/images/photoItem/"."$photo";
-
+    
     $photoHTML = <<<HTML
                 <div class="photoLayout" photo_id="$id">
                     <div class="photoTitleContainer">
