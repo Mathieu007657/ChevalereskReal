@@ -36,7 +36,7 @@
 #header {
     background-color: rgb(52, 11, 87);
     display: grid;
-    color:white;
+    color: white;
     grid-template-columns: 50px auto auto;
     width: 100%;
     height: auto;
@@ -45,7 +45,7 @@
 }
 
 .headerMenusContainer {
-    display:grid;
+    display: grid;
     grid-template-columns: auto 50px 30px;
     align-items: center;
 }
@@ -58,7 +58,8 @@
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
-    /*scroll-snap-type: y mandatory*/;
+    /*scroll-snap-type: y mandatory*/
+    ;
     background-color: white;
     padding-bottom: 8px;
 }
@@ -97,15 +98,30 @@
 
 .menuIcon {
     -webkit-text-fill-color: rgb(0, 0, 0);
-    width:20px;
+    width: 20px;
 }
 
 .appLogo {
     height: 40px;
     margin-right: 10px;
 }
-.imgEcu{
+
+.imgEcu {
     height: 20px;
+}
+.itemTableImg{
+    height: 15%;
+    width: 15%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
 }
 
 @media screen and (min-width:650px) {
@@ -239,7 +255,10 @@ legend {
     grid-template-columns: 25px auto !important;
 }
 
-div2,a2,i2, span2 {
+div2,
+a2,
+i2,
+span2 {
     border: 1px solid red;
 }
 
@@ -254,6 +273,7 @@ div2,a2,i2, span2 {
     grid-template-columns: auto 40px;
     align-items: top;
 }
+
 .searchContainer input {
     margin-bottom: 0px !important;
 }
