@@ -61,6 +61,9 @@ class Joueur extends Record
     {
         $this->Avatar = $avatar;
     }
+    public function getAvatar(){
+        return $this->Avatar;
+    }
     public function setAccessType($accessType)
     {
         $this->AccessType = (int) $accessType;
