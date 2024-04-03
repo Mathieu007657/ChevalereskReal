@@ -103,7 +103,7 @@ foreach ($list as $item) {
     $lienPhoto = "data/images/photoItem/" . "$photo";
     $maxItem = $ItemSelect->Quantite;
     $prixTotalItem = $prix * $quantity;
-    $totalPrice += $prixTotalItem; // Ajouter le prix total de cet article au prix total
+    $totalPrice += $prixTotalItem; 
 
     $ItemPanier = <<<HTML
                     <tr style="font-size: 40px;">
