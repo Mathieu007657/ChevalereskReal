@@ -95,7 +95,7 @@ if (strcmp($viewName, "itemList") == 0) {
     }
 
 $viewHead = <<<HTML
-        <a href="itemsList.php" title="Liste des Items"><img src="images/PhotoCloudLogo.png" class="appLogo"></a>
+        <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo"></a>
         <span class="viewTitle">
             $viewTitle 
         </span>
