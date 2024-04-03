@@ -7,13 +7,13 @@ require 'DAL/ChevalereskDB.php';
 $viewName = "itemList";
 userAccess();
 $viewTitle = "Panier";
-$viewContent = "<div class='photosLayout'>";
+$viewContent = "<div class='table'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
 $idPlayer = $_SESSION["currentUserId"];
 $list = PanierTable()->findByidPanierPlayer($idPlayer);
+
 foreach ($list as $item) {
     $idItemPan = $item->idItem + 1;
-    echo "<script>console.log('Debug Objects: " . $idItemPan . "' );</script>";
     $quantity = $item->QuantiteAchat;
     $ItemSelect = ItemTable()->findById($idItemPan);
     $id = $ItemSelect->ItemId;
@@ -22,19 +22,28 @@ foreach ($list as $item) {
     $photo = $ItemSelect->Photo;
     $lienEcu="images/ecu.png";
     $lienPhoto="data/images/photoItem/"."$photo";
+    $maxItem = $ItemSelect->Quantite;
 
     $ItemPanier = <<<HTML
-                    <div class="photoLayout" photo_id="$id">
-                        <div class="photoTitleContainer">
-                            <div class="photoTitle ellipsis">$nom</div>
-                        </div>
-                        <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
-                        <div>
-                            <div>
-                                Prix: $prix écus <img src="$lienEcu" class="appLogo">
-                            </div>
-                            <input class="quantity" id="id_form-0-quantity" min="0" name="form-0-quantity" value="1" type="number">
-                        </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <img class="itemTableImg" src="$lienPhoto"/>
+                            </td>
+                            <td>
+                                $nom
+                            </td>
+                            <td>
+                                <input class="quantity" id="id_form-0-quantity" min="0" max="$maxItem" name="form-0-quantity" value="1" type="number">
+                            </td>
+                            <td>
+                                X
+                            </td>
+                            <td>
+                                $prix
+                            </td>
+                        </tr>
+                    </table>
                 </div>
     HTML;
     $viewContent = $viewContent . $ItemPanier;
