@@ -64,35 +64,36 @@ if (isset($_SESSION["validUser"])) {
 
 $viewMenu = "";
 if (strcmp($viewName, "itemList") == 0) {
-        $viewHeadCustom = <<<HTML
-            <div style="display: flex; justify-content: space-between; width: 100%;">
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Nom
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Arme
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Armure
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Potion
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Element
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Prix (croissant)
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Prix (décroissant)
-                </label>
-                <label style="color: white;">
-                <input type="checkbox" name="agree"> Disponibilité
-                </label>
-            </div>
-        HTML;
-    }
+    $viewHeadCustom = <<<HTML
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+        <label style="color: white;">
+            <a href="itemsList.php?filter=nom">Nom</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?filter=arme">Arme</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?filter=armure">Armure</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?filter=potion">Potion</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?filter=element">Element</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?sort=asc">Prix (croissant)</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?sort=desc">Prix (décroissant)</a>
+        </label>
+        <label style="color: white;">
+            <a href="itemsList.php?filter=dispo">Disponibilité</a>
+        </label>
+    </div>
+HTML;
+
+}
 
 $viewHead = <<<HTML
         <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo"></a>
