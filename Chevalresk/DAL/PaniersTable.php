@@ -10,7 +10,7 @@ final class PaniersTable extends MySQLTable
         parent::__construct(DB(), new Panier());
     }
     public function ItemPanierExist($item){
-        $itemID = $item->getItemId();
+        $itemID = $item->getIdItem();
         $UserID = $item->getUserId();
         $user = $this->selectWhere("idItem = $itemID AND idJoueurs = $UserID");
         return isset($user[0]);
@@ -21,7 +21,7 @@ final class PaniersTable extends MySQLTable
     }
 
     public function update($itemPanier){
-        $ItemToUpdate = $this->get2($itemPanier->idItem,$itemPanier->idJoueurs);
+        $ItemToUpdate = $this->get2($itemPanier->IdItem,$itemPanier->idJoueurs);
         if ($ItemToUpdate != null) {
             parent::update($itemPanier);
         }
