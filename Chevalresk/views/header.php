@@ -60,14 +60,14 @@ if (isset($_SESSION["validUser"])) {
     HTML;
 }
 
-
-
+//Pour les filter, Armure:R, Arme:A, Potion:P, Element:E variable nommée "type" dans la base de donnée
+//Faire en sorte que les filter/sort ne s'affichent pas dans paniers.php
 $viewMenu = "";
-if (strcmp($viewName, "itemList") == 0) {
+if (strcmp($viewName, "Paniers") !== 0 && strcmp($viewName, "itemList") == 0) {
     $viewHeadCustom = <<<HTML
     <div style="display: flex; justify-content: space-between; width: 100%;">
         <label style="color: white;">
-            <a href="itemsList.php?filter=nom">Nom</a>
+            <a href="itemsList.php?sort=nom">Nom</a>
         </label>
         <label style="color: white;">
             <a href="itemsList.php?filter=arme">Arme</a>
@@ -102,7 +102,7 @@ $viewHead = <<<HTML
         </span>
         
         <div class="headerMenusContainer">
-            <span class="viewTitle">Chevaleresk</span> <!--filler-->
+            <span class="viewTitle">Les Chevaleresk aux rotules enflées</span> <!--filler-->
             <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar
                 </a>         
             <div class="dropdown ms-auto dropdownLayout">
