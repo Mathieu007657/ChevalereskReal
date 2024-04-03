@@ -159,8 +159,6 @@ $viewScript = <<<HTML
 
 function updateTotalPrice(input) {
     var quantity = parseInt(input.value);
-    console.log(quantity);
-
     var match = input.id.match(/id-form-(\d+)-quantity/);
     if (match) {
         var idItem = match[1];
