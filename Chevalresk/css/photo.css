@@ -23,6 +23,7 @@
     height: 265px;
     border-radius: 9px;
     padding: 5px;
+    border: black solid 2px;
 }
 
 .photoTitleContainer {
