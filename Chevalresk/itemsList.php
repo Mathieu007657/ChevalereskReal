@@ -12,7 +12,7 @@ $sortType ="";
 $list = ItemTable()->get();
 
 foreach($list as $item){
-    $id = $item->ItemId;
+    $id = $item->IdItem;
     $name = $item->Nom;
     $quantite = $item->Quantite;
     $prix = $item->Prix;

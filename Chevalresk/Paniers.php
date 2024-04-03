@@ -13,11 +13,11 @@ $idPlayer = $_SESSION["currentUserId"];
 $list = PanierTable()->findByidPanierPlayer($idPlayer);
 
 foreach ($list as $item) {
-    $idItemPan = $item->idItem + 1;
+    $idItemPan = $item->IdItem + 1;
     echo "<script>console.log('Debug Objects: " . $idItemPan . "' );</script>";
     $quantity = $item->QuantiteAchat;
     $ItemSelect = ItemTable()->findById($idItemPan);
-    $id = $ItemSelect->ItemId;
+    $id = $ItemSelect->IdItem;
     $nom = $ItemSelect->Nom;
     $prix = $ItemSelect->Prix;
     $photo = $ItemSelect->Photo;
