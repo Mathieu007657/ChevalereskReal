@@ -29,7 +29,7 @@ final class ItemTable extends MySQLTable
     }
     public function update($item)
     {
-        $itemToUpdate = $this->get($item->Id);
+        $itemToUpdate = $this->get($item->IdItem);
         if ($itemToUpdate != null) {
             $item->setAvatar(saveImage(PhotoPath, $item->Photo, $itemToUpdate->Photo));
             parent::update($item);
@@ -39,7 +39,7 @@ final class ItemTable extends MySQLTable
     {
         $itemToRemove = $this->get($itemId);
         if ($itemToRemove != null) {
-            $itemId = $itemToRemove->ItemId;
+            $itemId = $itemToRemove->IdItem;
             unlink($itemToRemove->Photo);
             return parent::delete($itemId);
         }

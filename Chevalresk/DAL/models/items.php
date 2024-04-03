@@ -3,7 +3,7 @@
 include_once 'DAL/models/record.php';
 class Item extends Record
 {
-    public $ItemId;
+    public $IdItem;
     public $Nom;
     public $Quantite;
     public $Prix;
@@ -14,7 +14,7 @@ class Item extends Record
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
+        $this->IdItem = 0;
         $this->Nom="";
         $this->Quantite=0;
         $this->Prix =0;
@@ -24,9 +24,9 @@ class Item extends Record
         $this->setCompareKey('ItemId');
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setIdItem($IdItem)
     {
-        $this->ItemId = (int) $itemId;
+        $this->IdItem = (int) $IdItem;
     }
     public function setTypeItem($type)
     {
