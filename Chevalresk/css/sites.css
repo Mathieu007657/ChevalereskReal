@@ -257,3 +257,6 @@ div2,a2,i2, span2 {
 .searchContainer input {
     margin-bottom: 0px !important;
 }
+.quantity{
+    width:30%;
+}
