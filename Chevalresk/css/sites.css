@@ -109,19 +109,6 @@
 .imgEcu {
     height: 20px;
 }
-.itemTableImg{
-    height: 15%;
-    width: 15%;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-td,
-th {
-    padding: 0;
-}
 
 @media screen and (min-width:650px) {
 

@@ -1,0 +1,35 @@
+/* Style pour la table du panier */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style pour chaque ligne d'article */
+.table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style pour chaque cellule d'article */
+.table td {
+    padding: 8px;
+}
+
+/* Style pour l'image de l'article */
+.itemTableImg {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Style pour le champ de quantité */
+.quantity {
+    width: 50px;
+}
+
+/* Style pour le bouton de suppression */
+.delete-button {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
