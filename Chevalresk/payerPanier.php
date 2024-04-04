@@ -16,12 +16,11 @@ foreach ($panierItems as $panierItem) {
     $totalPrice += $item->Prix;
 }
 if($solde>=$totalPrice){
-    foreach ($panierItems as $panierItem) {
-
-    }
-    //redirect("Paniers.php?Payer=true");
+    $Joueur->setSolde($Joueur->Solde - $totalPrice);
+    JoueursTable()->updateBuy($Joueur);
+    redirect("Paniers.php?Payer=true");
 }
 else if($solde < $totalPrice){
-    //redirect("Paniers.php?Cher=true");
+    redirect("Paniers.php?Cher=true");
 }
 echo "Prix total du panier : " . $totalPrice . " solde joueur" . $solde;

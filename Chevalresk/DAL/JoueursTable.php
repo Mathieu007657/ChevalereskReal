@@ -19,7 +19,6 @@ final class JoueursTable extends MySQLTable
     public function findByEmail($email)
     {
         $user = $this->selectWhere("courriel = '$email'");
-        echo "<script>console.log('Debug Objects: " . $user[0]->JoueurId . "' );</script>";
         if (isset($user[0]))
             return $user[0];
         return null;
@@ -53,6 +52,10 @@ final class JoueursTable extends MySQLTable
             $user->setAvatar(saveImage(avatarsPath, $user->Avatar, $userToUpdate->Avatar));
             parent::update($user);
         }
+    }
+    public function updateBuy($user)
+    {
+        parent::updateJoueurPayer($user);        
     }
     public function delete($id)
     {
