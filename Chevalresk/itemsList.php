@@ -15,23 +15,54 @@ $list = ItemTable()->get();
 $filter = $_GET['filter'] ?? null;
 $sort = $_GET['sort'] ?? null;
 
-// Filtrer la liste si un filtre est spécifié
+// Construire la requête SQL de base
+$sql = "SELECT * FROM dbchevalersk8.Items WHERE";
+
+// Appliquer le filtre si spécifié
 if ($filter) {
-    $list = array_filter($list, function ($item) use ($filter) {
-        return $item->Type === $filter;
-    });
+    switch ($filter) {
+        case 'arme':
+            $sql .= " type = 'A'";
+            break;
+        case 'armure':
+            $sql .= " type = 'R'";
+            break;
+        case 'potion':
+            $sql .= " type = 'P'";
+            break;
+        case 'element':
+            $sql .= " type = 'E'";
+            break;
+        case 'dispo':
+            $sql .= " flagDispo = 1";
+            break;
+    }
 }
 
 // Trier la liste si un type de tri est spécifié
 if ($sort) {
-    if ($sort === 'asc') {
-        usort($list, function ($a, $b) {
-            return $a->Prix <=> $b->Prix;
-        });
-    } elseif ($sort === 'desc') {
-        usort($list, function ($a, $b) {
-            return $b->Prix <=> $a->Prix;
-        });
+    // Définition de la fonction de tri en fonction du type de tri sélectionné
+    switch ($sort) {
+        case 'nom':
+            usort($list, function ($a, $b) {
+                return strcmp($a->Nom, $b->Nom);
+            });
+            break;
+        case 'type':
+            usort($list, function ($a, $b) {
+                return strcmp($a->Type, $b->Type);
+            });
+            break;
+        case 'asc':
+            usort($list, function ($a, $b) {
+                return $a->Prix <=> $b->Prix;
+            });
+            break;
+        case 'desc':
+            usort($list, function ($a, $b) {
+                return $b->Prix <=> $a->Prix;
+            });
+            break;
     }
 }
 
