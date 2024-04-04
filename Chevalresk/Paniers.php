@@ -11,10 +11,11 @@ $viewContent = "<div class='table'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
 $idPlayer = $_SESSION["currentUserId"];
 $list = PanierTable()->findByidPanierPlayer($idPlayer);
-
+$idpp=$_SESSION["currentUserId"];
+$Joueur = JoueursTable()->get($idpp);
+$solde=$Joueur->Solde;
 $viewContent .= <<<HTML
     <style>
-        /* Styles pour la table du panier */
         .panier-table {
             width: 75%; 
             margin: auto; 
@@ -92,6 +93,8 @@ $infoPan = <<<HTML
 HTML;
 $viewContent .= $infoPan;
 $totalPrice = 0;
+$lienEcu = "images/ecu.png";
+
 foreach ($list as $item) {
     $idItemPan = $item->IdItem;
     $quantity = $item->QuantiteAchat;

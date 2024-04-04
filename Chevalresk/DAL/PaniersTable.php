@@ -16,15 +16,16 @@ final class PaniersTable extends MySQLTable
         return isset($user[0]);
     }
 
-    public function insert($item){
-        parent::insert($item);
+    public function insertPanier($data){
+        $sql = "INSERT INTO Paniers (idItem,idJoueurs,quantiteAchat) VALUES ($data->IdItem,$data->idJoueurs,$data->QuantiteAchat)";
+        return $this->_DB->nonQuerySqlCmd($sql);
     }
 
-    public function update($itemPanier){
-        $ItemToUpdate = $this->get2($itemPanier->IdItem,$itemPanier->idJoueurs);
-        if ($ItemToUpdate != null) {
-            parent::update($itemPanier);
-        }
+    public function updatePanier($data){
+        $idJoueur = $_SESSION["currentUserId"];
+        $sql = "UPDATE Paniers SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
+        return $this->_DB->nonQuerySqlCmd($sql);
     }
     public function deletePanier($id1,$id2){
         return parent::delete2($id1,$id2);
@@ -32,7 +33,7 @@ final class PaniersTable extends MySQLTable
     
 
     public function findByidPanierPlayer($id){
-        return $this->selectById($id);       
+        return $this->selectByIdPanier($id);       
     }
     public function findItemInPanier($userId, $itemId){
         $item = $this->selectWhere("idItem = $itemId AND idJoueurs = $userId");
