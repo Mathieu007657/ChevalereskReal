@@ -19,6 +19,7 @@ final class JoueursTable extends MySQLTable
     public function findByEmail($email)
     {
         $user = $this->selectWhere("courriel = '$email'");
+        echo "<script>console.log('Debug Objects: " . $user[0]->JoueurId . "' );</script>";
         if (isset($user[0]))
             return $user[0];
         return null;

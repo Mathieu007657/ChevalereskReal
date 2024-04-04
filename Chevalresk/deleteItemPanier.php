@@ -10,4 +10,4 @@ $itemId = (int) $_GET["id"];
 $userId = $_SESSION["currentUserId"];
 PanierTable()->deletePanier($itemId, $userId);
 redirect("Paniers.php");
-?>
+

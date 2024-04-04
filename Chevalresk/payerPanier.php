@@ -17,6 +17,10 @@ if($solde>=$totalPrice){
     foreach ($panierItems as $panierItem) {
 
     }
+    //redirect("Paniers.php?Payer=true");
+}
+else if($solde < $totalPrice){
+    //redirect("Paniers.php?Cher=true");
 }
 echo "Prix total du panier : " . $totalPrice . " solde joueur" . $solde;
 ?>

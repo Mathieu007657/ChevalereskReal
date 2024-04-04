@@ -346,7 +346,8 @@ abstract class MySQLTable
         $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
 
         $tableName = $this->tableName();
-        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id1 And idItem = $id2";
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id2 And idItem = $id1";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
@@ -354,6 +355,7 @@ abstract class MySQLTable
     {
         $tableName = $this->tableName();
         $sql = "SELECT * FROM $tableName WHERE $criteria";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
@@ -450,11 +452,8 @@ abstract class MySQLTable
     }
     public function delete2($id1,$id2){
         if (isset($id1) && isset($id2)) {
-            $id1 = filter_var($id1, FILTER_SANITIZE_NUMBER_INT);
-            $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
-
             $tableName = $this->tableName();
-            $sql = "DELETE FROM $tableName WHERE idJoueurs = $id1 AND idItem = $id2";
+            $sql = "DELETE FROM $tableName WHERE idJoueurs = $id2 AND idItem = $id1";
             $this->_DB->nonQuerySqlCmd($sql);
         }
     }
@@ -670,4 +669,3 @@ final class MySQLDataBase
         return $rows;
     }
 }
-?>

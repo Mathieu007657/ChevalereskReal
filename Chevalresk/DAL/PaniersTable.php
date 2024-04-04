@@ -27,14 +27,7 @@ final class PaniersTable extends MySQLTable
         }
     }
     public function deletePanier($id1,$id2){
-        $userToRemove = $this->get2($id1,$id2);
-
-        if ($userToRemove != null) {
-            $userId = $userToRemove->Id;
-            unlink($userToRemove->Avatar);
-            return parent::delete2($id1,$id2);
-        }
-        return false;
+        return parent::delete2($id1,$id2);
     }
     
 

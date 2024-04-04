@@ -136,9 +136,24 @@ foreach ($list as $item) {
     $viewContent .= $ItemPanier;
 }
 $viewContent .= "</table>";
-
+$cher="";
+if (isset($_GET["Cher"])){
+    if ((string) $_GET["Cher"]=="true"){
+        $cher="Vous n'avez pas assez d'Écu, aller au goulag!!!";
+    }
+}
+if (isset($_GET["Payer"])){
+    if ((string) $_GET["Payer"]=="true"){
+        $cher="Vous êtes maintenant moins riche! Bravo nous sommes fière de vous.";
+    }
+}
 $totalPan= <<<HTML
-             <table class='panier-table' style="margin-top: 10%;">
+             <table class='panier-table' style="margin-top: 10%;">      ¸
+                <tr> 
+                    <td></td>
+                    <td><b>$cher</b></td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td class="totalPan" id="totalPan"><b>Total: $totalPrice</b> <img src='$lienEcu' class='appLogo'></td>
                     <td><button class="pay-button" onclick="pay($idPlayer)">Payer</button></td>
@@ -148,6 +163,7 @@ $totalPan= <<<HTML
 HTML;
 $viewContent .= $totalPan;
 $viewContent .= "</div>";
+
 $viewScript = <<<HTML
     <script defer>
         $("#setPhotoOwnerSearchIdCmd").on("click", function() {
@@ -157,6 +173,9 @@ $viewScript = <<<HTML
             window.location = "itemsList.php?keywords=" + $("#keywords").val();
         });
 
+        function Alert(msg){
+            alert(msg);
+        }
 function updateTotalPrice(input) {
     var quantity = parseInt(input.value);
     var match = input.id.match(/id-form-(\d+)-quantity/);

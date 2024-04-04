@@ -24,7 +24,7 @@
         <br>
         <form method='post' action='login.php'>
         <span style='color:red'>$EmailError</span>
-            <input  type='email' 
+            <input  type='text' 
                     name='Email'
                     class="form-control"
                     required

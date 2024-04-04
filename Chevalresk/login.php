@@ -4,7 +4,7 @@ include 'php/formUtilities.php';
 require 'DAL/ChevalereskDB.php';
 
 
-$id = 0;
+$id =0;
 $password = null;
 $avatar = "images/no-avatar.png";
 $userName = "";
@@ -14,7 +14,7 @@ function EmailExist($email){
         $user = JoueursTable()->findByEmail($email);
         if ($user == null)
             return false;
-        $GLOBALS["id"] = $user->Id;
+        $GLOBALS["id"] = $user->JoueurId;
         $GLOBALS["userName"] = $user->Name;
         $GLOBALS["avatar"] = $user->Avatar;
         $GLOBALS["password"] = $user->Password;
@@ -40,12 +40,11 @@ if (isset($_POST['submit'])) {
     }
     if ($validUser) {
         $User = JoueursTable()->findByEmail($_SESSION['Email']);
-        echo "<script>console.log('Debug Objects: " . gettype($User) . "' );</script>";
+        echo "$User->JoueurId";
         
         $_SESSION['validUser'] = true;
         $_SESSION['isAdmin'] = $User->isAdmin();
         $_SESSION['currentUserId'] = $User->JoueurId;
-        //$_SESSION['currentUserId']=$_SESSION['currentUserId']+1;
         $_SESSION['userName'] = $User->Name;
         $_SESSION['avatar'] = $User->Avatar;
         $_SESSION["photoSortType"] = "date";
