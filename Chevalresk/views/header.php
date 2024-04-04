@@ -48,7 +48,7 @@ if (isset($_SESSION["validUser"])) {
     $connectedUserAvatar = <<<HTML
         
         <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
-        <div>$solde<img src='$lienEcu' class='appLogo'></div>
+        <div style="display:flex;">$solde<img src='$lienEcu' title="Ecu" class='appLogo'></div>
         
     HTML;
 } else {
