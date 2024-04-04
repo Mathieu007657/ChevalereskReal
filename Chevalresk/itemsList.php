@@ -80,4 +80,4 @@ $viewScript = <<<HTML
 HTML;
 
 include "views/master.php";
-?>
+

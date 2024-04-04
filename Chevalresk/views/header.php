@@ -15,9 +15,7 @@ $solde = 1000;
 
 if (isset($_SESSION["validUser"])) {
     $Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
-    $avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
-    $avatar = $Joueur->Avatar;
     $loggedUserMenu = "";
     if (isset($_SESSION["isAdmin"]) && (bool) $_SESSION["isAdmin"]) {
         $loggedUserMenu = <<<HTML

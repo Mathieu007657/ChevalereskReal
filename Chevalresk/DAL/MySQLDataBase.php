@@ -389,6 +389,7 @@ abstract class MySQLTable
         }
         return 0;
     }
+
     public function update($data)
     {
         if (isset($data)) {
@@ -408,6 +409,7 @@ abstract class MySQLTable
             $this->_DB->nonQuerySqlCmd($sql);
         }
     }
+
     public function update_Including_Password($data)
     {
         if (isset($data)) {

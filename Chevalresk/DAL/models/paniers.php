@@ -22,8 +22,8 @@ class Panier extends Record
         return $this->IdItem;
     }
     //SET User ID
-    public function setJoueurId($JoueurId){
-        $this->idJoueurs = (int) $JoueurId;
+    public function setJoueurId($idJoueurs){
+        $this->idJoueurs = (int) $idJoueurs;
     }
     //GET User ID
     public function getJoueurId(){
