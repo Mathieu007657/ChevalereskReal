@@ -148,7 +148,7 @@ if (isset($_GET["Payer"])){
     }
 }
 $totalPan= <<<HTML
-             <table class='panier-table' style="margin-top: 10%;">      ¸
+             <table class='panier-table' style="margin-top: 10%;"> 
                 <tr> 
                     <td></td>
                     <td><b>$cher</b></td>
