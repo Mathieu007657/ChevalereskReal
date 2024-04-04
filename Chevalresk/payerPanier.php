@@ -13,11 +13,17 @@ $Joueur = JoueursTable()->get($id);
 $solde = $Joueur->Solde;
 foreach ($panierItems as $panierItem) {
     $item = ItemTable()->findById($panierItem->IdItem);
-    $totalPrice += $item->Prix;
+    $totalPrice += (int)$item->Prix;
+    
 }
+echo "$totalPrice";
 if($solde>=$totalPrice){
     foreach ($panierItems as $panierItem) {
-
+        $itemP = ItemTable()->findById($panierItem->IdItem);
+        $quantite= $itemP->QuantiteAchat;
+        $solde-=($itemP->Prix)*$quantite;
+        echo "nouveau solde : $solde";
+        PanierTable()->deletePanier($itemId, $id);
     }
     //redirect("Paniers.php?Payer=true");
 }
