@@ -14,7 +14,6 @@ $list = PanierTable()->findByidPanierPlayer($idPlayer);
 
 $viewContent .= <<<HTML
     <style>
-        /* Styles pour la table du panier */
         .panier-table {
             width: 75%; 
             margin: auto; 
@@ -92,6 +91,8 @@ $infoPan = <<<HTML
 HTML;
 $viewContent .= $infoPan;
 $totalPrice = 0;
+$lienEcu = "images/ecu.png";
+
 foreach ($list as $item) {
     $idItemPan = $item->IdItem;
     $quantity = $item->QuantiteAchat;
