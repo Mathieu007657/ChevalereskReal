@@ -14,7 +14,10 @@ $menuIcon = "";
 $solde = 1000;
 
 if (isset($_SESSION["validUser"])) {
-    $Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
+    $idpp=$_SESSION["currentUserId"];
+    $Joueur = JoueursTable()->get($idpp);
+    $solde=$Joueur->JoueurId;
+    echo"$solde";
     $avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
     //$avatar = $Joueur->Avatar;
@@ -45,6 +48,7 @@ if (isset($_SESSION["validUser"])) {
     HTML;
     $connectedUserAvatar = <<<HTML
         <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
+        <img src='$lienEcu' class='appLogo'>
     HTML;
 } else {
     $loggedUserMenu = <<<HTML

@@ -329,7 +329,7 @@ abstract class MySQLTable
     {
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $tableName = $this->tableName();
-        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE JoueurId = $id";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
