@@ -333,6 +333,14 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
+    public function selectByIdPanier($id)
+    {
+        $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $tableName = $this->tableName();
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $this->toObjectArray($data);
+    }
     public function selectEcusById($id)
     {
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
@@ -341,13 +349,13 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
+    //Pour Paniers
     public function selectByIdFusion($id1,$id2){
         $id1 = filter_var($id1, FILTER_SANITIZE_NUMBER_INT);
         $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
 
         $tableName = $this->tableName();
-        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE JoueurId = $id2 And idItem = $id1";
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id2 And idItem = $id1";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
@@ -355,7 +363,6 @@ abstract class MySQLTable
     {
         $tableName = $this->tableName();
         $sql = "SELECT * FROM $tableName WHERE $criteria";
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }

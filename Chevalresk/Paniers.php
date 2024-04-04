@@ -11,7 +11,9 @@ $viewContent = "<div class='table'>";
 $isAdmin = (bool) $_SESSION["isAdmin"];
 $idPlayer = $_SESSION["currentUserId"];
 $list = PanierTable()->findByidPanierPlayer($idPlayer);
-
+$idpp=$_SESSION["currentUserId"];
+$Joueur = JoueursTable()->get($idpp);
+$solde=$Joueur->Solde;
 $viewContent .= <<<HTML
     <style>
         .panier-table {

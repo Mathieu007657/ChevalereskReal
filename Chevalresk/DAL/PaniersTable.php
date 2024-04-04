@@ -22,7 +22,8 @@ final class PaniersTable extends MySQLTable
     }
 
     public function updatePanier($data){
-        $sql = "UPDATE Paniers SET $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $data->idJoueurs";
+        $idJoueur = $_SESSION["currentUserId"];
+        $sql = "UPDATE Paniers SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
         echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
@@ -32,7 +33,7 @@ final class PaniersTable extends MySQLTable
     
 
     public function findByidPanierPlayer($id){
-        return $this->selectById($id);       
+        return $this->selectByIdPanier($id);       
     }
     public function findItemInPanier($userId, $itemId){
         $item = $this->selectWhere("idItem = $itemId AND idJoueurs = $userId");
