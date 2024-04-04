@@ -13,8 +13,7 @@ $Joueur = JoueursTable()->get($id);
 $solde = $Joueur->Solde;
 foreach ($panierItems as $panierItem) {
     $item = ItemTable()->findById($panierItem->IdItem);
-    $totalPrice += (int)$item->Prix;
-    
+    $totalPrice += (int)$item->Prix * $panierItem->QuantiteAchat; 
 }
 echo "$totalPrice";
 if($solde>=$totalPrice){
@@ -25,4 +24,3 @@ if($solde>=$totalPrice){
 else if($solde < $totalPrice){
     redirect("Paniers.php?Cher=true");
 }
-echo "Prix total du panier : " . $totalPrice . " solde joueur" . $solde;

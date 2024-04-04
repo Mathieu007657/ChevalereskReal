@@ -54,8 +54,9 @@ final class JoueursTable extends MySQLTable
         }
     }
     public function updateBuy($user)
-    {
-        parent::updateJoueurPayer($user);        
+    {        
+        parent::updateJoueurPayer($user);
+                
     }
     public function delete($id)
     {
