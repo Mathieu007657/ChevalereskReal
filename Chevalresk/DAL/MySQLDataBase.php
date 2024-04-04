@@ -337,7 +337,7 @@ abstract class MySQLTable
     {
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $tableName = $this->tableName();
-        $sql = "SELECT solde FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        $sql = "SELECT solde FROM dbchevalersk8.$tableName WHERE JoueurId = $id";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
@@ -346,7 +346,7 @@ abstract class MySQLTable
         $id2 = filter_var($id2, FILTER_SANITIZE_NUMBER_INT);
 
         $tableName = $this->tableName();
-        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id2 And idItem = $id1";
+        $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE JoueurId = $id2 And idItem = $id1";
         echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
