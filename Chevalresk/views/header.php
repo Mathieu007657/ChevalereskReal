@@ -46,7 +46,10 @@ if (isset($_SESSION["validUser"])) {
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML
+        
         <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
+        <div>$solde<img src='$lienEcu' class='appLogo'></div>
+        
     HTML;
 } else {
     $loggedUserMenu = <<<HTML
@@ -105,8 +108,7 @@ $viewHead = <<<HTML
         
         <div class="headerMenusContainer">
             <span class="viewTitle">Les Chevaleresk aux rotules enflées</span> <!--filler-->
-            <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar
-                </a>         
+            <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar</a>
             <div class="dropdown ms-auto dropdownLayout">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="cmdIcon fa fa-ellipsis-vertical"></i>
