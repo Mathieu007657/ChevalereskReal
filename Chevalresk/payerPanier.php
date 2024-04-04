@@ -1,8 +1,10 @@
 <?php
 include 'php/sessionManager.php';
 require 'DAL/ChevalereskDB.php';
-if (!isset($_GET["id"]))
+
+if (!isset($_GET["id"])){
     redirect("illegalAction.php");
+}
 
 $id = (int) $_GET["id"];
 $totalPrice = 0;
@@ -23,4 +25,3 @@ else if($solde < $totalPrice){
     //redirect("Paniers.php?Cher=true");
 }
 echo "Prix total du panier : " . $totalPrice . " solde joueur" . $solde;
-?>
