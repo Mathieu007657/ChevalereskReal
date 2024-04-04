@@ -13,8 +13,10 @@ $Joueur = JoueursTable()->get($id);
 $solde = $Joueur->Solde;
 foreach ($panierItems as $panierItem) {
     $item = ItemTable()->findById($panierItem->IdItem);
-    $totalPrice += $item->Prix;
+    $totalPrice += (int)$item->Prix;
+    
 }
+echo "$totalPrice";
 if($solde>=$totalPrice){
     $Joueur->setSolde($Joueur->Solde - $totalPrice);
     JoueursTable()->updateBuy($Joueur);

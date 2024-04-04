@@ -147,7 +147,7 @@ if (isset($_GET["Cher"])){
 }
 if (isset($_GET["Payer"])){
     if ((string) $_GET["Payer"]=="true"){
-        $cher="Vous êtes maintenant moins riche! Bravo nous sommes fière de vous.";
+        $cher="Vous êtes maintenant moins riche! Bravo nous sommes fière de vous."."$Joueur->Solde;";
     }
 }
 $totalPan= <<<HTML
