@@ -19,3 +19,6 @@
     function PanierTable(){
         return new PaniersTable();
     }
+    function InventaireTable(){
+        return new InventaireTable();
+    }

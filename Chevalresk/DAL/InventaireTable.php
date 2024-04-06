@@ -3,21 +3,22 @@ include_once 'DAL/models/paniers.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
 
-final class PaniersTable extends MySQLTable
+final class InventaireTable extends MySQLTable
 {
-    public function __construct()
-    {
-        parent::__construct(DB(), new Panier());
+    public function __construct(){
+        parent::__construct(DB(), new Inventaire());
     }
-    public function ItemPanierExist($item){
+
+    //À faire
+    public function ItemInvenExist($item){
         $itemID = $item->getIdItem();
         $UserID = $item->getUserId();
         $user = $this->selectWhere("idItem = $itemID AND idJoueurs = $UserID");
         return isset($user[0]);
     }
 
-    public function insertPanier($data){
-        $sql = "INSERT INTO Paniers (idItem,idJoueurs,quantiteAchat) VALUES ($data->IdItem,$data->idJoueurs,$data->QuantiteAchat)";
+    public function insertInv($data){
+        $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
 
