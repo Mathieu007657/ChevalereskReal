@@ -419,7 +419,6 @@ abstract class MySQLTable
     }
     public function updateJoueurPayer($user){
         $sql = "UPDATE Joueurs SET solde = $user->Solde WHERE JoueurId = $user->JoueurId";
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $this->_DB->nonQuerySqlCmd($sql);
     }
     public function update_Including_Password($data)
