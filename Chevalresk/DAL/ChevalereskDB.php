@@ -3,6 +3,7 @@
     include_once 'DAL/JoueursTable.php';
     include_once 'DAL/ItemsTable.php';
     include_once 'DAL/PaniersTable.php';
+    include_once 'DAL/InventaireTable.php';
 
     function DB()
     {

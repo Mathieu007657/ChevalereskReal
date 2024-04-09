@@ -16,8 +16,8 @@ $InsertionPourInv = [];
 foreach ($panierItems as $panierItem) {
     $item = ItemTable()->findById($panierItem->IdItem);
     $totalPrice += (int)$item->Prix * $panierItem->QuantiteAchat; 
-    array_push($QuantiteVendu,[$item->IdItem,$panierItem->QuantiteAchat]);
-    array_push($InsertionPourInv,$item);
+    array_push($QuantiteVendu,$panierItem);
+    array_push($InsertionPourInv,$panierItem);
 }
 
 if($solde>=$totalPrice){
@@ -31,10 +31,9 @@ if($solde>=$totalPrice){
     }
 
     //Vider son paniers et changer la quantité dans la table items
-    foreach($QuantiteVendu as $tabitem){
-        // $tabitem[0] = idItem dans le paniers du user | $tabitem[1] = la quantité que l'on va vendre
-        $ItemsAssocier =  ItemTable()->get($tabitem[0]);
-        $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - $tabitem[1]);
+    foreach($InsertionPourInv as $tabitem){
+        $ItemsAssocier = ItemTable()->findById($tabitem->IdItem);     
+        $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - 1);
     }
     PanierTable()->deleteAllPanier($Joueur->JoueurId);
     redirect("Paniers.php?Payer=true");
