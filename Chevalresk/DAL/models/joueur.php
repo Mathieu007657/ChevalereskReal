@@ -5,8 +5,8 @@ include_once 'DAL/models/record.php';
 class Joueur extends Record
 {
     public $JoueurId;
-    public $Name;
-    public $Prename;
+    public $nom;
+    public $prenom;
     public $Alias;
     public $Email;
     public $Password;
@@ -16,8 +16,8 @@ class Joueur extends Record
     public function __construct($recordData = null)
     {
         $this->JoueurId = 0;
-        $this->Name = "";
-        $this->Prename = "";
+        $this->nom = "";
+        $this->nom = "";
         $this->Alias = "";
         $this->Email = "";
         $this->Password = "";
@@ -33,17 +33,17 @@ class Joueur extends Record
     {
         $this->JoueurId = (int) $JoueurId;
     }
-    public function setName($name)
+    public function setnom($name)
     {
-        $this->Name = $name;
+        $this->nom = $name;
     }
     public function setSolde($solde)
     {
         $this->Solde=$solde;
     }
-    public function setPrename($prename)
+    public function setprenom($prename)
     {
-        $this->Prename = $prename;
+        $this->prenom = $prename;
     }
     public function setAlias($alias)
     {
