@@ -8,7 +8,9 @@
 
     $user = JoueursTable()->get($_SESSION["currentUserId"]);
     $name = $user->nom;
-    $email = $user->Email;
+    $prenom = $user -> prenom;
+    $Alias = $user -> Alias;
+    $email = $user->Courriel;
     $confirmEmail = $email;
     $newImage = false;
     $avatar = $user->Avatar;
@@ -70,7 +72,7 @@
                         class="form-control Alpha" 
                         name="Name" 
                         id="Name"
-                        placeholder="Nom" 
+                        placeholder="$name" 
                         required 
                         RequireMessage = 'Veuillez entrer votre nom'
                         InvalidMessage = 'Nom invalide'/>
@@ -78,7 +80,7 @@
                         class="form-control Alpha" 
                         name="Prename" 
                         id="Prename"
-                        placeholder="Prenom" 
+                        placeholder="$prenom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre prenom'
                         InvalidMessage = 'Prenom invalide'/>
@@ -86,7 +88,7 @@
                         class="form-control Alpha" 
                         name="Alias" 
                         id="Alias"
-                        placeholder="Alias" 
+                        placeholder="$Alias" 
                         required 
                         RequireMessage = 'Veuillez entrer votre alias'
                         InvalidMessage = 'Alias invalide'/>
