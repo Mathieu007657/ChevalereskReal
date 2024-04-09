@@ -17,6 +17,7 @@ if (isset($_SESSION["validUser"])) {
     $idpp=$_SESSION["currentUserId"];
     $Joueur = JoueursTable()->get($idpp);
     $solde=$Joueur->Solde;
+    $JoueurNom = $Joueur->Alias;
     $avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
     //$avatar = $Joueur->Avatar;
@@ -48,6 +49,7 @@ if (isset($_SESSION["validUser"])) {
     $connectedUserAvatar = <<<HTML
         
         <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
+        <div>$JoueurNom</div>
         <div style="display:flex;">$solde<img src='$lienEcu' title="Ecu" class='appLogo'></div>
         
     HTML;

@@ -4,7 +4,7 @@ include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
-$viewName = "itemList";
+$viewName = "Panier";
 userAccess();
 $viewTitle = "Panier";
 $viewContent = "<div class='table'>";
