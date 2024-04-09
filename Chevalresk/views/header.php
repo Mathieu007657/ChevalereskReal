@@ -12,6 +12,7 @@ $loggedUserMenu = "";
 $connectedUserAvatar = "";
 $menuIcon = "";
 $solde = 1000;
+$lienEcu="images/ecu.png";
 
 if (isset($_SESSION["validUser"])) {
     $idpp=$_SESSION["currentUserId"];
