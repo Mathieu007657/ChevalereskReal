@@ -41,7 +41,7 @@ final class JoueursTable extends MySQLTable
     }
     public function ajouterJoueur($Joueur)
     {
-        
+        parent::insertJoueur($Joueur);
     }
     public function update($user)
     {
