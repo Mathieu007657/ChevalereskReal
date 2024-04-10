@@ -33,8 +33,7 @@
                         placeholder="Courriel" 
                         required 
                         RequireMessage = 'Veuillez entrer votre courriel'
-                        InvalidMessage = 'Courriel invalide'
-                        CustomErrorMessage ="Ce courriel est déjà utilisé"/>
+                        InvalidMessage = 'Courriel invalide'/>
 
                 <input  class="form-control MatchedInput" 
                         type="text" 
