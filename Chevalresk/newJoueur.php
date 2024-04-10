@@ -5,4 +5,4 @@ include_once 'php/formUtilities.php';
 
 anonymousAccess();
 JoueursTable()->insert(new Joueur($_POST));
-redirect('loginForm.php'); 
+//redirect('loginForm.php'); 

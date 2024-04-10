@@ -404,7 +404,7 @@ abstract class MySQLTable
             $sql = 'INSERT INTO ' . $tableName . ' (';
             foreach ($this->recordPrototype as $key => $value) {
                 if (!$this->excludedMember($key)) {
-                    if ($key !== 'Id') {
+                    if ($key !== 'JoueurId' && $key !== 'Id') {
                         $sql .= $key . ', ';
                     }
                 }
@@ -412,7 +412,7 @@ abstract class MySQLTable
             $sql = rtrim($sql, ', ') . ') values ( ';
             foreach ($this->recordPrototype as $key => $value) {
                 if (!$this->excludedMember($key)) {
-                    if ($key !== 'Id') {
+                    if ($key !== 'JoueurId' && $key !== 'Id') {
                         if ($key === 'Password') {
                             $value = password_hash($value, PASSWORD_DEFAULT);
                         }
@@ -422,14 +422,15 @@ abstract class MySQLTable
                 }
             }
             $sql = rtrim($sql, ', ') . ')';
-            echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
-            //return $this->_DB->nonQuerySqlCmd($sql);
+            echo $sql;
+            return $this->_DB->nonQuerySqlCmd($sql);
         }
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
 
-        //return 0;
+        return 0;
     }
-
+    public function AjouterJoueurs($data){
+        $sql = "CALL ajouterJoueur($data)"
+    }
     public function update($data)
     {
         if (isset($data)) {

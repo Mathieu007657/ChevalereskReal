@@ -14,8 +14,8 @@ $viewContent = <<<HTML
                 <legend>Adresse ce courriel</legend>
                 <input  type="email" 
                         class="form-control Email" 
-                        name="Email" 
-                        id="Email"
+                        name="Courriel" 
+                        id="Courriel"
                         placeholder="Courriel" 
                         required 
                         RequireMessage = 'Veuillez entrer votre courriel'
@@ -24,7 +24,7 @@ $viewContent = <<<HTML
 
                 <input  class="form-control MatchedInput" 
                         type="text" 
-                        matchedInputId="Email"
+                        matchedInputId="courriel"
                         name="matchedEmail" 
                         id="matchedEmail" 
                         placeholder="Vérification" 
@@ -44,7 +44,7 @@ $viewContent = <<<HTML
                         InvalidMessage = 'Mot de passe trop court'/>
 
                 <input  class="form-control MatchedInput" 
-                        type="password" 
+                        type="Password" 
                         matchedInputId="Password"
                         name="matchedPassword" 
                         id="matchedPassword" 
@@ -55,16 +55,16 @@ $viewContent = <<<HTML
                 <legend>Informations générales du joueur</legend>
                 <input  type="text" 
                         class="form-control Alpha" 
-                        name="Name" 
-                        id="Name"
+                        name="nom" 
+                        id="nom"
                         placeholder="Nom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre nom'
                         InvalidMessage = 'Nom invalide'/>
                 <input  type="text" 
                         class="form-control Alpha" 
-                        name="Prename" 
-                        id="Prename"
+                        name="prenom" 
+                        id="prenom"
                         placeholder="Prenom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre prenom'
