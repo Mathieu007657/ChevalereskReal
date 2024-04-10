@@ -1,4 +1,5 @@
 <?php
+require 'DAL/MySQLDataBase.php';
 include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
@@ -15,30 +16,34 @@ $list = ItemTable()->get();
 $filter = $_GET['filter'] ?? null;
 $sort = $_GET['sort'] ?? null;
 
-// Construire la requête SQL de base
-$sql = "SELECT * FROM dbchevalersk8.Items WHERE";
+// Définissez le filtre en fonction de la valeur de $_GET['filter']
+$filter = $_GET['filter'] ?? null;
 
 // Appliquer le filtre si spécifié
 if ($filter) {
     switch ($filter) {
         case 'arme':
-            $sql .= " type = 'A'";
+            $filter = "A";
+            $list = ItemTable()->selectByfilter($filter);
             break;
         case 'armure':
-            $sql .= " type = 'R'";
+            $filter = "R";
+            $list = ItemTable()->selectByfilter($filter);
             break;
         case 'potion':
-            $sql .= " type = 'P'";
+            $filter = "P";
+            $list = ItemTable()->selectByfilter($filter);
             break;
         case 'element':
-            $sql .= " type = 'E'";
+            $filter = "E";
+            $list = ItemTable()->selectByfilter($filter);
             break;
         case 'dispo':
-            $sql .= " flagDispo = 1";
+            $filter = 1;
+            $list = ItemTable()->selectByflagDispo($filter);
             break;
     }
 }
-
 // Trier la liste si un type de tri est spécifié
 if ($sort) {
     // Définition de la fonction de tri en fonction du type de tri sélectionné
