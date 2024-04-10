@@ -1,6 +1,6 @@
 <?php
 function sanitizeString($str) {
-      $str = trim($str) ;
+      $str = trim($str);
       $str = stripslashes($str);
       $str = htmlentities($str);
       $str = strip_tags($str);
@@ -11,5 +11,3 @@ function no_Hyphens($string) {
       $string = strtr($string, $translit);
       return preg_replace('#[^a-zA-Z0-9\-\._]#', '-', $string);
 }
-
-?>

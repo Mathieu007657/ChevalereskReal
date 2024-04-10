@@ -118,7 +118,7 @@ $viewScript = <<<HTML
         <script defer>
             initFormValidation();
             $("#addPhotoCmd").hide();
-            addConflictValidation('testConflict.php', 'Email', 'saveUser' );
+            //addConflictValidation('testConflict.php', 'Email', 'saveUser' );
         </script>
     HTML;
 include "views/master.php";

@@ -366,6 +366,36 @@ abstract class MySQLTable
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }
+    public function insertJoueur($data){
+        if (isset($data)) {
+            $this->bind($data);
+            $tableName = $this->tableName();
+            $sql = 'INSERT INTO ' . 'dbchevalersk8.Joueurs' . ' (';
+            foreach ($this->recordPrototype as $key => $value) {
+                if (!$this->excludedMember($key)) {
+                    if ($key !== 'Id') {
+                        $sql .= $key . ', ';
+                    }
+                }
+            }
+            $sql = rtrim($sql, ', ') . ') values ( ';
+            foreach ($this->recordPrototype as $key => $value) {
+                if (!$this->excludedMember($key)) {
+                    if ($key !== 'Id') {
+                        if ($key === 'Password') {
+                            $value = password_hash($value, PASSWORD_DEFAULT);
+                        }
+                        $this->prepareForSQL($value);
+                        $sql .= $value . ', ';
+                    }
+                }
+            }
+            $sql = rtrim($sql, ', ') . ')';
+            echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
+            return $this->_DB->nonQuerySqlCmd($sql);
+        }
+        return 0;
+    }
     public function insert($data)
     {
         if (isset($data)) {
@@ -392,9 +422,12 @@ abstract class MySQLTable
                 }
             }
             $sql = rtrim($sql, ', ') . ')';
-            return $this->_DB->nonQuerySqlCmd($sql);
+            echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
+            //return $this->_DB->nonQuerySqlCmd($sql);
         }
-        return 0;
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
+
+        //return 0;
     }
 
     public function update($data)
