@@ -46,6 +46,9 @@ if (isset($_SESSION["validUser"])) {
         <a href="Paniers.php" class="dropdown-item">
             <i class="menuIcon fa fas fa-shopping-basket mx-2"></i> Paniers
         </a>
+        <a href="Inventaire.php" class="dropdown-item">
+            <i class="menuIcon fa fa-solid fa-cube mx-2"></i> Inventaire
+        </a>
     HTML;
     $connectedUserAvatar = <<<HTML
         
@@ -60,7 +63,7 @@ if (isset($_SESSION["validUser"])) {
             <i class="menuIcon fa fa-sign-in mx-2"></i> Connexion
         </a> 
         <a href="itemsList.php" class="dropdown-item">
-            <i class="menuIcon fa-solid fa-store"></i> Magasin
+            <i class="menuIcon fa fa-solid fa-store mx-2"></i> Magasin
         </a>
     HTML;
     $connectedUserAvatar = <<<HTML
@@ -106,7 +109,7 @@ HTML;
 $viewHead = <<<HTML
         <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo"></a>
         <span class="viewTitle">
-            $viewTitle 
+            $viewTitle
         </span>
         
         <div class="headerMenusContainer">

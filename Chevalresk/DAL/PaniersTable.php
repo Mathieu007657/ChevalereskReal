@@ -24,7 +24,6 @@ final class PaniersTable extends MySQLTable
     public function updatePanier($data){
         $idJoueur = $_SESSION["currentUserId"];
         $sql = "UPDATE Paniers SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
     //Delete 1 item d'un joueur dans le paniers

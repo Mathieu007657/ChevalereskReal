@@ -8,7 +8,7 @@ class Joueur extends Record
     public $nom;
     public $prenom;
     public $Alias;
-    public $Email;
+    public $Courriel;
     public $Password;
     public $Avatar;
     public $Solde;
@@ -19,7 +19,7 @@ class Joueur extends Record
         $this->nom = "";
         $this->nom = "";
         $this->Alias = "";
-        $this->Email = "";
+        $this->Courriel = "";
         $this->Password = "";
         $this->Solde=0;
         $this->Avatar = "";
@@ -49,9 +49,9 @@ class Joueur extends Record
     {
         $this->Alias = $alias;
     }
-    public function setEmail($email)
+    public function setCourriel($email)
     {
-        $this->Email = $email;
+        $this->Courriel = $email;
     }
     public function setPassword($password)
     {
