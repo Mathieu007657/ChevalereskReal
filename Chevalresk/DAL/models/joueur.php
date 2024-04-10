@@ -16,7 +16,7 @@ class Joueur extends Record
     public function __construct($recordData = null)
     {
         $this->nom = "";
-        $this->nom = "";
+        $this->prenom = "";
         $this->Alias = "";
         $this->Courriel = "";
         $this->Password = "";

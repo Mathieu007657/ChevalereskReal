@@ -447,7 +447,8 @@ abstract class MySQLTable
         return 0;
     }
     public function AjouterJoueurs($data){
-        $sql = "CALL ajouterJoueur($data)"
+        $sql = "CALL ajouterJoueur('$data->Alias', '$data->nom', '$data->prenom', '$data->Password', '$data->Avatar')";
+        $this->_DB->nonQuerySqlCmd($sql);
     }
     public function update($data)
     {
