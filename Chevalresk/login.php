@@ -43,6 +43,7 @@ if (isset($_POST['submit'])) {
         
         $_SESSION['validUser'] = true;
         $_SESSION['isAdmin'] = $User->isAdmin();
+        $_SESSION['isAlchi'] = $User->isAlchi();
         $_SESSION['currentUserId'] = $User->JoueurId;
         $_SESSION['userName'] = $User->Name;
         $_SESSION['avatar'] = $User->Avatar;
