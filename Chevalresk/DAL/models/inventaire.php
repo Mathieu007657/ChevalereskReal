@@ -14,15 +14,15 @@ class Inventaire extends Record
         $this->QuantiteAchat = 0;
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setidItem($itemId)
     {
         $this->idItem = (int) $itemId;
     }
-    public function setUserId($userId)
+    public function setidJoueurs($userId)
     {
         $this->idJoueurs = (int) $userId;
     }
-    public function setQuantiteInventaire($quantiteInventaire)
+    public function setQuantiteAchat($quantiteInventaire)
     {
         $this->QuantiteAchat = (int) $quantiteInventaire;
     }
