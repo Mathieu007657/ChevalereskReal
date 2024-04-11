@@ -17,7 +17,6 @@ foreach($listPanier as $invent){
     $Item = ItemTable()->findById($idItemPanier);
     $id = $Item->IdItem;
     $name = $Item->Nom;
-    $quantite = $Item->Quantite;
     $prix = $Item->Prix;
     $type = $Item->Type;
     $Dispo = $Item->FlagDispo;
