@@ -40,7 +40,6 @@ if (isset($_POST['submit'])) {
     }
     if ($validUser) {
         $User = JoueursTable()->findByEmail($_SESSION['Email']);
-        echo "$User->JoueurId";
         
         $_SESSION['validUser'] = true;
         $_SESSION['isAdmin'] = $User->isAdmin();
