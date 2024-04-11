@@ -53,6 +53,15 @@ if (isset($_SESSION["validUser"])) {
             <i class="menuIcon fa fa-solid fa-circle-question mx-2"></i> Enigma
         </a>
     HTML;
+    
+    if ($Joueur->isAlchi()) {
+        $loggedUserMenu .= <<<HTML
+        <a href="Panoramix.php" class="dropdown-item">
+            <i class="menuIcon fa-solid fa-prescription-bottle-medical mx-2"></i> Panoramix
+        </a>
+        HTML;
+    }
+    
     $connectedUserAvatar = <<<HTML
         
         <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
