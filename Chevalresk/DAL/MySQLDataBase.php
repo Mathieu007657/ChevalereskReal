@@ -381,6 +381,7 @@ abstract class MySQLTable
     {
         $tableName = $this->tableName();
         $sql = "SELECT * FROM $tableName WHERE $criteria";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }

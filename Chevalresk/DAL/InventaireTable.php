@@ -16,6 +16,10 @@ final class InventaireTable extends MySQLTable
         $user = $this->selectWhere("idItem = $itemID AND idJoueurs = $UserID");
         return isset($user[0]);
     }
+    public function FindInvListPlayer($idPlayer){
+        $user = $this->selectWhere("idJoueurs = $idPlayer");
+        return $user;
+    }
 
     public function insertInv($data){
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
