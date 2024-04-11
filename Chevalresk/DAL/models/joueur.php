@@ -15,6 +15,7 @@ class Joueur extends Record
     public $estAdmin = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
     {
+        $this->JoueurId = "";
         $this->nom = "";
         $this->prenom = "";
         $this->Alias = "";
