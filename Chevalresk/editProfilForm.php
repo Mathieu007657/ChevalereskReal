@@ -72,6 +72,7 @@
                         name="Name" 
                         id="Name"
                         placeholder="$name" 
+                        value="$name";
                         required 
                         RequireMessage = 'Veuillez entrer votre nom'
                         InvalidMessage = 'Nom invalide'/>
@@ -79,6 +80,7 @@
                         class="form-control Alpha" 
                         name="Prename" 
                         id="Prename"
+                        value="$prenom";
                         placeholder="$prenom" 
                         required 
                         RequireMessage = 'Veuillez entrer votre prenom'
@@ -87,6 +89,7 @@
                         class="form-control Alpha" 
                         name="Alias" 
                         id="Alias"
+                        value="$Alias";
                         placeholder="$Alias" 
                         required 
                         RequireMessage = 'Veuillez entrer votre alias'

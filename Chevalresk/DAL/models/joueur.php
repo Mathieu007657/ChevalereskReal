@@ -13,8 +13,9 @@ class Joueur extends Record
     public $Avatar;
     public $Solde;
     public $estAdmin = 0; // user => 0 , admin => 1
-    public function __construct($recordData = null)
+    public function construct($recordData = null)
     {
+        $this->JoueurId=0;
         $this->nom = "";
         $this->prenom = "";
         $this->Alias = "";
@@ -27,6 +28,9 @@ class Joueur extends Record
         //$this->setUniqueKey('Email');
         //$this->setUniqueKey('Alias');
         parent::__construct($recordData);
+    }
+    public function setJoueurId($id){
+        $this->JoueurId=$id;
     }
     public function setnom($name)
     {

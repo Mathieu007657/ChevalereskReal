@@ -7,15 +7,15 @@ require 'DAL/ChevalereskDB.php';
 $viewName = "Liste Inventaire";
 $viewTitle = "Inventaires";
 $viewContent = "<div class='photosLayout'>";
-$listPanier = InventaireTable()->selectByIdPanier($_SESSION['currentUserId']);
-
+$listPanier = InventaireTable()->FindInvListPlayer($_SESSION['currentUserId']);
 // Afficher la liste de la table du joueur
-foreach($listPanier as $item){
+foreach($listPanier as $invent){
     //GET id et quantite de l'item dans l'inventaire du joueur
-    $idItemPanier = $item->idItem;
-    $quantiteitem = $item->QuantiteInventaire;
+    $idItemPanier = $invent->idItem;
+    $quantiteitem = $invent->QuantiteAchat;
     //GET Chaque item du panier/chercher l'item dans la table items
-    $Item = ItemTable()->get($idItemPanier);
+    $Item = ItemTable()->findById($idItemPanier);
+    echo "<script>console.log('Debug Objects: " . $invent->QuantiteAchat . "' );</script>";
     $id = $Item->IdItem;
     $name = $Item->Nom;
     $quantite = $Item->Quantite;
