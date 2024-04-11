@@ -4,5 +4,5 @@ require 'DAL/ChevalereskDB.php';
 include_once 'php/formUtilities.php';
 
 anonymousAccess();
-JoueursTable()->insert(new Joueur($_POST));
-redirect('loginForm.php'); 
+JoueursTable()->AjouterJoueurs(new Joueur($_POST));
+//redirect('loginForm.php'); 

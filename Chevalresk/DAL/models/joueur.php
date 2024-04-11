@@ -12,26 +12,21 @@ class Joueur extends Record
     public $Password;
     public $Avatar;
     public $Solde;
-    public $AccessType = 0; // user => 0 , admin => 1
+    public $estAdmin = 0; // user => 0 , admin => 1
     public function __construct($recordData = null)
     {
-        $this->JoueurId = 0;
         $this->nom = "";
-        $this->nom = "";
+        $this->prenom = "";
         $this->Alias = "";
         $this->Courriel = "";
         $this->Password = "";
-        $this->Solde=0;
+        $this->Solde=1000;
         $this->Avatar = "";
-        $this->AccessType = 0;
+        $this->estAdmin = 0;
         $this->setUniqueKey('JoueurId');
         //$this->setUniqueKey('Email');
         //$this->setUniqueKey('Alias');
         parent::__construct($recordData);
-    }
-    public function setJoueurId($JoueurId)
-    {
-        $this->JoueurId = (int) $JoueurId;
     }
     public function setnom($name)
     {
@@ -66,10 +61,10 @@ class Joueur extends Record
     }
     public function setAccessType($accessType)
     {
-        $this->AccessType = (int) $accessType;
+        $this->estAdmin = (int) $accessType;
     }
     public function isAdmin()
     {
-        return $this->AccessType == 1;
+        return $this->estAdmin == 1;
     }
 }
