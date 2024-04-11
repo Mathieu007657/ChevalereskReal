@@ -18,7 +18,6 @@
     //Reste à changer pour mettre le vrai avatar pas nécessairement le no-avatar.png
     $avatar = "images/no-avatar.png";
 
-
     $viewContent = <<< HTML
     <div class="content">
         <br>
