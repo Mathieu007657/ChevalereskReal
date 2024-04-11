@@ -23,3 +23,6 @@
     function InventaireTable(){
         return new InventaireTable();
     }
+    function EnigmesTable(){
+        return new EnigmesTable();
+    }
