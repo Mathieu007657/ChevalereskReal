@@ -6,7 +6,7 @@ include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
 $viewName = "itemList";
-$viewTitle = "Items";
+$viewTitle = "Boutique";
 $viewContent = "<div class='photosLayout'>";
 //$isAdmin = (bool) $_SESSION["isAdmin"];
 $sortType ="";
