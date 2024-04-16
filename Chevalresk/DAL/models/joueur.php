@@ -13,7 +13,7 @@ class Joueur extends Record
     public $Avatar;
     public $Solde;
     public $estAdmin = 0; // user => 0 , admin => 1
-    public $estAlchi = 0; // n'est pas alchimiste => 0 , est alchimiste => 1
+    public $estAlch = 0; // n'est pas alchimiste => 0 , est alchimiste => 1
     public function construct($recordData = null)
     {
         $this->JoueurId=0;
@@ -25,7 +25,7 @@ class Joueur extends Record
         $this->Solde=1000;
         $this->Avatar = "";
         $this->estAdmin = 0;
-        $this->estAlchi = 0;
+        $this->estAlch = 0;
         $this->setUniqueKey('JoueurId');
         //$this->setUniqueKey('Email');
         //$this->setUniqueKey('Alias');
@@ -73,6 +73,6 @@ class Joueur extends Record
         return $this->estAdmin == 1;
     }
     public function isAlchi(){
-        return $this->estAlchi == 1;
+        return $this->estAlch == 1;
     }
 }

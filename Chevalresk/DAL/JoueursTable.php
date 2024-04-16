@@ -16,6 +16,10 @@ final class JoueursTable extends MySQLTable
         $user = $this->selectWhere("courriel = '$email'");
         return isset($user[0]);
     }
+    public function GetAlchi($id){
+        $sql = "SELECT estAlch FROM Joueurs WHERE JoueurId = $id";
+        return $this->_DB->QuerySqlCmd($sql)[0][0];
+    }
     public function findByEmail($email)
     {
         $user = $this->selectWhere("courriel = '$email'");

@@ -21,6 +21,7 @@ if (isset($_SESSION["validUser"])) {
     $JoueurNom = $Joueur->Alias;
     $avatar = $_SESSION["avatar"];
     $userName = $_SESSION["userName"];
+
     //$avatar = $Joueur->Avatar;
     $loggedUserMenu = "";
     if (isset($_SESSION["isAdmin"]) && (bool) $_SESSION["isAdmin"]) {
@@ -53,8 +54,7 @@ if (isset($_SESSION["validUser"])) {
             <i class="menuIcon fa fa-solid fa-circle-question mx-2"></i> Enigma
         </a>
     HTML;
-    
-    if ($Joueur->isAlchi()) {
+    if (JoueursTable()->GetAlchi($idpp) == 1) {
         $loggedUserMenu .= <<<HTML
         <a href="Panoramix.php" class="dropdown-item">
             <i class="menuIcon fa-solid fa-prescription-bottle-medical mx-2"></i> Panoramix

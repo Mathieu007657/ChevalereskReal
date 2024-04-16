@@ -5,4 +5,4 @@ include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
-$ListElementParPlayer = InventaireTable()->Se
+$ListElementParPlayer = InventaireTable();

@@ -54,4 +54,3 @@ echo <<<HTML
     </body>
     </html>
     HTML;
-?>
