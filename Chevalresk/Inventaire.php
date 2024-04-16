@@ -5,7 +5,7 @@ include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
 $viewName = "Liste Inventaire";
-$viewTitle = "Inventaires";
+$viewTitle = "Inventaire";
 $viewContent = "<div class='photosLayout'>";
 $listPanier = InventaireTable()->FindInvListPlayer($_SESSION['currentUserId']);
 // Afficher la liste de la table du joueur
