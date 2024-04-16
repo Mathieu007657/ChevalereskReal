@@ -26,3 +26,6 @@
     function EnigmesTable(){
         return new EnigmesTable();
     }
+    function ConcocterTable(){
+        return new ConcocterTable();
+    }

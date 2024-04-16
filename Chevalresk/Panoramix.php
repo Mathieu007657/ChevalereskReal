@@ -5,4 +5,8 @@ include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
-$ListElementParPlayer = InventaireTable();
+$ListPotionitem = ItemTable()->selectWhere("type = P");
+foreach ($ListPotionitem as $Potion) {
+    $idPotion = $Potion->ItemId;
+    $NamePotion = $Potion->Nom;
+}
