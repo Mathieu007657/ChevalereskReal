@@ -3,33 +3,37 @@
 include_once 'DAL/models/record.php';
 class Enigme extends Record
 {
-    public $EnigmeId;
+    public $IdEnigme;
     public $Enonce;
-    public $TypeEnigme;
-    public $Choix;
+    public $Difficulte;
+    public $Recompense;
+    public $estPigee;
+
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
+        $this->IdEnigme=0;
         $this->Enonce = '';
-        $this->TypeEnigme = '';
-        $this->Choix = '';
+        $this->Difficulte='';
+        $this->Recompense=0;
+        $this->estPigee='';
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setDifficulte($Difficulte){
+        $this->Difficulte=$Difficulte;
+    }
+    public function setRecompense($Recompense){
+        $this->Recompense=(int) $Recompense;
+    }
+    public function setestPigee($estPigee){
+        $this->estPigee=$estPigee;
+    }
+    public function setIdEnigme($IdEnigme)
     {
-        $this->ItemId = (int) $itemId;
+        $this->IdEnigme = (int) $IdEnigme;
     }
     public function setEnonce($enonce)
     {
         $this->Enonce = $enonce;
-    }
-    public function setTypeEnigme($typeEnigme)
-    {
-        $this->TypeEnigme =$typeEnigme;
-    }
-    public function setChoix($choix)
-    {
-        $this->Choix = $choix;
     }
 }

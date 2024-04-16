@@ -15,10 +15,8 @@ foreach($listPanier as $invent){
     $quantiteitem = $invent->QuantiteAchat;
     //GET Chaque item du panier/chercher l'item dans la table items
     $Item = ItemTable()->findById($idItemPanier);
-    echo "<script>console.log('Debug Objects: " . $invent->QuantiteAchat . "' );</script>";
     $id = $Item->IdItem;
     $name = $Item->Nom;
-    $quantite = $Item->Quantite;
     $prix = $Item->Prix;
     $type = $Item->Type;
     $Dispo = $Item->FlagDispo;
@@ -60,4 +58,3 @@ $viewScript = <<<HTML
 HTML;
 
 include "views/master.php";
-?>
