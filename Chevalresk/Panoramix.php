@@ -5,9 +5,9 @@ include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
-$ListPotionitem = ItemTable()->selectWhere("type = P");
+$ListPotionitem = ItemTable()->selectWhere("type = 'P'");
 foreach ($ListPotionitem as $Potion) {
-    $idPotion = $Potion->ItemId;
+    $idPotion = $Potion->IdItem;
     $NamePotion = $Potion->Nom;
     $lienPhoto = $Potion->Photo;
     echo "<div class='ZonePotion'>";

@@ -3,7 +3,7 @@ include_once 'DAL/models/paniers.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
 
-final class ConcocterTable extends MySQLTable
+final class concocterTable extends MySQLTable
 {
     public function __construct(){
         parent::__construct(DB(), new Concocter());
