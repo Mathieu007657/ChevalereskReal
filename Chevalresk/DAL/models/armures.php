@@ -3,23 +3,26 @@
 include_once 'DAL/models/record.php';
 class Armure extends Record
 {
-    public $ItemId;
-    public $Taille;
-    public $Matiere;
+    public $idItem;
+    public $taille;
+    public $matiere;
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
-        $this->Taille = '';
-        $this->Matiere = '';
+        $this->idItem = 0;
+        $this->taille = '';
+        $this->matiere = '';
         parent::__construct($recordData);
     }
-    public function setItemId($photoId)
+    public function setidItem($photoId)
     {
-        $this->ItemId = (int) $photoId;
+        $this->idItem = (int) $photoId;
     }
-    public function setTaille($taille)
+    public function settaille($taille)
     {
-        $this->Taille = (int) $taille;
+        $this->taille = (int) $taille;
+    }
+    public function setmatiere($Matiere){
+        $this->matiere = $Matiere;
     }
 }

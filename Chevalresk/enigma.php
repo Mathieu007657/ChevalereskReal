@@ -3,6 +3,7 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
+include_once 'DAL/EnigmesTable.php';
 
 $viewName = "enigma";
 $viewTitle = "Enigma";
@@ -10,8 +11,13 @@ $style=<<<HTML
     <style>
         .Reponse {
             width: 90%; 
+            height:auto;
             margin: auto; 
             padding:10%;
+            font-size:30px;
+            border-radius:7px;
+            color: white;
+            background-color: rgba(72, 6, 148, 0.7);
         }
         .Reponse tr {
             vertical-align: middle; 
@@ -26,33 +32,50 @@ $style=<<<HTML
             font-size:50px;
             padding :3%;
             border-radius:7px;
-            background-color:hsl(0, 100%, 30%,0.5);
+            color: white;
+            background-color:rgba(72, 6, 148, 0.8);
         }
     </style>
 HTML;
+
+$question = EnigmesTable()->getEnigme("");
+$reponse = $question;
+$question = $question. EnigmesTable()->getDifficulte($question);
 $viewContent=$style;
 $viewContent .= "<div class='Enigme'>";
 $viewContent .= <<<HTML
-    <div><b>QUESTION</b> </div>
+    <div><b>$question</b> </div>
+HTML;
+$viewContent .= "</div><br>";
+$reponses = EnigmesTable()->getReponses($reponse);
+$viewContent .= "<div class='Reponse'>";
+$viewContent .= <<<HTML
+    <div><b>$reponses</b> </div>
 HTML;
 $viewContent .= "</div>";
-//Faire dans un carré les aspects suivants:
-//Écrire la question avec entre parenthèse la difficulté de la question (la question est piochée aléatoirement de la table Enigmes parmis celles qui non pas été piochées)
-
-//Dans un autre carré, mettre avec des checkbox chaque choix (soit 4 pour chaque question)
-//bouton de soumission
-
 
 $viewScript = <<<HTML
     <script defer>
-        //on utilise pas
-        $("#setPhotoOwnerSearchIdCmd").on("click", function() {
-            window.location = "itemsList.php?id=" + $("#userSelector").val();
-        });
-        //a utiliser mais changer
-        $("#setSearchKeywordsCmd").on("click", function() {
-            window.location = "itemsList.php?keywords=" + $("#keywords").val();
-        });
+        function verifierReponse(difficulte) {
+            var idEnigme = document.getElementById("idEnigme").value;
+            var reponse = document.querySelector('input[name="reponse"]:checked');
+            if (reponse) {
+                var reponseUtilisateur = reponse.value;
+                // Appel AJAX pour vérifier la réponse
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "EnigmesTable.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText);
+                        // Actualiser la page ou effectuer d'autres actions en fonction de la réponse du serveur
+                    }
+                };
+                xhr.send("idEnigme=" + idEnigme + "&reponse=" + reponseUtilisateur + "&difficulte=" + difficulte);
+            } else {
+                alert("Veuillez sélectionner une réponse.");
+            }
+        }
     </script>
 HTML;
 
