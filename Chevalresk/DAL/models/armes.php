@@ -3,33 +3,33 @@
 include_once 'DAL/models/record.php';
 class Arme extends Record
 {
-    public $ItemId;
-    public $Description;
-    public $Efficacite;
-    public $Genre;
+    public $idItem;
+    public $description;
+    public $efficacite;
+    public $genre;
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
-        $this->Description = '';
-        $this->Efficacite = '';
-        $this->Genre = '';
+        $this->idItem = 0;
+        $this->description = '';
+        $this->efficacite = '';
+        $this->genre = '';
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setidItem($itemId)
     {
-        $this->ItemId = (int) $itemId;
+        $this->idItem = (int) $itemId;
     }
-    public function setDescription($description)
+    public function setdescription($description)
     {
-        $this->Description = (int) $description;
+        $this->description = (int) $description;
     }
-    public function setEfficacite($efficacite)
+    public function setefficacite($efficacite)
     {
-        $this->Efficacite = (int) $efficacite;
+        $this->efficacite = (int) $efficacite;
     }
-    public function setGenre($genre)
+    public function setgenre($genre)
     {
-        $this->Genre = (int) $genre;
+        $this->genre = (int) $genre;
     }
 }

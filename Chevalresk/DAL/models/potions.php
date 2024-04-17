@@ -3,33 +3,32 @@
 include_once 'DAL/models/record.php';
 class Potion extends Record
 {
-    public $ItemId;
-    public $Duree;
-    public $Effet;
+    public $itemId;
+    public $duree;
+    public $effet;
     public $TypePotion;
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
-        $this->Duree = 0;
-        $this->Effet = '';
+        $this->itemId = 0;
+        $this->duree = 0;
+        $this->effet = '';
         $this->TypePotion = '';
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setitemId($itemId)
     {
-        $this->ItemId = (int) $itemId;
+        $this->itemId = (int) $itemId;
     }
-    public function setDuree($duree)
+    public function setduree($duree)
     {
-        $this->Duree = (int) $duree;
+        $this->duree = (int) $duree;
     }
-    public function setEffet($effet)
+    public function seteffet($effet)
     {
-        $this->Effet = $effet;
+        $this->effet = $effet;
     }
-    public function setGenre($typePotion)
-    {
-        $this->TypePotion = $typePotion;
+    public function setTypePotion($TypePotion){
+        $this->TypePotion = $TypePotion;
     }
 }
