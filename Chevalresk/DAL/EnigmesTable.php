@@ -50,7 +50,7 @@ final class EnigmesTable extends MySQLTable
         $tableName = "Enigmes";
 
         // Requête pour obtenir une énigme non pigée aléatoire
-        $sql = "SELECT Enonce, Difficulte FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $question;";
+        $sql = "SELECT Difficulte FROM dbchevalersk8.$tableName WHERE Enonce LIKE '%$question%';";
         $data = $this->_DB->querySqlCmd($sql);
 
         // Vérifier si des données ont été récupérées
@@ -64,7 +64,7 @@ final class EnigmesTable extends MySQLTable
             } elseif ($data[0]['Difficulte'] == 'D') {
                 $difficulte = "Difficile";
             }
-            $enigme = $data[0]['Enonce'] . " (" . $difficulte . ")";
+            $enigme = " (" . $difficulte . ")";
             return $enigme;
         } else {
             // Aucune énigme trouvée, retourner null ou gérer l'erreur selon vos besoins
@@ -72,48 +72,98 @@ final class EnigmesTable extends MySQLTable
         }
     }
     public function getReponses($question)
-    {
-        $tableName = "Enigmes";
+{
+    $tableName = "Enigmes";
 
-        $sql1 = "SELECT idEnigme FROM dbchevalersk8.$tableName WHERE Enonce Like '%$question%';";
-        $data1 = $this->_DB->querySqlCmd($sql1);
+    $sql1 = "SELECT idEnigme, Difficulte FROM dbchevalersk8.$tableName WHERE Enonce LIKE '%$question%';";
+    $data1 = $this->_DB->querySqlCmd($sql1);
+
+    if ($data1 && count($data1) > 0) {
+        $idEnigme = $data1[0]['idEnigme'];
+        $difficulte = $data1[0]['Difficulte'];
+
         $tableName = "Reponses";
-        $sql = "SELECT LaReponse FROM dbchevalersk8.$tableName WHERE idEnigme = $data1;";
+        $sql = "SELECT LaReponse, EstBonne FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme;";
         $data = $this->_DB->querySqlCmd($sql);
 
-        // Vérifier si des données ont été récupérées
         if ($data && count($data) > 0) {
-            //ici, dis toi qu'il y a 4 reponses en tout avec estBonne, pas 5 et faire un foreach, puisqu'il n'y a pas de Choix1,2,3,4
-            $choix1 = $data[0]['Choix1'];
-            $choix2 = $data[0]['Choix2'];
-            $choix3 = $data[0]['Choix3'];
-            $choix4 = $data[0]['Choix4'];
-            $estBonne = $data[0]['EstBonne'];
-
-            // Générer le contenu HTML avec les choix et le bouton de vérification
-            $reponsesContent = <<<HTML
-                <div class='Reponses'>
-                    <form id="reponsesForm">
-                        <input type="radio" id="choix1" name="reponse" value="$choix1">
-                        <label for="choix1">$choix1</label><br>
-                        <input type="radio" id="choix2" name="reponse" value="$choix2">
-                        <label for="choix2">$choix2</label><br>
-                        <input type="radio" id="choix3" name="reponse" value="$choix3">
-                        <label for="choix3">$choix3</label><br>
-                        <input type="radio" id="choix4" name="reponse" value="$choix4">
-                        <label for="choix4">$choix4</label><br>
-                        <button type="button" onclick="verifierReponse($estBonne)">Vérifier</button>
-                    </form> 
-                </div>
-    HTML;
+            $reponsesContent = '<form id="reponsesForm">';
+            foreach ($data as $row) {
+                $reponse = $row['LaReponse'];
+                // Utilisez le nom de la réponse comme valeur et l'ID comme identifiant
+                $reponsesContent .= "<input type='radio' id='idEnigme' name='idEnigme' value='$reponse'>
+                                     <label for='$reponse'>$reponse</label><br>";
+            }
+            $reponsesContent .= "<button type='button' onclick='verifierReponse(\"$difficulte\")'>Vérifier</button>";
+            $reponsesContent .= "</form>";
 
             return $reponsesContent;
         } else {
-            // Aucune donnée trouvée, retourner une chaîne vide ou gérer l'erreur selon vos besoins
+            // Aucune réponse trouvée pour cette énigme
             return "";
         }
+    } else {
+        // Aucune énigme trouvée avec cette question
+        return "";
+    }
+}
+
+
+public function verifierReponse() {
+    // Récupérer l'ID de l'énigme et la réponse sélectionnée par l'utilisateur depuis le formulaire
+    $idEnigme = $_POST['idEnigme'];
+    $reponseUtilisateur = $_POST['reponse'];
+
+    // Récupérer la difficulté de l'énigme
+    $tableName = "Enigmes";
+    $sql = "SELECT Difficulte FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme;";
+    $data = $this->_DB->querySqlCmd($sql);
+
+    if ($data && count($data) > 0) {
+        $difficulte = $data[0]['Difficulte'];
+
+        // Vérifier si la réponse sélectionnée par l'utilisateur est correcte
+        $tableName = "Reponses";
+        $sql = "SELECT EstBonne FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme AND LaReponse = '$reponseUtilisateur';";
+        $data = $this->_DB->querySqlCmd($sql);
+
+        if ($data && count($data) > 0) {
+            $estBonne = $data[0]['EstBonne'];
+            if ($estBonne === 'O') {
+                // La réponse est correcte
+                $somme = 0;
+                switch ($difficulte) {
+                    case 'F':
+                        $somme = 50;
+                        break;
+                    case 'M':
+                        $somme = 100;
+                        break;
+                    case 'D':
+                        $somme = 200;
+                        break;
+                    default:
+                        break;
+                }
+                $message = "Félicitations ! Vous avez réussi la question et vous avez gagné $somme écus.";
+            } else {
+                // La réponse est incorrecte
+                $message = "Désolé, la réponse est incorrecte. Vous n'avez pas gagné de somme cette fois-ci.";
+            }
+        } else {
+            // Erreur lors de la récupération des données de la base de données
+            $message = "Une erreur s'est produite lors de la vérification de la réponse. Veuillez réessayer.";
+        }
+    } else {
+        // Erreur lors de la récupération de la difficulté de l'énigme
+        $message = "Une erreur s'est produite lors de la récupération de la difficulté de l'énigme. Veuillez réessayer.";
     }
 
+    echo "<script>alert('$message');</script>";
+}
+
+
+    
 
     //À faire
     public function updateEnigme($data)

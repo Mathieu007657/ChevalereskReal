@@ -83,8 +83,7 @@ if (isset($_SESSION["validUser"])) {
     HTML;
 }
 
-//Pour les filter, Armure:R, Arme:A, Potion:P, Element:E variable nommée "type" dans la base de donnée
-//Faire en sorte que les filter/sort ne s'affichent pas dans paniers.php
+
 $viewMenu = "";
 if (strcmp($viewName, "Paniers") !== 0 && strcmp($viewName, "itemList") == 0) {
     $viewHeadCustom = <<<HTML
