@@ -3,6 +3,7 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
+require 'DAL/EnigmesTable.php';
 
 $viewName = "enigma";
 $viewTitle = "Enigma";
@@ -12,6 +13,8 @@ $style=<<<HTML
             width: 90%; 
             margin: auto; 
             padding:10%;
+            border-radius:7px;
+            background-color:hsl(0, 100%, 30%,0.5);
         }
         .Reponse tr {
             vertical-align: middle; 
@@ -26,21 +29,28 @@ $style=<<<HTML
             font-size:50px;
             padding :3%;
             border-radius:7px;
-            background-color:hsl(0, 100%, 30%,0.5);
+            background-color:hsl(0, 100%, 30%,0.8);
         }
     </style>
 HTML;
+$question = EnigmesTable()->getEnigme();
+$choix1 = 1;
+$choix2 = 2;
+$choix3 = 3;
+$choix4 = 4;
 $viewContent=$style;
 $viewContent .= "<div class='Enigme'>";
 $viewContent .= <<<HTML
-    <div><b>QUESTION</b> </div>
+    <div><b>$question</b> </div>
 HTML;
+$viewContent .= "<div class='Enigme'>";
+$viewContent .= <<<HTML
+    <div><b>$question</b> </div>
+HTML;
+$viewContent .= EnigmesTable()->getReponses($question);
 $viewContent .= "</div>";
-//Faire dans un carré les aspects suivants:
-//Écrire la question avec entre parenthèse la difficulté de la question (la question est piochée aléatoirement de la table Enigmes parmis celles qui non pas été piochées)
+$viewContent .= "</div>";
 
-//Dans un autre carré, mettre avec des checkbox chaque choix (soit 4 pour chaque question)
-//bouton de soumission
 
 
 $viewScript = <<<HTML
