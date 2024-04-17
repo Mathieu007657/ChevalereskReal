@@ -1,0 +1,42 @@
+.ZonePotion:not(.ZoneOnePotion){
+    background-image:url("../images/Panoramix.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+.PanoramixPotionImage {
+    display:flex;
+    gap:5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 355px;
+    height: 265px;
+    border-radius: 9px;
+    padding: 5px;
+    border: black solid 2px;
+}
+.ZoneOnePotion{
+    border: solid black 2px;
+    background: linear-gradient(90deg, hsla(0, 61%, 57%, 1) 6%, hsla(59, 30%, 49%, 1) 100%);
+    padding: 10px;
+    display: flex;
+}
+.NamePotion{
+    padding: 5px;
+    margin-top: 5px;
+    width: max-content;
+    color: white;
+    border-radius: 5px;
+    border: solid black 3px;
+    background: black;
+    font-family: Georgia, serif;
+}
+.arrow{
+    padding-top: 120px;
+    padding-left: 220px;
+    font-size: xx-large;
+}
