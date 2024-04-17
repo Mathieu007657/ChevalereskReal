@@ -33,7 +33,7 @@ $style=<<<HTML
         }
     </style>
 HTML;
-$question = EnigmesTable()->getEnigme();
+$question = EnigmesTable()->getEnigme("");
 $choix1 = 1;
 $choix2 = 2;
 $choix3 = 3;
