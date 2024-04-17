@@ -38,7 +38,7 @@ $style=<<<HTML
     </style>
 HTML;
 
-$question = EnigmesTable()->getEnigme();
+$question = EnigmesTable()->getEnigme("");
 $reponse = $question;
 $question = $question. EnigmesTable()->getDifficulte($question);
 $viewContent=$style;

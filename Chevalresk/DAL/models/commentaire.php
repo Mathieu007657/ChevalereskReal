@@ -3,33 +3,33 @@
 include_once 'DAL/models/record.php';
 class Commentaire extends Record
 {
-    public $ItemId;
-    public $JoueurId;
-    public $Commentaire;
-    public $NbEtoiles;
+    public $idItem;
+    public $idJoueur;
+    public $lecommentaire;
+    public $nbEtoiles;
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
-        $this->JoueurId = 0;
-        $this->Commentaire = '';
-        $this->NbEtoiles = 0;
+        $this->idItem = 0;
+        $this->idJoueur = 0;
+        $this->lecommentaire = '';
+        $this->nbEtoiles = 0;
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setidItem($itemId)
     {
-        $this->ItemId = (int) $itemId;
+        $this->idItem = (int) $itemId;
     }
-    public function setJoueurId($JoueurId)
+    public function setidJoueur($JoueurId)
     {
-        $this->JoueurId = (int) $JoueurId;
+        $this->idJoueur = (int) $JoueurId;
     }
-    public function setCommentaire($commentaire)
+    public function setlecommentaire($commentaire)
     {
-        $this->Commentaire = (int) $commentaire;
+        $this->lecommentaire = (int) $commentaire;
     }
-    public function setNbEtoiles($nbEtoiles)
+    public function setnbEtoiles($nbEtoiles)
     {
-        $this->NbEtoiles = (int) $nbEtoiles;
+        $this->nbEtoiles = (int) $nbEtoiles;
     }
 }
