@@ -16,8 +16,9 @@ final class EnigmesTable extends MySQLTable
         $tableName = "Enigmes";
 
         // Obtenir le nombre d'énigmes non pigées
-        $countQuery = "SELECT count(Enonce) FROM dbchevalersk8.$tableName WHERE estPigee = 'N';";
-        $countResult = $this->_DB->querySqlCmd($countQuery);
+            $countQuery = "SELECT count(Enonce) FROM dbchevalersk8.$tableName WHERE estPigee = 'N';";
+            $countResult = $this->_DB->querySqlCmd($countQuery); 
+
 
         // Vérifier si le résultat est un tableau
         if (is_array($countResult)) {
@@ -32,15 +33,14 @@ final class EnigmesTable extends MySQLTable
         $idRandom = rand(0, $numUnpicked + 1);
 
         // Requête pour obtenir une énigme non pigée aléatoire
-        if ($difficulte === "") {
+        if ($difficulte !== "") {
+            $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom and Difficulte = $difficulte;";
+            $data = $this->_DB->querySqlCmd($sql);
+        } else {
             $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom;";
             $data = $this->_DB->querySqlCmd($sql);
         }
-        else{
-            $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom and Difficulte = $difficulte;";
-            $data = $this->_DB->querySqlCmd($sql);
-        }
-
+        echo "$sql";
 
         // Vérifier si des données ont été récupérées
         if ($data && count($data) > 0) {
