@@ -11,14 +11,13 @@ final class EnigmesTable extends MySQLTable
     }
 
     //À faire
-    public function getEnigme($difficulte)
-    {
+    public function getEnigme() {
         $tableName = "Enigmes";
-
+    
         // Obtenir le nombre d'énigmes non pigées
         $countQuery = "SELECT count(Enonce) FROM dbchevalersk8.$tableName WHERE estPigee = 'N';";
         $countResult = $this->_DB->querySqlCmd($countQuery);
-
+    
         // Vérifier si le résultat est un tableau
         if (is_array($countResult)) {
             $countResult = $this->toObjectArray($countResult);
@@ -27,21 +26,25 @@ final class EnigmesTable extends MySQLTable
             // Gérer le cas où $countResult n'est pas un tableau
             $numUnpicked = 0;
         }
-
+    
         // Générer un ID aléatoire pour sélectionner une énigme non pigée
         $idRandom = rand(0, $numUnpicked + 1);
-
+    
         // Requête pour obtenir une énigme non pigée aléatoire
-        if ($difficulte === "") {
-            $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom;";
-            $data = $this->_DB->querySqlCmd($sql);
+        $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom;";
+        $data = $this->_DB->querySqlCmd($sql);
+    
+        // Vérifier si des données ont été récupérées
+        if ($data && count($data) > 0) {
+            // Récupérer l'énoncé de l'énigme depuis le tableau retourné
+            $enigme = $data[0]['Enonce'];
+        } else {
+            // Aucune énigme trouvée, retourner null ou gérer l'erreur selon vos besoins
+            return null;
         }
-        else{
-            $sql = "SELECT Enonce From dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom AND Difficile = $difficulte;";
-            $data = $this->_DB->querySqlCmd($sql);
-        }
-        return $data;
+        return $enigme;
     }
+    
     public function getDifficulte($question)
     {
         $tableName = "Enigmes";
