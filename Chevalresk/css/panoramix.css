@@ -24,6 +24,7 @@
     background: linear-gradient(90deg, hsla(0, 61%, 57%, 1) 6%, hsla(59, 30%, 49%, 1) 100%);
     padding: 10px;
     display: flex;
+    border-radius: 5px;
 }
 .NamePotion{
     padding: 5px;
