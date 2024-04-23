@@ -16,8 +16,8 @@ final class EnigmesTable extends MySQLTable
         $tableName = "Enigmes";
 
         // Obtenir le nombre d'énigmes non pigées
-            $countQuery = "SELECT count(Enonce) FROM dbchevalersk8.$tableName WHERE estPigee = 'N';";
-            $countResult = $this->_DB->querySqlCmd($countQuery); 
+        $countQuery = "SELECT count(Enonce) FROM dbchevalersk8.$tableName WHERE estPigee = 'N';";
+        $countResult = $this->_DB->querySqlCmd($countQuery);
 
 
         // Vérifier si le résultat est un tableau
@@ -79,42 +79,54 @@ final class EnigmesTable extends MySQLTable
         }
     }
     public function getReponses($question)
-{
-    $tableName = "Enigmes";
+    {
+        $tableName = "Enigmes";
 
-    $sql1 = "SELECT idEnigme, Difficulte FROM dbchevalersk8.$tableName WHERE Enonce LIKE '%$question%';";
-    $data1 = $this->_DB->querySqlCmd($sql1);
+        $sql1 = "SELECT idEnigme, Difficulte FROM dbchevalersk8.$tableName WHERE Enonce LIKE '%$question%';";
+        $data1 = $this->_DB->querySqlCmd($sql1);
 
-    if ($data1 && count($data1) > 0) {
-        $idEnigme = $data1[0]['idEnigme'];
-        $difficulte = $data1[0]['Difficulte'];
+        if ($data1 && count($data1) > 0) {
+            $idEnigme = $data1[0]['idEnigme'];
+            $difficulte = $data1[0]['Difficulte'];
 
-        $tableName = "Reponses";
-        $sql = "SELECT LaReponse, EstBonne FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme;";
-        $data = $this->_DB->querySqlCmd($sql);
+            $tableName = "Reponses";
+            $sql = "SELECT LaReponse, EstBonne FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme;";
+            $data = $this->_DB->querySqlCmd($sql);
 
-        if ($data && count($data) > 0) {
-            $reponsesContent = '<form id="reponsesForm">';
-            foreach ($data as $row) {
-                $reponse = $row['LaReponse'];
-                // Utilisez le nom de la réponse comme valeur et l'ID comme identifiant
-                $reponsesContent .= "<input type='radio' name='reponse' value='$reponse'>
+            if ($data && count($data) > 0) {
+                $reponsesContent = '<form id="reponsesForm">';
+                foreach ($data as $row) {
+                    $reponse = $row['LaReponse'];
+                    // Utilisez le nom de la réponse comme valeur et l'ID comme identifiant
+                    $reponsesContent .= "<input type='radio' id='rep' name='reponse' value='$reponse'>
                                      <label for='$reponse'>$reponse</label><br>";
+                }
+                $reponsesContent .= "<button type='button' onclick='verif(\"$difficulte\")'>Vérifier</button>";
+                $reponsesContent .= "</form>";
+                $reponsesContent .= <<<HTML
+    <script defer>
+        function verif(Difficile) {
+            var reponse = document.querySelector("input[type='radio'][name=reponse]:checked").value;
+            if (reponse) {
+                alert(reponse);
+            } else {
+                alert("Veuillez sélectionner une réponse.");
             }
-            $reponsesContent .= "<button type='button' onclick='verifierReponse(\"\")'>Vérifier</button>";
-            $reponsesContent .= "</form>";
+        }
+    </script>
+HTML;
 
-            return $reponsesContent;
+                return $reponsesContent;
+            } else {
+                // Aucune réponse trouvée pour cette énigme
+                return "";
+            }
         } else {
-            // Aucune réponse trouvée pour cette énigme
+            // Aucune énigme trouvée avec cette question
             return "";
         }
-    } else {
-        // Aucune énigme trouvée avec cette question
-        return "";
     }
-}
-    
+
 
     //À faire
     public function updateEnigme($data)

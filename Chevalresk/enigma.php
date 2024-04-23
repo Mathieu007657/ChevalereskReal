@@ -56,22 +56,10 @@ $viewContent .= "</div>";
 
 $viewScript = <<<HTML
     <script defer>
-        function verifierReponse(difficulte) {
-            var idEnigme = document.getElementById("idEnigme").value;
-            var reponse = document.querySelector('input[name="reponse"]:checked');
+        function verifierReponse(Difficile) {
+            var reponse = document.querySelector("input[type='radio'][name=reponse]:checked").value;
             if (reponse) {
-                var reponseUtilisateur = reponse.value;
-                // Appel AJAX pour vérifier la réponse
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "EnigmesTable.php", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        alert(xhr.responseText);
-                        // Actualiser la page ou effectuer d'autres actions en fonction de la réponse du serveur
-                    }
-                };
-                xhr.send("idEnigme=" + idEnigme + "&reponse=" + reponseUtilisateur + "&difficulte=" + difficulte);
+                alert($reponse);
             } else {
                 alert("Veuillez sélectionner une réponse.");
             }
