@@ -10,7 +10,7 @@ class Reponse extends Record
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
+        $this->ReponseId = 0;
         $this->LaReponse = '';
         $this->EstBonne = '';
         $this->EnigmeId = 0;
