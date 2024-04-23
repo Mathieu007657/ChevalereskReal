@@ -30,7 +30,7 @@ final class EnigmesTable extends MySQLTable
         }
 
         // Générer un ID aléatoire pour sélectionner une énigme non pigée
-        $idRandom = rand(0, $numUnpicked + 1);
+        $idRandom = rand(0, $numUnpicked + 2);
 
         // Requête pour obtenir une énigme non pigée aléatoire
         if ($difficulte !== "") {
@@ -98,10 +98,10 @@ final class EnigmesTable extends MySQLTable
             foreach ($data as $row) {
                 $reponse = $row['LaReponse'];
                 // Utilisez le nom de la réponse comme valeur et l'ID comme identifiant
-                $reponsesContent .= "<input type='radio' id='idEnigme' name='idEnigme' value='$reponse'>
+                $reponsesContent .= "<input type='radio' name='reponse' value='$reponse'>
                                      <label for='$reponse'>$reponse</label><br>";
             }
-            $reponsesContent .= "<button type='button' onclick='verifierReponse(\"$difficulte\")'>Vérifier</button>";
+            $reponsesContent .= "<button type='button' onclick='verifierReponse(\"\")'>Vérifier</button>";
             $reponsesContent .= "</form>";
 
             return $reponsesContent;
