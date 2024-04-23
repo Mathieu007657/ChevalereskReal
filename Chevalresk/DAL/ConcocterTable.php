@@ -2,6 +2,7 @@
 include_once 'DAL/models/paniers.php';
 include_once "DAL/MySQLDataBase.php";
 include_once 'php/imageFiles.php';
+include_once 'DAL/models/concocter.php';
 
 final class concocterTable extends MySQLTable
 {

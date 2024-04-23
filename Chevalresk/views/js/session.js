@@ -1,0 +1,1 @@
+$("PanoramixPotionImage").width($("NamePotion").width());
