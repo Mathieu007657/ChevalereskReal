@@ -9,7 +9,10 @@ if (!isset($_GET["id"])){
 $id = (int) $_GET["id"];
 $totalPrice = 0;
 $panierItems = PanierTable()->findByidPanierPlayer($_SESSION["currentUserId"]);
-$Joueur = JoueursTable()->get($id);
+$Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
+$Joueur->JoueurId;
+//echo $_SESSION["currentUserId"];
+echo $Joueur->JoueurId;
 $solde = $Joueur->Solde;
 $QuantiteVendu = [];
 $InsertionPourInv = [];
