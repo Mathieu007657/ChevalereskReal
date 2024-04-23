@@ -40,7 +40,6 @@ final class EnigmesTable extends MySQLTable
             $sql = "SELECT Enonce FROM dbchevalersk8.$tableName WHERE estPigee = 'N' AND idEnigme = $idRandom;";
             $data = $this->_DB->querySqlCmd($sql);
         }
-        echo "$sql";
 
         // Vérifier si des données ont été récupérées
         if ($data && count($data) > 0) {
@@ -115,62 +114,6 @@ final class EnigmesTable extends MySQLTable
         return "";
     }
 }
-
-
-public function verifierReponse() {
-    // Récupérer l'ID de l'énigme et la réponse sélectionnée par l'utilisateur depuis le formulaire
-    $idEnigme = $_POST['idEnigme'];
-    $reponseUtilisateur = $_POST['reponse'];
-
-    // Récupérer la difficulté de l'énigme
-    $tableName = "Enigmes";
-    $sql = "SELECT Difficulte FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme;";
-    $data = $this->_DB->querySqlCmd($sql);
-
-    if ($data && count($data) > 0) {
-        $difficulte = $data[0]['Difficulte'];
-
-        // Vérifier si la réponse sélectionnée par l'utilisateur est correcte
-        $tableName = "Reponses";
-        $sql = "SELECT EstBonne FROM dbchevalersk8.$tableName WHERE idEnigme = $idEnigme AND LaReponse = '$reponseUtilisateur';";
-        $data = $this->_DB->querySqlCmd($sql);
-
-        if ($data && count($data) > 0) {
-            $estBonne = $data[0]['EstBonne'];
-            if ($estBonne === 'O') {
-                // La réponse est correcte
-                $somme = 0;
-                switch ($difficulte) {
-                    case 'F':
-                        $somme = 50;
-                        break;
-                    case 'M':
-                        $somme = 100;
-                        break;
-                    case 'D':
-                        $somme = 200;
-                        break;
-                    default:
-                        break;
-                }
-                $message = "Félicitations ! Vous avez réussi la question et vous avez gagné $somme écus.";
-            } else {
-                // La réponse est incorrecte
-                $message = "Désolé, la réponse est incorrecte. Vous n'avez pas gagné de somme cette fois-ci.";
-            }
-        } else {
-            // Erreur lors de la récupération des données de la base de données
-            $message = "Une erreur s'est produite lors de la vérification de la réponse. Veuillez réessayer.";
-        }
-    } else {
-        // Erreur lors de la récupération de la difficulté de l'énigme
-        $message = "Une erreur s'est produite lors de la récupération de la difficulté de l'énigme. Veuillez réessayer.";
-    }
-
-    echo "<script>alert('$message');</script>";
-}
-
-
     
 
     //À faire
