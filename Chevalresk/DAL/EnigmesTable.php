@@ -101,20 +101,8 @@ final class EnigmesTable extends MySQLTable
                     $reponsesContent .= "<input type='radio' id='rep' name='reponse' value='$reponse'>
                                      <label for='$reponse'>$reponse</label><br>";
                 }
-                $reponsesContent .= "<button type='button' onclick='verif(\"$difficulte\")'>Vérifier</button>";
+                $reponsesContent .= "<button type='button' onclick='verifierReponse(\"$difficulte\")'>Vérifier</button>";
                 $reponsesContent .= "</form>";
-                $reponsesContent .= <<<HTML
-    <script defer>
-        function verif(Difficile) {
-            var reponse = document.querySelector("input[type='radio'][name=reponse]:checked").value;
-            if (reponse) {
-                alert(reponse);
-            } else {
-                alert("Veuillez sélectionner une réponse.");
-            }
-        }
-    </script>
-HTML;
 
                 return $reponsesContent;
             } else {

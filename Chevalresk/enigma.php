@@ -38,6 +38,19 @@ $style=<<<HTML
     </style>
 HTML;
 
+$viewScript = <<<HTML
+    <script defer>
+        function verifierReponse(Difficile) {
+            var reponse = document.querySelector("input[type='radio'][name=reponse]:checked").value;
+            if (reponse) {
+                alert(reponse);
+            } else {
+                alert("Veuillez sélectionner une réponse.");
+            }
+        }
+    </script>
+HTML;
+
 $question = EnigmesTable()->getEnigme("");
 $reponse = $question;
 $question = $question. EnigmesTable()->getDifficulte($question);
@@ -53,19 +66,6 @@ $viewContent .= <<<HTML
     <div><b>$reponses</b> </div>
 HTML;
 $viewContent .= "</div>";
-
-$viewScript = <<<HTML
-    <script defer>
-        function verifierReponse(Difficile) {
-            var reponse = document.querySelector("input[type='radio'][name=reponse]:checked").value;
-            if (reponse) {
-                alert($reponse);
-            } else {
-                alert("Veuillez sélectionner une réponse.");
-            }
-        }
-    </script>
-HTML;
 
 include "views/master.php";
 ?>
