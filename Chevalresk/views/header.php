@@ -118,7 +118,7 @@ HTML;
 }
 
 $viewHead = <<<HTML
-        <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo"></a>
+        <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo" alt="Logo Chevalier"></a>
         <span class="viewTitle">
             $viewTitle
         </span>

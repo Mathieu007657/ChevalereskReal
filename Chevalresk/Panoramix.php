@@ -28,18 +28,31 @@ foreach ($ListPotionitem as $Potion) {
         $idElement = $elem->Elements_idItem;
         $quantity = $elem->Quantite;
         $User =  $_SESSION['currentUserId'];
-        $element = InventaireTable()->FindSpecificItem($User,$idElement)[0];
-        echo "<script>console.log('Debug Objects: " . $element . "' );</script>";
-        $photoElem = $lienPhoto="data/images/photoItem/".ItemTable()->findById($idElement)->Photo;
+        $element = InventaireTable()->FindSpecificItem($User,$idElement);
+        $itemElem = ItemTable()->findById($idElement);
+        $photoElem = $lienPhoto="data/images/photoItem/". $itemElem->Photo;
+        $Name = $itemElem->Nom;
         $quantityelemPlayer = $element->QuantiteAchat;
         $viewContent .= <<<HTML
-        <div class="PanoramixElementImage" style="background-image:url('$photoElem')"></div>
-        <div>
-            <h3>$quantityelemPlayer/$quantity</h3>
-        </div>
-    HTML;
+            <img src="$photoElem" title="$Name" alt="$Name" class="PanoramixElementImage"/>
+        HTML;
+        if($quantityelemPlayer >= $quantity){
+            $viewContent .= <<<HTML
+                <div class="NumQutElemGold">
+                    <h3>$quantityelemPlayer/$quantity</h3>
+                </div>
+            HTML;
+        }
+        else{
+            $viewContent .= <<<HTML
+            <div class="NumQutElem">
+                <h3>$quantityelemPlayer/$quantity</h3>
+            </div>
+        HTML;
+        }
     }
-    $viewContent .= "</div></div>";
+
+    $viewContent .= "</div><button type='button' class='btnCraft'>Craft</button></div>";
 }
 $viewContent .= "</div>";
 include "views/master.php";
