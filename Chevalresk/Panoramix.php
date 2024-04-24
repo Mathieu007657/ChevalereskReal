@@ -6,12 +6,11 @@ include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 $viewTitle = "Panoramix";
 $ListPotionitem = ItemTable()->selectWhere("type = 'P'");
-
+$viewContent =  "<div class='ZonePotion'>";
 foreach ($ListPotionitem as $Potion) {
     $idPotion = $Potion->IdItem;
     $NamePotion = $Potion->Nom;
     $lienPhoto = $lienPhoto="data/images/photoItem/"."$Potion->Photo";
-    $viewContent =  "<div class='ZonePotion'>";
     $viewContent .= <<<HTML
         <div class="ZoneOnePotion">
             <div class="PotionRow">
@@ -21,16 +20,26 @@ foreach ($ListPotionitem as $Potion) {
             <div>
                 <i class="fa-solid fa-chevron-right arrow"></i>
             </div>
-        </div>
+        
     HTML;
     $ElementDePotion = ConcocterTable()->selectWhere("Potions_idItem = $idPotion");
     $viewContent .= "<div class='ElementRow'>";
     foreach ($ElementDePotion as $elem) {
-        $photoElem = $elem->Photo;
+        $idElement = $elem->Elements_idItem;
+        $quantity = $elem->Quantite;
+        $User =  $_SESSION['currentUserId'];
+        $element = InventaireTable()->FindSpecificItem($User,$idElement)[0];
+        echo "<script>console.log('Debug Objects: " . $element . "' );</script>";
+        $photoElem = $lienPhoto="data/images/photoItem/".ItemTable()->findById($idElement)->Photo;
+        $quantityelemPlayer = $element->QuantiteAchat;
         $viewContent .= <<<HTML
-        <div class="photoImage" style="background-image:url('$photoElem')"></div>
+        <div class="PanoramixElementImage" style="background-image:url('$photoElem')"></div>
+        <div>
+            <h3>$quantityelemPlayer/$quantity</h3>
+        </div>
     HTML;
     }
     $viewContent .= "</div></div>";
 }
+$viewContent .= "</div>";
 include "views/master.php";
