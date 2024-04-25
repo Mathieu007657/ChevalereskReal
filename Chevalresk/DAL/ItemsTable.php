@@ -46,5 +46,3 @@ final class ItemTable extends MySQLTable
         return false;
     }
 }
-
-?>

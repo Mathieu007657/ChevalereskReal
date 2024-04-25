@@ -50,7 +50,7 @@ if (isset($_SESSION["validUser"])) {
         <a href="Inventaire.php" class="dropdown-item">
             <i class="menuIcon fa fa-solid fa-cube mx-2"></i> Inventaire
         </a>
-        <a href="enigma.php" class="dropdown-item">
+        <a href="enigmaMenu.php" class="dropdown-item">
             <i class="menuIcon fa fa-solid fa-circle-question mx-2"></i> Enigma
         </a>
     HTML;
@@ -118,7 +118,7 @@ HTML;
 }
 
 $viewHead = <<<HTML
-        <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo"></a>
+        <a href="itemsList.php" title="Liste des Items"><img src="images/logoChevalier.png" class="appLogo" alt="Logo Chevalier"></a>
         <span class="viewTitle">
             $viewTitle
         </span>

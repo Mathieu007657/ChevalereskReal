@@ -20,7 +20,9 @@ final class InventaireTable extends MySQLTable
         $user = $this->selectWhere("idJoueurs = $idPlayer");
         return $user;
     }
-
+    public function FindSpecificItem($idUser,$idItem){
+        return $this->selectWhere("idItem = $idItem AND idJoueurs = $idUser");
+    }
     public function insertInv($data){
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
         return $this->_DB->nonQuerySqlCmd($sql);
@@ -31,7 +33,11 @@ final class InventaireTable extends MySQLTable
         $sql = "UPDATE Inventaires SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
-
+    public function UpdateInvWithStr($strQuantity,$stridItem){
+        $idJoueur = $_SESSION["currentUserId"];
+        $sql = "UPDATE Inventaires SET QuantiteAchat = $strQuantity WHERE idItem = $stridItem AND idJoueurs = $idJoueur";
+        return $this->_DB->nonQuerySqlCmd($sql);
+    }
     //Delete 1 item d'un joueur dans le paniers
     public function deleteInv($id1,$id2){
         return parent::delete2($id1,$id2);

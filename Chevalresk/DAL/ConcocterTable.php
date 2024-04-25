@@ -14,5 +14,5 @@ final class concocterTable extends MySQLTable
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($idPlayer,$idItem,1)";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
-
+    
 }
