@@ -14,6 +14,7 @@ class Joueur extends Record
     public $Solde;
     public $estAdmin = 0; // user => 0 , admin => 1
     public $estAlch = 0; // n'est pas alchimiste => 0 , est alchimiste => 1
+    public $QuestRep;
     public function construct($recordData = null)
     {
         $this->JoueurId=0;
@@ -26,10 +27,14 @@ class Joueur extends Record
         $this->Avatar = "";
         $this->estAdmin = 0;
         $this->estAlch = 0;
+        $this-> QuestRep=0;
         $this->setUniqueKey('JoueurId');
         //$this->setUniqueKey('Email');
         //$this->setUniqueKey('Alias');
         parent::__construct($recordData);
+    }
+    public function setQuestRep($QuestRep){
+        $this->QuestRep=$QuestRep;
     }
     public function setJoueurId($id){
         $this->JoueurId=$id;
@@ -64,6 +69,9 @@ class Joueur extends Record
     }
     public function getAvatar(){
         return $this->Avatar;
+    }
+    public function setestAlch($val){
+        $this->estAlch=$val;
     }
     public function setAccessType($accessType)
     {

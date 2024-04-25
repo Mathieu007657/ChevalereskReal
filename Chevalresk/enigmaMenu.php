@@ -7,9 +7,10 @@ include_once 'DAL/EnigmesTable.php';
 
 $viewName = "enigmamenu";
 $viewTitle = "EnigmaMenu";
-$idpp=$_SESSION["currentUserId"];
-$Joueur = JoueursTable()->get($idpp);
-$solde=$Joueur->Solde;
+if (isset($_GET["devAlch"])){
+    $DevienAlch = (bool) $_GET["devAlch"];
+    echo '<script>alert("Vous êtes maintenant un alchimiste! Bravo nous sommes fière de vous.")</script>'; 
+}
 $viewContent = <<<HTML
     <style>
         .Enigme {
@@ -22,7 +23,9 @@ $viewContent = <<<HTML
             color: white;
             background-color: rgba(72, 6, 148, 0.8);
         }
-
+        .but{
+            justify-content: center;
+        }
         .button-64 {
             align-items: center;
             background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
@@ -71,6 +74,7 @@ $viewContent = <<<HTML
                 min-width: 196px;
             }
         }
+        
     </style>
 HTML;
 
@@ -99,12 +103,16 @@ $viewContent .= <<<HTML
     <div>Choix de l'enigme</div>
     <div>
         <button class="button-64" type='button' onclick="AfficherEnigme('P')">Type Potion</button>
+        <br>
         <button class="button-64" type='button' onclick="AfficherEnigme('E')">Type Élément</button>
         <br>
         <button class="button-64" type='button' onclick="AfficherEnigme('')">Aléatoire</button>
     </div>
 </div>
 HTML;
+$idpp=$_SESSION["currentUserId"];
+$Joueur = JoueursTable()->get($idpp);
+$solde=$Joueur->Solde;
 include "views/master.php";
 
 ?>

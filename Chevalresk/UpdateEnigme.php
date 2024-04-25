@@ -9,5 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $estReussi = $_GET['estReussi'] === 'true' ? true : false;
     echo "$enigmeId et $estReussi";
     $enigmesTable->updateEnigme($enigmeId, $estReussi);
+    $idpp = $_SESSION["currentUserId"];
+    $Joueur = JoueursTable()->get($idpp);
+    if ($Joueur->QuestRep == 3) {
+        redirect("enigmaMenu.php?devAlch=true");
+    }
 }
 redirect("enigmaMenu.php");
