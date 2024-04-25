@@ -7,7 +7,9 @@ include_once 'DAL/EnigmesTable.php';
 
 $viewName = "enigmamenu";
 $viewTitle = "EnigmaMenu";
-
+$idpp=$_SESSION["currentUserId"];
+$Joueur = JoueursTable()->get($idpp);
+$solde=$Joueur->Solde;
 $viewContent = <<<HTML
     <style>
         .Enigme {

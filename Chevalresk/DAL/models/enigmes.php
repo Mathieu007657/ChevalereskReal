@@ -3,7 +3,7 @@
 include_once 'DAL/models/record.php';
 class Enigme extends Record
 {
-    public $IdEnigme;
+    public $idEnigme;
     public $Enonce;
     public $Difficulte;
     public $recompense;
@@ -13,7 +13,7 @@ class Enigme extends Record
    
     public function __construct($recordData = null)
     {
-        $this->IdEnigme=0;
+        $this->idEnigme=0;
         $this->Enonce = '';
         $this->Difficulte='';
         $this->recompense=0;
@@ -33,9 +33,9 @@ class Enigme extends Record
     public function setestPigee($estPigee){
         $this->estPigee=$estPigee;
     }
-    public function setIdEnigme($IdEnigme)
+    public function setidEnigme($IdEnigme)
     {
-        $this->IdEnigme = (int) $IdEnigme;
+        $this->idEnigme = (int) $IdEnigme;
     }
     public function setEnonce($enonce)
     {

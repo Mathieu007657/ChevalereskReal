@@ -31,7 +31,7 @@ $style = <<<HTML
 
         .Enigme {
             width: 90%;
-            height: 25%;
+            height: 30%;
             margin: auto;
             font-size: 50px;
             padding: 3%;

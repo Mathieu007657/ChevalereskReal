@@ -10,4 +10,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo "$enigmeId et $estReussi";
     $enigmesTable->updateEnigme($enigmeId, $estReussi);
 }
-//redirect("enigmaMenu.php");
+redirect("enigmaMenu.php");
