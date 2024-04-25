@@ -4,6 +4,7 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
+
 $viewTitle = "Panoramix";
 $ListPotionitem = ItemTable()->selectWhere("type = 'P'");
 $viewContent =  "<div class='ZonePotion'>";
@@ -14,7 +15,7 @@ foreach ($ListPotionitem as $Potion) {
     $viewContent .= <<<HTML
         <div class="ZoneOnePotion">
             <div class="PotionRow">
-                <div class="PanoramixPotionImage" style="background-image:url('$lienPhoto')" title="$NamePotion"></div>
+                <div class="PanoramixPotionImage" style="background-image:url('$lienPhoto')" title="$NamePotion / $idPotion"></div>
                 <h2 class="NamePotion">$NamePotion</h2>
             </div>
             <div>
@@ -61,7 +62,7 @@ foreach ($ListPotionitem as $Potion) {
         HTML;
         }
     }
-    if (!$NumberOfGold < 3){
+    if ($NumberOfGold == 3){
         $viewContent .= "
             </div>
             <a class='btnCraft' href='CreatePotion.php?id=$idPotion'>Craft</a>

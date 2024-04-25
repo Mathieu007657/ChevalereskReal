@@ -4,10 +4,15 @@ require 'DAL/ChevalereskDB.php';
 //if (!isset($_GET["id"]))
 //redirect("illegalAction.php");
 
-//$id = (int) $_GET["id"];
-$id = 1;
+$id = (int) $_GET["id"];
 $item = ItemTable()->findById($id);
 $photo = $item->Photo;
+$nom = $item->Nom;
+$prix = $item->Prix;
+$type = $item->Type;
+$infoPrix;
+$infoPrix = "Prix: $prix écus";
+$lienEcu = "images/ecu.png";
 $lienPhoto = "data/images/photoItem/" . "$photo";
 $html = <<<HTML
 <style>
@@ -52,6 +57,11 @@ $html .= <<<HTML
         <div class="grid-item"><img src="$lienPhoto"  class="photo"/></div>
         <div class="grid-item">
             <div>
+                $nom
+            </div>
+            <div>                
+                    $infoPrix <img src="$lienEcu" style="width:40px; heigth: 40px;">
+            </div>
         </div>
     </div>
 HTML;
