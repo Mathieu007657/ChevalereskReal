@@ -4,6 +4,7 @@ include 'php/sessionManager.php';
 include 'php/formUtilities.php';
 include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
+
 $viewTitle = "Panoramix";
 $ListPotionitem = ItemTable()->selectWhere("type = 'P'");
 $viewContent =  "<div class='ZonePotion'>";
