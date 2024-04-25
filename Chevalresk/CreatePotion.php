@@ -24,4 +24,17 @@ foreach ($listElement as $elem) {
         InventaireTable()->deleteInv($idElem,$_SESSION['currentUserId']);
     }
 }
+$player = JoueursTable()->selectById($_SESSION['currentUserId'])[0];
+if ($player->QuestRep % 3 == 0){
+    if ($player->Niveau == "Débutant"){
+        $player->Niveau == "Intermédiaire";
+    }
+    elseif ($player->Niveau == "Intermédiaire"){
+        $player->Niveau == "Expert";
+    }
+}
+
+
+
+
 redirect('Panoramix.php');
