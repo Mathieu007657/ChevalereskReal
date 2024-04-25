@@ -33,7 +33,11 @@ final class InventaireTable extends MySQLTable
         $sql = "UPDATE Inventaires SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
-
+    public function UpdateInvWithStr($strQuantity,$stridItem){
+        $idJoueur = $_SESSION["currentUserId"];
+        $sql = "UPDATE Inventaires SET QuantiteAchat = $strQuantity WHERE idItem = $stridItem AND idJoueurs = $idJoueur";
+        return $this->_DB->nonQuerySqlCmd($sql);
+    }
     //Delete 1 item d'un joueur dans le paniers
     public function deleteInv($id1,$id2){
         return parent::delete2($id1,$id2);

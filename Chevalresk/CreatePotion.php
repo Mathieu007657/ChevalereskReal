@@ -1,7 +1,8 @@
 <?php
 require 'DAL/MySQLDataBase.php';
 require 'DAL/ChevalereskDB.php';
-include 'DAL/models/inventaire.php';
+include 'php/sessionManager.php';
+include 'php/date.php';
 
 
 //Insérer potion inventaire joueur
@@ -17,10 +18,7 @@ foreach ($listElement as $elem) {
     $QuantitéAcheter = InventaireTable()->FindSpecificItem($_SESSION['currentUserId'],$idElem)[0]->QuantiteAchat; //Get quantité d'élément dans l'inventaire du joueur
 
     if ($QuantitéAcheter > $Quantity){
-        $inv = new Inventaire(); //Créer nouvelle object Inventaire
-        $inv->setidItem($idElem); // Set l'id item à celle de l'élément
-        $inv->setQuantiteAchat($QuantitéAcheter - $Quantity); // Set la quantité a l'ancien - la quantité de la potion
-        InventaireTable()->updateInv($inv); //Update L'inventaire
+        InventaireTable()->UpdateInvWithStr($QuantitéAcheter - $Quantity,$idElem); //Update L'inventaire
     }
     else{
         InventaireTable()->deleteInv($idElem,$_SESSION['currentUserId']);
