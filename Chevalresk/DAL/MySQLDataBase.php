@@ -340,6 +340,7 @@ abstract class MySQLTable
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $tableName = $this->tableName();
         $sql = "SELECT * FROM dbchevalersk8.$tableName WHERE idJoueurs = $id";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         $data = $this->_DB->querySqlCmd($sql);
         return $this->toObjectArray($data);
     }

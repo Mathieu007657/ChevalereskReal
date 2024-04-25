@@ -10,9 +10,6 @@ $id = (int) $_GET["id"];
 $totalPrice = 0;
 $panierItems = PanierTable()->findByidPanierPlayer($_SESSION["currentUserId"]);
 $Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
-$Joueur->JoueurId;
-//echo $_SESSION["currentUserId"];
-echo $Joueur->JoueurId;
 $solde = $Joueur->Solde;
 $QuantiteVendu = [];
 $InsertionPourInv = [];
@@ -39,8 +36,8 @@ if($solde>=$totalPrice){
         $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - 1);
     }
     PanierTable()->deleteAllPanier($Joueur->JoueurId);
-    //redirect("Paniers.php?Payer=true");
+    redirect("Paniers.php?Payer=true");
 }
 else if($solde < $totalPrice){
-    //redirect("Paniers.php?Cher=true");
+    redirect("Paniers.php?Cher=true");
 }
