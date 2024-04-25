@@ -42,7 +42,8 @@ final class EnigmesTable extends MySQLTable
             $enigme = $data[0]['Enonce'];
             return $enigme;
         } else {
-            return null;
+            return "Aucune énigme libre, toutes les enigmes ont été répondues";
+            ;
         }
     }
 
@@ -52,7 +53,6 @@ final class EnigmesTable extends MySQLTable
         $tableName = "Enigmes";
         $sql = "SELECT Difficulte FROM dbchevalersk8.$tableName WHERE Enonce LIKE '%$question%';";
         $data = $this->_DB->querySqlCmd($sql);
-
         if ($data && count($data) > 0) {
             $difficulte = '';
             if ($data[0]['Difficulte'] == 'F') {
@@ -65,7 +65,7 @@ final class EnigmesTable extends MySQLTable
             $enigme = " (" . $difficulte . ")";
             return $enigme;
         } else {
-            return "Aucune réponse libre, toutes les enigmes ont été répondues";
+            return "";
         }
     }
     public function getReponses($question)
@@ -103,32 +103,27 @@ final class EnigmesTable extends MySQLTable
             return "";
         }
     }
-    public function getEnigmeById($enigmeId)
-    {
-        $tableName = "Enigmes";
-        $sql = "UPDATE dbchevalersk8.$tableName SET estPigee = 'O' WHERE IdEnigme = $enigmeId";
-        echo $sql;
-        $data = $this->_DB->nonQuerySqlCmd($sql);
-        return $this->get($enigmeId);
-    }
     public function updateEnigme($enigmeId, $estReussi)
     {
         $tableName = "Enigmes";
-        $sql = "UPDATE dbchevalersk8.$tableName SET estPigee = 'O' WHERE IdEnigme = $enigmeId";
-        echo $sql;
-        $data = $this->_DB->nonQuerySqlCmd($sql);
+        $sql = "UPDATE dbchevalersk8.$tableName SET estPigee = 'O' WHERE idEnigme = $enigmeId";
+        $data = $this->_DB->querySqlCmd($sql);
 
         if ($estReussi) {
-            $enigme = $this->getEnigmeById($enigmeId);
-            $recompense = $enigme->recompense;
-            echo "<br>L'enonce : $enigme->Enonce";
-            $idpp = $_SESSION["currentUserId"];
-            $Joueur = JoueursTable()->get($idpp); // Assurez-vous que la méthode 'get' existe et retourne un objet 'Joueur'
-            $Joueur->setSolde($Joueur->Solde + $recompense);
+            $sql = "SELECT Enonce, recompense FROM dbchevalersk8.$tableName WHERE idEnigme = $enigmeId";
+            $data = $this->_DB->querySqlCmd($sql);
+
+            if ($data && count($data) > 0) {
+                $enigme = $data[0]['Enonce'];
+                $recompense = $data[0]['recompense'];
+                echo "enonce : $enigme ";
+                echo "recomp : $recompense";
+                $idpp = $_SESSION["currentUserId"];
+                $Joueur = JoueursTable()->get($idpp);
+                $Joueur->setSolde($Joueur->Solde + $recompense);
+            }
         }
 
         return $data;
     }
-
-
 }
