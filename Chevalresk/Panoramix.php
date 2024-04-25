@@ -24,6 +24,7 @@ foreach ($ListPotionitem as $Potion) {
     HTML;
     $ElementDePotion = ConcocterTable()->selectWhere("Potions_idItem = $idPotion");
     $viewContent .= "<div class='ElementRow'>";
+    $NumberOfGold = 0;
     foreach ($ElementDePotion as $elem) {
         $idElement = $elem->Elements_idItem;
         $quantity = $elem->Quantite;
@@ -32,14 +33,22 @@ foreach ($ListPotionitem as $Potion) {
         $itemElem = ItemTable()->findById($idElement);
         $photoElem = $lienPhoto="data/images/photoItem/". $itemElem->Photo;
         $Name = $itemElem->Nom;
-        $quantityelemPlayer = $element->QuantiteAchat;
+        if (isset($element[0])){
+            $quantityelemPlayer = $element[0]->QuantiteAchat;
+        }
+        else{
+            $quantityelemPlayer = 0;
+        }
         $viewContent .= <<<HTML
+            <div>
             <img src="$photoElem" title="$Name" alt="$Name" class="PanoramixElementImage"/>
         HTML;
         if($quantityelemPlayer >= $quantity){
+            $NumberOfGold++;
             $viewContent .= <<<HTML
                 <div class="NumQutElemGold">
                     <h3>$quantityelemPlayer/$quantity</h3>
+                </div>
                 </div>
             HTML;
         }
@@ -48,11 +57,19 @@ foreach ($ListPotionitem as $Potion) {
             <div class="NumQutElem">
                 <h3>$quantityelemPlayer/$quantity</h3>
             </div>
+            </div>
         HTML;
         }
     }
-
-    $viewContent .= "</div><button type='button' class='btnCraft'>Craft</button></div>";
+    if (!$NumberOfGold < 3){
+        $viewContent .= "
+            </div>
+            <a class='btnCraft' href='CreatePotion.php?id=$idPotion'>Craft</a>
+            </div>";
+    }
+    else{
+        $viewContent .= "</div><h3>Vous n'avez pas assez de matériaux pour le fabriquer</h3></div>";
+    }
 }
 $viewContent .= "</div>";
 include "views/master.php";

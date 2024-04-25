@@ -21,9 +21,7 @@ final class InventaireTable extends MySQLTable
         return $user;
     }
     public function FindSpecificItem($idUser,$idItem){
-        $sql = "SELECT * FROM Inventaires WHERE idJoueurs = $idUser AND idItem = $idItem";
-        echo "<script>console.log('Debug Objects: " . $sql  . "' );</script>";
-        return $this->_DB->querySqlCmd($sql);
+        return $this->selectWhere("idItem = $idItem AND idJoueurs = $idUser");
     }
     public function insertInv($data){
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
