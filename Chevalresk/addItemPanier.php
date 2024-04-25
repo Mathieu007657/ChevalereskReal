@@ -9,7 +9,6 @@ $id = (int) $_GET["id"];
 $item = ItemTable()->findById($id);
 
 $panierItem = PanierTable()->findItemInPanier($_SESSION["currentUserId"], $id);
-echo "<script>console.log('Debug Objects: " . $_SESSION["currentUserId"] . "' );</script>";
 if (isset($panierItem)) {
     $panierItem->QuantiteAchat++;
     PanierTable()->updatePanier($panierItem);

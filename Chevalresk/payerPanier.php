@@ -39,8 +39,8 @@ if($solde>=$totalPrice){
         $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - 1);
     }
     PanierTable()->deleteAllPanier($Joueur->JoueurId);
-    redirect("Paniers.php?Payer=true");
+    //redirect("Paniers.php?Payer=true");
 }
 else if($solde < $totalPrice){
-    redirect("Paniers.php?Cher=true");
+    //redirect("Paniers.php?Cher=true");
 }

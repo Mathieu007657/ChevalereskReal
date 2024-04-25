@@ -25,7 +25,7 @@ foreach ($listElement as $elem) {
     }
 }
 $player = JoueursTable()->selectById($_SESSION['currentUserId'])[0];
-if ($player->QuestRep % 3 == 0){
+if ($player->PotionMade % 3 == 0){
     if ($player->Niveau == "Débutant"){
         $player->Niveau == "Intermédiaire";
     }
@@ -33,8 +33,5 @@ if ($player->QuestRep % 3 == 0){
         $player->Niveau == "Expert";
     }
 }
-
-
-
 
 redirect('Panoramix.php');

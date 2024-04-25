@@ -7,10 +7,6 @@ include_once 'DAL/EnigmesTable.php';
 
 $viewName = "enigmamenu";
 $viewTitle = "EnigmaMenu";
-if (isset($_GET["devAlch"])){
-    $DevienAlch = (bool) $_GET["devAlch"];
-    echo '<script>alert("Vous êtes maintenant un alchimiste! Bravo nous sommes fière de vous.")</script>'; 
-}
 $viewContent = <<<HTML
     <style>
         .Enigme {
@@ -114,5 +110,7 @@ $idpp=$_SESSION["currentUserId"];
 $Joueur = JoueursTable()->get($idpp);
 $solde=$Joueur->Solde;
 include "views/master.php";
-
-?>
+if (isset($_GET["devAlch"])){
+    $DevienAlch = (bool) $_GET["devAlch"];
+    echo '<script>alert("Vous êtes maintenant un alchimiste! Bravo nous sommes fière de vous.")</script>'; 
+}
