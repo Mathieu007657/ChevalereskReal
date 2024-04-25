@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['userName'] = $User->Name;
         $_SESSION['avatar'] = $User->Avatar;
         $_SESSION["photoSortType"] = "date";
-        redirect('inventaire.php');
+        redirect('itemsList.php');
     }
 }
 
