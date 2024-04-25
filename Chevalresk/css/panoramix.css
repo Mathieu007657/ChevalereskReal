@@ -25,6 +25,8 @@
     padding: 10px;
     display: flex;
     border-radius: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
 }
 .NamePotion{
     padding: 5px;
@@ -35,9 +37,39 @@
     border: solid black 3px;
     background: black;
     font-family: Georgia, serif;
+
 }
 .arrow{
     padding-top: 120px;
     padding-left: 220px;
     font-size: xx-large;
+}
+.ElementRow{
+    border: solid black 2px;
+    padding: 10px;
+}
+.PanoramixElementImage{
+    width: 70px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    border: black solid 2px;
+    background-color: white;
+}
+.NumQutElem{
+    border: solid gold 2px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.NumQutElemGold{
+    border: solid gold 2px;
+    border-radius: 5px;
+    background-color: black;
+    color: gold;
+    text-align: center;
+}
+.btnCraft{
+    padding:5px;
 }
