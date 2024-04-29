@@ -25,12 +25,15 @@ foreach ($listElement as $elem) {
     }
 }
 $player = JoueursTable()->selectById($_SESSION['currentUserId'])[0];
+
 if ($player->PotionMade % 3 == 0){
     if ($player->Niveau == "Débutant"){
         $player->Niveau == "Intermédiaire";
+        echo "<script>console.log('Vous avez monter de niveau: Débutant-->Intermédiaire');</script>";
     }
     elseif ($player->Niveau == "Intermédiaire"){
         $player->Niveau == "Expert";
+        echo "<script>console.log('Vous avez monter de niveau: Intermédiaire-->Expert');</script>";
     }
 }
 
