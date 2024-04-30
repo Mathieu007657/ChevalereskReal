@@ -127,8 +127,8 @@ final class EnigmesTable extends MySQLTable
                 $sql = "UPDATE dbchevalersk8.Joueurs SET Solde=$Joueur->Solde+$recompense where JoueurId=$idpp;";
                 $data = $this->_DB->nonQuerySqlCmd($sql);
                 echo"<br>$sql";
-
-                if($Joueur->QuestRep ==3){
+                $Joueur = JoueursTable()->get($idpp);
+                if($Joueur->QuestRep == 3){
                     $sql = "UPDATE dbchevalersk8.Joueurs SET estAlch=1 where JoueurId=$idpp;";
                     $data = $this->_DB->nonQuerySqlCmd($sql);
                     echo"<br>$sql";

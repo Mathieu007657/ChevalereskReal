@@ -82,4 +82,3 @@ $viewContent .= "<b>$reponses</b>";
 $viewContent .= "</div>";
 
 include "views/master.php";
-?>
