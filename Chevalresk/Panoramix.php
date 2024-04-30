@@ -26,13 +26,13 @@ foreach ($ListPotionitem as $Potion) {
     $ElementDePotion = ConcocterTable()->selectWhere("Potions_idItem = $idPotion");
     $viewContent .= "<div class='ElementRow'>";
     $NumberOfGold = 0;
+    $itemElem = ItemTable()->findById($idElement);
+    $photoElem = $lienPhoto="data/images/photoItem/". $itemElem->Photo;
     foreach ($ElementDePotion as $elem) {
         $idElement = $elem->Elements_idItem;
         $quantity = $elem->Quantite;
         $User =  $_SESSION['currentUserId'];
         $element = InventaireTable()->FindSpecificItem($User,$idElement);
-        $itemElem = ItemTable()->findById($idElement);
-        $photoElem = $lienPhoto="data/images/photoItem/". $itemElem->Photo;
         $Name = $itemElem->Nom;
         if (isset($element[0])){
             $quantityelemPlayer = $element[0]->QuantiteAchat;
