@@ -88,7 +88,7 @@ foreach($list as $item){
             <div class="photoTitleContainer">
                 <div class="photoTitle ellipsis">$name</div>
             </div>
-            <a href="addItemPanier.php?id=$id">
+            <a href="DetailItem.php?id=$id">
                 <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
                 <div>
                     <div style="display:flex">
