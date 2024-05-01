@@ -7,9 +7,6 @@ include_once 'DAL/EnigmesTable.php';
 
 $viewName = "enigmamenu";
 $viewTitle = "EnigmaMenu";
-$idpp=$_SESSION["currentUserId"];
-$Joueur = JoueursTable()->get($idpp);
-$solde=$Joueur->Solde;
 $viewContent = <<<HTML
     <style>
         .Enigme {
@@ -21,56 +18,126 @@ $viewContent = <<<HTML
             border-radius: 7px;
             color: white;
             background-color: rgba(72, 6, 148, 0.8);
+            
         }
+        .grid{
+            display:grid;
+            grid-template-columns: 30% 30% 30%;
+        }
+.text {
+    text-align:center;
+    justify-content:center;
+}
+/* CSS */
+.button-78 {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: Eina01,sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0;
+}
 
-        .button-64 {
-            align-items: center;
-            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-            border: 0;
-            border-radius: 8px;
-            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-            box-sizing: border-box;
-            color: #FFFFFF;
-            display: flex;
-            font-family: Phantomsans, sans-serif;
-            font-size: 20px;
-            justify-content: center;
-            line-height: 1em;
-            max-width: 100%;
-            min-width: 140px;
-            padding: 3px;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            cursor: pointer;
-        }
+@media (min-width: 768px) {
+  .button-78 {
+    padding: 19px 32px;
+  }
+}
 
-        .button-64:active,
-        .button-64:hover {
-            outline: 0;
-        }
+.button-78:before,
+.button-78:after {
+  border-radius: 80px;
+}
 
-        .button-64 span {
-            background-color: rgb(5, 6, 45);
-            padding: 16px 24px;
-            border-radius: 6px;
-            width: 100%;
-            height: 100%;
-            transition: 300ms;
-        }
+.button-78:before {
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
 
-        .button-64:hover span {
-            background: none;
-        }
+.button-78:after {
+  background-color: initial;
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
 
-        @media (min-width: 768px) {
-            .button-64 {
-                font-size: 24px;
-                min-width: 196px;
-            }
-        }
+.button-78:hover:not(:disabled):before {
+  background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+}
+
+.button-78:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+  opacity: 0;
+}
+
+.button-78:active:not(:disabled) {
+  color: #ccc;
+}
+
+.button-78:active:not(:disabled):before {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+
+.button-78:active:not(:disabled):after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+
+.button-78:disabled {
+  cursor: default;
+  opacity: .24;
+}
     </style>
 HTML;
 
@@ -91,20 +158,35 @@ $viewScript = <<<HTML
                     break;
             }
         }
+        function AfficherStats(){
+
+        }
     </script>
 HTML;
-
+$id = $_SESSION["currentUserId"];
 $viewContent .= <<<HTML
 <div class="Enigme">
-    <div>Choix de l'enigme</div>
-    <div>
-        <button class="button-64" type='button' onclick="AfficherEnigme('P')">Type Potion</button>
-        <button class="button-64" type='button' onclick="AfficherEnigme('E')">Type Élément</button>
+    <div class="text">Choix de l'enigme</div>
+    <div class="grid text">
+        <div><button class="button-78" type='button' onclick="AfficherEnigme('P')">Type Potion</button></div>
+        <div><button class="button-78" type='button' onclick="AfficherEnigme('E')">Type Élément</button></div>
+        <div><button class="button-78" type='button' onclick="AfficherEnigme('')">Aléatoire</button></div>
+        
+    </div>
+    <div class="grid text">
         <br>
-        <button class="button-64" type='button' onclick="AfficherEnigme('')">Aléatoire</button>
+        <div class="text">
+            <br>
+            <button class="button-78" type='button' onclick="AfficherStats()">Afficher les Statistique</button>
+        </div>
     </div>
 </div>
 HTML;
+$idpp = $_SESSION["currentUserId"];
+$Joueur = JoueursTable()->get($idpp);
+$solde = $Joueur->Solde;
 include "views/master.php";
-
-?>
+if (isset($_GET["devAlch"])) {
+    $DevienAlch = (bool) $_GET["devAlch"];
+    echo '<script>alert("Vous êtes maintenant un alchimiste! Bravo nous sommes fière de vous.")</script>';
+}

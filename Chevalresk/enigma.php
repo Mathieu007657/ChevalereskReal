@@ -33,7 +33,7 @@ $style = <<<HTML
             width: 90%;
             height: 30%;
             margin: auto;
-            font-size: 50px;
+            font-size: 35px;
             padding: 3%;
             border-radius: 7px;
             color: white;
@@ -82,4 +82,3 @@ $viewContent .= "<b>$reponses</b>";
 $viewContent .= "</div>";
 
 include "views/master.php";
-?>

@@ -9,14 +9,14 @@ class Statistique extends Record
    
     public function __construct($recordData = null)
     {
-        $this->ItemId = 0;
+        $this->EnigmeId = 0;
         $this->UserId = 0;
         $this->EstReussie = '';
         parent::__construct($recordData);
     }
-    public function setItemId($itemId)
+    public function setEnigmeId($itemId)
     {
-        $this->ItemId = (int) $itemId;
+        $this->EnigmeId = (int) $itemId;
     }
     public function setUserId($userId)
     {

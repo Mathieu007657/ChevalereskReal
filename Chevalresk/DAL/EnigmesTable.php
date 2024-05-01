@@ -120,7 +120,20 @@ final class EnigmesTable extends MySQLTable
                 echo "recomp : $recompense";
                 $idpp = $_SESSION["currentUserId"];
                 $Joueur = JoueursTable()->get($idpp);
-                $Joueur->setSolde($Joueur->Solde + $recompense);
+                $questrep = $Joueur->QuestRep;
+                $sql = "UPDATE dbchevalersk8.Joueurs SET QuestRep = $questrep + 1 where JoueurId=$idpp;";
+                $data = $this->_DB->nonQuerySqlCmd($sql);
+                echo"<br>$sql";
+                $sql = "UPDATE dbchevalersk8.Joueurs SET Solde=$Joueur->Solde+$recompense where JoueurId=$idpp;";
+                $data = $this->_DB->nonQuerySqlCmd($sql);
+                echo"<br>$sql";
+                $Joueur = JoueursTable()->get($idpp);
+                if($Joueur->QuestRep == 3){
+                    $sql = "UPDATE dbchevalersk8.Joueurs SET estAlch=1 where JoueurId=$idpp;";
+                    $data = $this->_DB->nonQuerySqlCmd($sql);
+                    echo"<br>$sql";
+
+                }
             }
         }
 

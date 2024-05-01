@@ -34,7 +34,7 @@ foreach($listPanier as $invent){
                 <div class="photoImage" style="background-image:url('$lienPhoto')"></div>
                 <div>
                     <div>
-                        Prix: $prix écus <img src="$lienEcu" class="appLogo">
+                        Qtn: $quantiteitem
                     </div>
                 </div>
             </a>
