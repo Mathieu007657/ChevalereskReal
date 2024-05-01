@@ -63,10 +63,11 @@ if (isset($_SESSION["validUser"])) {
     }
     
     $connectedUserAvatar = <<<HTML
-        
-        <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
-        <div>$JoueurNom</div>
-        <div style="display:flex;">$solde<img src='$lienEcu' title="Ecu" class='appLogo'></div>
+        <div style="display:flex;align-items: flex-end;">
+            <p style="font-weight: bold;margin-right: 12px;">$JoueurNom</p>  
+            <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
+            <div class="soldeInfo">$solde<img src='$lienEcu' title="Ecu" class='appLogo'></div>
+        </div>
         
     HTML;
 } else {

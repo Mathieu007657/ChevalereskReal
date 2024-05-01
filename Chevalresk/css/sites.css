@@ -46,10 +46,18 @@
 
 .headerMenusContainer {
     display: grid;
-    grid-template-columns: auto 50px 30px;
+    grid-template-columns: auto auto auto;
     align-items: center;
 }
-
+.soldeInfo{
+    display: flex;
+    border: solid deeppink 2px;
+    border-radius: 10px;
+    margin-left: 5px;
+    align-items: center;
+    padding: 5px;
+    background-color: black;
+}
 #content {
     border: 1px solid #ccc;
     border-radius: .25em;
@@ -67,6 +75,7 @@
 .viewTitle {
     font-size: 20px;
     font-weight: bold;
+    width: max-content;
 }
 
 .waitingGifcontainer {
