@@ -5,7 +5,7 @@
     include_once 'DAL/PaniersTable.php';
     include_once 'DAL/InventaireTable.php';
     include_once 'DAL/ConcocterTable.php';
-
+    include_once 'DAL/CommentaireTable.php';
     function DB()
     {
         return MySQLDataBase::getInstance('dbchevalersk8');
@@ -29,4 +29,7 @@
     }
     function ConcocterTable(){
         return new ConcocterTable();
+    }
+    function CommentaireTable(){
+        return new CommentaireTable();
     }

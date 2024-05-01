@@ -158,8 +158,8 @@ $viewScript = <<<HTML
                     break;
             }
         }
-        function AfficherStats(){
-
+        function AfficherStats(id){
+            
         }
     </script>
 HTML;
@@ -177,7 +177,7 @@ $viewContent .= <<<HTML
         <br>
         <div class="text">
             <br>
-            <button class="button-78" type='button' onclick="AfficherStats()">Afficher les Statistique</button>
+            <button class="button-78" type='button' onclick="AfficherStats(id)">Afficher les Statistique</button>
         </div>
     </div>
 </div>
