@@ -7,7 +7,7 @@ include_once 'DAL/models/commentaire.php';
 final class CommentaireTable extends MySQLTable
 {
     public function __construct(){
-        parent::__construct(DB(), new Concocter());
+        parent::__construct(DB(), new Commentaire());
     }
     public function addCommentaire($idItem, $idJoueur,$commentaire,$nbEtoile){
         $sql = "INSERT into Commentaires Values ($idItem,$idJoueur,$nbEtoile,$commentaire);";
