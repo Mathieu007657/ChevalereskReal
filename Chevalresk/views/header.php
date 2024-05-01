@@ -64,6 +64,9 @@ if (isset($_SESSION["validUser"])) {
     
     $connectedUserAvatar = <<<HTML
         <div style="display:flex;align-items: flex-end;">
+            <a href="editProfilForm.php" title="Modifier votre profil">
+                <i class="fa-solid fa-user-pen logoModif"></i>
+            </a>
             <p style="font-weight: bold;margin-right: 12px;">$JoueurNom</p>  
             <div class="UserAvatarSmall" style="background-image:url('images/ChevalreskLogo.png')" title="$userName"></div>
             <div class="soldeInfo">$solde<img src='$lienEcu' title="Ecu" class='appLogo'></div>
@@ -126,7 +129,7 @@ $viewHead = <<<HTML
         
         <div class="headerMenusContainer">
             <span class="viewTitle">Les Chevaleresk aux rotules enflées</span> <!--filler-->
-            <a href="editProfilForm.php" title="Modifier votre profil"> $connectedUserAvatar</a>
+            $connectedUserAvatar
             <div class="dropdown ms-auto dropdownLayout">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="cmdIcon fa fa-ellipsis-vertical"></i>
