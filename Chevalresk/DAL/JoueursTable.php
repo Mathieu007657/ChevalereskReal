@@ -57,6 +57,9 @@ final class JoueursTable extends MySQLTable
             parent::update($user);
         }
     }
+    public function updateJoueur($user){
+        
+    }
     public function updateBuy($user)
     {        
         parent::updateJoueurPayer($user);

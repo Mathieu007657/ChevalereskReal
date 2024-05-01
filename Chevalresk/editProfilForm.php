@@ -21,7 +21,7 @@
     $viewContent = <<< HTML
     <div class="content">
         <br>
-        <form method='post' action='newJoueur.php'>
+        <form method='post' action='updateProfil.php'>
         <fieldset>
                 <legend>Adresse ce courriel</legend>
                 <input  type="email" 
@@ -65,25 +65,7 @@
                         InvalidMessage="Ne correspond pas au mot de passe" />
             </fieldset>
             <fieldset>
-                <legend>Informations générales du joueur</legend>
-                <input  type="text" 
-                        class="form-control Alpha" 
-                        name="Name" 
-                        id="Name"
-                        placeholder="$name" 
-                        value="$name";
-                        required 
-                        RequireMessage = 'Veuillez entrer votre nom'
-                        InvalidMessage = 'Nom invalide'/>
-                <input  type="text" 
-                        class="form-control Alpha" 
-                        name="Prename" 
-                        id="Prename"
-                        value="$prenom";
-                        placeholder="$prenom" 
-                        required 
-                        RequireMessage = 'Veuillez entrer votre prenom'
-                        InvalidMessage = 'Prenom invalide'/>
+                <legend>Alias</legend>
                 <input  type="text" 
                         class="form-control Alpha" 
                         name="Alias" 
@@ -101,7 +83,7 @@
                         controlId='Avatar' 
                         imageSrc='$avatar' 
                         waitingImage="images/Loading_icon.gif">
-            </div>
+                </div>
             </fieldset>
    
             <input type='submit' name='submit' id='saveUser' value="Enregistrer" class="form-control btn-primary">

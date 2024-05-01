@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $idpp = $_SESSION["currentUserId"];
     $Joueur = JoueursTable()->get($idpp);
     if ($Joueur->QuestRep == 3) {
-        //redirect("enigmaMenu.php?devAlch=true");
+        redirect("enigmaMenu.php?devAlch=true");
     }
 }
-//redirect("enigmaMenu.php");
+redirect("enigmaMenu.php");
