@@ -9,11 +9,8 @@ final class InventaireTable extends MySQLTable
         parent::__construct(DB(), new Inventaire());
     }
 
-    //À faire
-    public function ItemInvenExist($item){
-        $itemID = $item->getIdItem();
-        $UserID = $item->getUserId();
-        $user = $this->selectWhere("idItem = $itemID AND idJoueurs = $UserID");
+    public function ItemInvenExist($idPlayer,$idItem){
+        $user = $this->selectWhere("idItem = $idItem AND idJoueurs = $idPlayer");
         return isset($user[0]);
     }
     public function FindInvListPlayer($idPlayer){
@@ -27,7 +24,6 @@ final class InventaireTable extends MySQLTable
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
-
     public function updateInv($data){
         $idJoueur = $_SESSION["currentUserId"];
         $sql = "UPDATE Inventaires SET QuantiteAchat = $data->QuantiteAchat WHERE idItem = $data->IdItem AND idJoueurs = $idJoueur";
@@ -46,5 +42,4 @@ final class InventaireTable extends MySQLTable
     public function deleteAllInv($idJoueur){
         parent::deleteWhere("idJoueurs = $idJoueur");
     }
-
 }
