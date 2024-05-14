@@ -12,7 +12,7 @@ $infoPrix = "Prix: $prix";
 $lienEcu = "images/ecu.png";
 $lienPhoto = "data/images/photoItem/" . "$photo";
 $estAlch = ItemTable()->findAlch($_SESSION['currentUserId']);
-$ajout = '<a href="addItemPanier.php?id=$id"><button class="button-34" role="button">Ajouter au panier</button></a>';
+$ajout = '<a href="addItemPanier.php?id='. $id . '"><button class="button-34" role="button">Ajouter au panier</button></a>';
 
 
 
@@ -52,7 +52,7 @@ else if($type == 'Elements')
 $LaisseCommentaire = "";
 if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
     $LaisseCommentaire = <<<HTML
-    <Form>
+    <Form action="SaveComment.php" method="POST">
         <div class="container">
 	        <div class="star-group">
 		        <input type="radio" class="star" id="one" name="star_rating">
@@ -62,7 +62,9 @@ if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
 		        <input type="radio" class="star" id="five" name="star_rating" checked>
 	        </div>
         </div>
-        <textarea id="" rows="4" cols="50" maxlength="100"></textarea>
+        <textarea id="CommentSection" rows="4" cols="50" maxlength="100" name="Comment"></textarea>
+        <br><br>
+        <input type="submit" title="Envoyer le commentaire"/>
     </Form>
 HTML;
 }
