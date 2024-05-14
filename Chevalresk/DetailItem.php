@@ -38,7 +38,23 @@ if ($type == 'Armes') {
     }
 }
 
-
+$LaisseCommentaire = "";
+if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
+    $LaisseCommentaire = <<<HTML
+    <Form>
+        <div class="container">
+	        <div class="star-group">
+		        <input type="radio" class="star" id="one" name="star_rating">
+		        <input type="radio" class="star" id="two" name="star_rating">
+		        <input type="radio" class="star" id="three" name="star_rating">
+		        <input type="radio" class="star" id="four" name="star_rating">
+		        <input type="radio" class="star" id="five" name="star_rating" checked>
+	        </div>
+        </div>
+        <textarea id="" rows="4" cols="50" maxlength="100"></textarea>
+    </Form>
+HTML;
+}
 
 
 $html = <<<HTML
@@ -233,6 +249,12 @@ $html .= <<<HTML
             <br>
             <a href="itemsList.php"><button class="button-34" role="button">Retour à la liste</button></a>
             <span style="color: red;">$ajout</span>
+        </div>
+        <hr>
+        <div>
+            <button class="button-34">Laisser un Commentaire</button>
+            <br><br>
+            $LaisseCommentaire
         </div>
     </div>
 </div>
