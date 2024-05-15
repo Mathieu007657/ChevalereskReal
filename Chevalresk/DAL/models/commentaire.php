@@ -12,8 +12,8 @@ class Commentaire extends Record
     {
         $this->idItem = 0;
         $this->idJoueur = 0;
-        $this->lecommentaire = '';
         $this->nbEtoiles = 0;
+        $this->lecommentaire = '';
         parent::__construct($recordData);
     }
     public function setidItem($itemId)
