@@ -10,7 +10,7 @@ final class CommentaireTable extends MySQLTable
         parent::__construct(DB(), new Commentaire());
     }
     public function addCommentaire($idItem, $idJoueur,$commentaire,$nbEtoile){
-        $sql = "INSERT into Commentaires Values ($idItem,$idJoueur,$nbEtoile,$commentaire);";
+        $sql = "INSERT into Commentaires Values ($idItem,$idJoueur,$nbEtoile,'$commentaire');";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
     public function deleteCommentaire($idItem,$idJoueur){

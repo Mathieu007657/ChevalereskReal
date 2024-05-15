@@ -8,8 +8,8 @@ if (!isset($_GET["id"])){
 
 $id = (int) $_GET["id"];
 $totalPrice = 0;
-$panierItems = PanierTable()->findByidPanierPlayer($_SESSION["currentUserId"]);
-$Joueur = JoueursTable()->get($_SESSION["currentUserId"]);
+$panierItems = PanierTable()->findByidPanierPlayer($_SESSION["currentUserId"]); //Return une liste d'objet selon user id
+$Joueur = JoueursTable()->get($_SESSION["currentUserId"]); // Get le user connecter 
 $solde = $Joueur->Solde;
 $QuantiteVendu = [];
 $InsertionPourInv = [];

@@ -41,14 +41,14 @@ if ($type == 'Armes') {
 $LaisseCommentaire = "";
 if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
     $LaisseCommentaire = <<<HTML
-    <Form action="SaveComment.php" method="POST">
+    <Form action='SaveComment.php?id=$id' method="POST">
         <div class="container">
 	        <div class="star-group">
-		        <input type="radio" class="star" id="one" name="star_rating">
-		        <input type="radio" class="star" id="two" name="star_rating">
-		        <input type="radio" class="star" id="three" name="star_rating">
-		        <input type="radio" class="star" id="four" name="star_rating">
-		        <input type="radio" class="star" id="five" name="star_rating" checked>
+		        <input type="radio" class="star" id="one" name="Star" value="1">
+		        <input type="radio" class="star" id="two" name="Star" value="2">
+		        <input type="radio" class="star" id="three" name="Star" value="3">
+		        <input type="radio" class="star" id="four" name="Star" value="4">
+		        <input type="radio" class="star" id="five" name="Star" value="5">
 	        </div>
         </div>
         <textarea id="CommentSection" rows="4" cols="50" maxlength="100" name="Comment"></textarea>
@@ -262,4 +262,3 @@ $html .= <<<HTML
 </div>
 HTML;
 echo $html;
-?>
