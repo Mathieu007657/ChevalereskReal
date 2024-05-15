@@ -13,7 +13,18 @@ final class CommentaireTable extends MySQLTable
         $sql = "INSERT into Commentaires Values ($idItem,$idJoueur,$nbEtoile,'$commentaire');";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
-    public function deleteCommentaire($idItem,$idJoueur){
-        return parent::delete2($idItem,$idJoueur);
+    public function getCommentaire($id){
+        $sql = "SELECT * from dbchevalersk8.Commentaires where idCommentaires=$id;";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $data[0];
+    }
+    public function getCommentairesForItem($idItem){
+        $sql = "SELECT * from dbchevalersk8.Commentaires where idItem=$idItem;";
+        $data = $this->_DB->querySqlCmd($sql);
+        return $data;
+    }
+    public function deleteCommentaire($id){
+        $sql = "DELETE FROM dbchevalersk8.Commentaires WHERE idCommentaires=$id";
+        $this->_DB->nonQuerySqlCmd($sql);
     }
 }
