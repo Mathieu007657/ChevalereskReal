@@ -115,8 +115,27 @@ public function findAlch($id)
     }
     return $data;
 }
-
-
+public function findNBEtoiles($id)
+{
+    $tableName = 'Commentaires';
+    $sql = "SELECT avg(nbEtoiles) FROM dbchevalersk8.$tableName WHERE idItem = $id;";
+    $data = $this->_DB->querySqlCmd($sql);
+    return $data[0]['avg(nbEtoiles)'];
+}
+public function findNBEvals($id)
+{
+    $tableName = 'Commentaires';
+    $sql = "SELECT count(*) FROM dbchevalersk8.$tableName WHERE idItem = $id;";
+    $data = $this->_DB->querySqlCmd($sql);
+    return $data[0]['count(*)'];
+}
+public function findNBEvalsParEtoile($id, $nbEtoiles)
+{
+    $tableName = 'Commentaires';
+    $sql = "SELECT count(*) FROM dbchevalersk8.$tableName WHERE idItem = $id and nbEtoiles = $nbEtoiles;";
+    $data = $this->_DB->querySqlCmd($sql);
+    return $data[0]['count(*)'];
+}
     public function insert($item)
     {
         $item->setPhoto(saveImage(PhotoPath, $item->Photo));
