@@ -14,7 +14,7 @@ final class PaniersTable extends MySQLTable
         $UserID = $item->getUserId();
         $user = $this->selectWhere("idItem = $itemID AND idJoueurs = $UserID");
         return isset($user[0]);
-    }
+    } 
 
     public function insertPanier($data){
         $sql = "INSERT INTO Paniers (idItem,idJoueurs,quantiteAchat) VALUES ($data->IdItem,$data->idJoueurs,$data->QuantiteAchat)";

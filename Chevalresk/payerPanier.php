@@ -27,7 +27,8 @@ if($solde>=$totalPrice){
 
     //Rajouter à son inventaire
     foreach($InsertionPourInv as $caseInv){
-        InventaireTable()->insertInv($caseInv);   
+
+        InventaireTable()->InsertIfNotPresent($_SESSION["currentUserId"],$caseInv->IdItem,$caseInv->QuantiteAchat);   
     }
 
     //Vider son paniers et changer la quantité dans la table items
@@ -36,7 +37,7 @@ if($solde>=$totalPrice){
         $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - 1);
     }
     PanierTable()->deleteAllPanier($Joueur->JoueurId);
-    redirect("Paniers.php?Payer=true");
+    //redirect("Paniers.php?Payer=true");
 }
 else if($solde < $totalPrice){
     redirect("Paniers.php?Cher=true");
