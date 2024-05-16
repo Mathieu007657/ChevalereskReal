@@ -104,39 +104,82 @@ final class EnigmesTable extends MySQLTable
         }
     }
     public function updateEnigme($enigmeId, $estReussi)
-    {
-        $tableName = "Enigmes";
-        $sql = "UPDATE dbchevalersk8.$tableName SET estPigee = 'O' WHERE idEnigme = $enigmeId";
-        $data = $this->_DB->querySqlCmd($sql);
+{
+    $tableName = "Enigmes";
+    $idpp = $_SESSION["currentUserId"];
 
-        if ($estReussi) {
-            $sql = "SELECT Enonce, recompense FROM dbchevalersk8.$tableName WHERE idEnigme = $enigmeId";
-            $data = $this->_DB->querySqlCmd($sql);
+    // Set estPigee to 'O' for the given enigmeId
+    $sql = "UPDATE dbchevalersk8.$tableName SET estPigee = 'O' WHERE idEnigme = $enigmeId";
+    echo $sql;
+    $this->_DB->nonQuerySqlCmd($sql);
+    $data = $this->_DB->querySqlCmd($sql);
 
-            if ($data && count($data) > 0) {
-                $enigme = $data[0]['Enonce'];
-                $recompense = $data[0]['recompense'];
-                echo "enonce : $enigme ";
-                echo "recomp : $recompense";
-                $idpp = $_SESSION["currentUserId"];
-                $Joueur = JoueursTable()->get($idpp);
-                $questrep = $Joueur->QuestRep;
-                $sql = "UPDATE dbchevalersk8.Joueurs SET QuestRep = $questrep + 1 where JoueurId=$idpp;";
-                $data = $this->_DB->nonQuerySqlCmd($sql);
-                echo"<br>$sql";
-                $sql = "UPDATE dbchevalersk8.Joueurs SET Solde=$Joueur->Solde+$recompense where JoueurId=$idpp;";
-                $data = $this->_DB->nonQuerySqlCmd($sql);
-                echo"<br>$sql";
-                $Joueur = JoueursTable()->get($idpp);
-                if($Joueur->QuestRep == 3){
-                    $sql = "UPDATE dbchevalersk8.Joueurs SET estAlch=1 where JoueurId=$idpp;";
-                    $data = $this->_DB->nonQuerySqlCmd($sql);
-                    echo"<br>$sql";
+    if ($estReussi) {
+        // If the enigma is successfully solved
+        $sql = "SELECT Enonce, recompense FROM dbchevalersk8.$tableName WHERE idEnigme = $enigmeId";
+        $this->_DB->querySqlCmd($sql);
 
-                }
+        if ($data && count($data) > 0) {
+            // Retrieve enigma details
+            $enigme = $data[0]['Enonce'];
+            $recompense = $data[0]['recompense'];
+
+            // Increment QuestRep for the player
+            $sql = "UPDATE dbchevalersk8.Joueurs SET QuestRep = QuestRep + 1 WHERE JoueurId = $idpp";
+            $this->_DB->nonQuerySqlCmd($sql);
+
+            // Update player's Solde
+            $sql = "UPDATE dbchevalersk8.Joueurs SET Solde = Solde + $recompense WHERE JoueurId = $idpp";
+            $this->_DB->nonQuerySqlCmd($sql);
+
+            // Insert entry into Statistiques table
+            $sql = "INSERT INTO dbchevalersk8.Statistiques VALUES ($enigmeId, $idpp, 'O')";
+            $this->_DB->nonQuerySqlCmd($sql);
+
+            // Check if QuestRep equals 3 to update estAlch
+            $sql = "SELECT QuestRep FROM dbchevalersk8.Joueurs WHERE JoueurId = $idpp";
+            $questrep = $this->_DB->querySqlCmd($sql)[0]['QuestRep'];
+            if ($questrep == 3) {
+                $sql = "UPDATE dbchevalersk8.Joueurs SET estAlch = 1 WHERE JoueurId = $idpp";
+                $this->_DB->nonQuerySqlCmd($sql);
             }
         }
-
-        return $data;
+        $sql = "INSERT INTO dbchevalersk8.Statistiques VALUES ($enigmeId, $idpp, 'O')";
+            $this->_DB->nonQuerySqlCmd($sql);
+    } else {
+        // Insert entry into Statistiques table with EstBonne set to 'N'
+        $sql = "INSERT INTO dbchevalersk8.Statistiques VALUES ($enigmeId, $idpp, 'N')";
+        echo $sql; // Ajoutez cette ligne pour afficher la requête SQL dans la console
+        $this->_DB->nonQuerySqlCmd($sql);
     }
+}
+
+
+    public function getStats($userId)
+{
+    $tableName = "Statistiques";
+
+    // Get total number of responses for the specified user
+    $sqlTotal = "SELECT COUNT(*) AS nbTotal FROM dbchevalersk8.$tableName WHERE IdJoueur = $userId;";
+    $dataTotal = $this->_DB->querySqlCmd($sqlTotal);
+    $nbTotal = isset($dataTotal[0]['nbTotal']) ? $dataTotal[0]['nbTotal'] : 0;
+
+    // Get number of correct responses for the specified user
+    $sqlCorrect = "SELECT COUNT(*) AS nbBonnes FROM dbchevalersk8.$tableName WHERE IdJoueur = $userId AND estReussie = 'O';";
+    $dataCorrect = $this->_DB->querySqlCmd($sqlCorrect);
+    $nbBonnes = isset($dataCorrect[0]['nbBonnes']) ? $dataCorrect[0]['nbBonnes'] : 0;
+
+    // Get player alias
+    $sqlJoueur = "SELECT Alias FROM dbchevalersk8.Joueurs WHERE JoueurId = $userId;";
+    $dataJoueur = $this->_DB->querySqlCmd($sqlJoueur);
+    $joueur = isset($dataJoueur[0]['Alias']) ? $dataJoueur[0]['Alias'] : 'Unknown';
+
+    // Create the response string
+    $enonce = 'Joueur ' . $joueur . ' a répondu correctement à ' . number_format($nbTotal > 0 ? ($nbBonnes / $nbTotal) * 100 : 0, 2) . '% des énigmes. (' . $nbBonnes . '/' . $nbTotal . ')';
+
+    // Return the statistics
+    return $enonce;
+}
+
+
 }
