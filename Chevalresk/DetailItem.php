@@ -269,7 +269,7 @@ if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id)){
       </div>
         <textarea id="CommentSection" rows="7" cols="50" maxlength="100" name="Comment" placeholder="Tapez votre commentaire ici..."></textarea>
         <br><br>
-        <input type="submit" title="Envoyer le commentaire"/>
+        <button class="button-34" title="Envoyer le commentaire">Envoyer</button>
         <input type="hidden" name="item_id" value="$id"/>
     </form>
 HTML;
