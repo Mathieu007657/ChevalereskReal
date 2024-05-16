@@ -44,7 +44,6 @@ final class InventaireTable extends MySQLTable
     }
     public function InsertIfNotPresent($idJoueurs,$IdItem,$QuantiteAchat){
         $sql = "CALL AddToInvenIfNotPresent($idJoueurs,$IdItem,$QuantiteAchat)";
-        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
 }

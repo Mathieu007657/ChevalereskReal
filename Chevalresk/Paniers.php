@@ -215,7 +215,7 @@ function deleteItem(itemId) {
 }
 
 function pay(idPlayer) {
-    window.location = "payerPanier.php?id=" + idPlayer;
+    window.location = "payerPanier.php?id=" + idPlayer + "&&" + "?quant=" + $quantity;
 }
 
 function returnToShop() {
