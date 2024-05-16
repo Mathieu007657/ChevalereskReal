@@ -11,7 +11,6 @@ final class CommentaireTable extends MySQLTable
     }
     public function addCommentaire($idItem, $idJoueur,$commentaire,$nbEtoile){
         $sql = "INSERT into Commentaires (idItem,idJoueur,nbEtoiles,lecommentaire) Values ($idItem,$idJoueur,$nbEtoile,'$commentaire')";
-        echo $sql;
         $this->_DB->nonQuerySqlCmd($sql);
     }
     public function getCommentaire($id){

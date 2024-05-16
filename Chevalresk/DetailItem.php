@@ -342,8 +342,8 @@ $html = <<<HTML
   text-align: center;
 }
 .photo {
-    height: 800px;
-    width: 600px;
+    height: auto;
+    width: 100%;
 }
 @keyframes gradient {
     0% {
@@ -422,7 +422,9 @@ $html = <<<HTML
 HTML;
 $html .= <<<HTML
 <div class="grid-container">
-    <div class="grid-item"><img src="$lienPhoto" class="photo" /></div>
+    <div class="grid-item">
+      <img src="$lienPhoto" class="photo" />
+    </div>
     <div class="grid-item">
         <div>$nom</div>
         <br>
