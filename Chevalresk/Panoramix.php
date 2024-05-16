@@ -6,16 +6,16 @@ include 'php/date.php';
 require 'DAL/ChevalereskDB.php';
 
 $viewTitle = "Panoramix";
-$ListPotionitem = ItemTable()->selectWhere("type = 'P'");
+$ListViewPanoramix = ConcocterTable()->AfficherPotionElem();
+$listElementAcheter = ConcocterTable()->GetelementlistAcheter($_SESSION['currentUserId']);
 $viewContent =  "<div class='ZonePotion'>";
-foreach ($ListPotionitem as $Potion) {
-    $idPotion = $Potion->IdItem;
-    $NamePotion = $Potion->Nom;
-    $lienPhoto = $lienPhoto="data/images/photoItem/"."$Potion->Photo";
+for ($i=0; $i < sizeof($ListViewPanoramix); $i++) { 
+    $NamePotion = $ListViewPanoramix[$i][0]; // [0] = Potion Name
+    $lienPhoto = $lienPhoto="data/images/photoItem/". $ListViewPanoramix[$i][1]; // [1] = Potion Photo link
     $viewContent .= <<<HTML
         <div class="ZoneOnePotion">
             <div class="PotionRow">
-                <div class="PanoramixPotionImage" style="background-image:url('$lienPhoto')" title="$NamePotion / $idPotion"></div>
+                <div class="PanoramixPotionImage" style="background-image:url('$lienPhoto')" title="$NamePotion"></div>
                 <h2 class="NamePotion">$NamePotion</h2>
             </div>
             <div>
@@ -23,53 +23,54 @@ foreach ($ListPotionitem as $Potion) {
             </div>
         
     HTML;
-    $ElementDePotion = ConcocterTable()->selectWhere("Potions_idItem = $idPotion");
     $viewContent .= "<div class='ElementRow'>";
+    $ElementListName = preg_split ("/\,/", $ListViewPanoramix[$i][2]); //[2] = list Element name
+    $ElementListPicture = preg_split("/\,/", $ListViewPanoramix[$i][3]); // [3] = list Element Photo
+    $ElementListQuantity = preg_split("/\,/", $ListViewPanoramix[$i][4]); // [4] = list Element quantité
     $NumberOfGold = 0;
-    foreach ($ElementDePotion as $elem) {
-        $idElement = $elem->Elements_idItem;
-        $quantity = $elem->Quantite;
-        $User =  $_SESSION['currentUserId'];
-        $element = InventaireTable()->FindSpecificItem($User,$idElement);
-        $itemElem = ItemTable()->findById($idElement);
-        $photoElem = $lienPhoto="data/images/photoItem/". $itemElem->Photo;
-        $Name = $itemElem->Nom;
-        if (isset($element[0])){
-            $quantityelemPlayer = $element[0]->QuantiteAchat;
+    for ($y=0; $y < sizeof($ElementListName); $y++) { 
+        $ElementAcheter = 0;
+        $NameElement = $ElementListName[$y];
+        foreach ($listElementAcheter as $listElement) {
+            if ($listElement[1] == $NameElement){
+                $ElementAcheter = $listElement[0];
+                break;
+            }
         }
-        else{
-            $quantityelemPlayer = 0;
-        }
+        $PicElement = "data/images/photoItem/". $ElementListPicture[$y];
+        $QuantityElem = $ElementListQuantity[$y];
         $viewContent .= <<<HTML
-            <div>
-            <img src="$photoElem" title="$Name" alt="$Name" class="PanoramixElementImage"/>
+        <div>
+            <img src="$PicElement" title="$NameElement" alt="$NameElement" class="PanoramixElementImage"/>
         HTML;
-        if($quantityelemPlayer >= $quantity){
+
+        if($ElementAcheter >= $QuantityElem){
             $NumberOfGold++;
             $viewContent .= <<<HTML
                 <div class="NumQutElemGold">
-                    <h3>$quantityelemPlayer/$quantity</h3>
+                    <h3>$ElementAcheter/$QuantityElem</h3>
                 </div>
-                </div>
+            </div>
             HTML;
         }
         else{
             $viewContent .= <<<HTML
-            <div class="NumQutElem">
-                <h3>$quantityelemPlayer/$quantity</h3>
+                <div class="NumQutElem">
+                    <h3> $ElementAcheter/$QuantityElem</h3>
+                </div>
             </div>
-            </div>
-        HTML;
+            HTML;
         }
     }
+
     if ($NumberOfGold == 3){
         $viewContent .= "
-            </div>
-            <a class='btnCraft' href='CreatePotion.php?id=$idPotion'>Craft</a>
-            </div>";
+        </div>
+        <a class='btnCraft' href='CreatePotion.php?id=$idPotion'>Craft</a>
+        </div>";
     }
     else{
-        $viewContent .= "</div><h3>Vous n'avez pas assez de matériaux pour le fabriquer</h3></div>";
+    $viewContent .= "</div><h3>Vous n'avez pas assez de matériaux pour le fabriquer</h3></div>";
     }
 }
 $viewContent .= "</div>";

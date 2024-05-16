@@ -22,6 +22,7 @@ final class InventaireTable extends MySQLTable
     }
     public function insertInv($data){
         $sql = "INSERT INTO Inventaires (idJoueurs,idItem,QuantiteAchat) VALUES ($data->idJoueurs,$data->IdItem,$data->QuantiteAchat)";
+        echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
         return $this->_DB->nonQuerySqlCmd($sql);
     }
     public function updateInv($data){
