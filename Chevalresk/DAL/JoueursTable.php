@@ -47,17 +47,17 @@ final class JoueursTable extends MySQLTable
     {
         parent::insertJoueur($Joueur);
     }
-    public function update($user)
+    public function updateJoueur($id,$Alias,$password,$Avatar,$Courriel)
     {
-        $userToUpdate = $this->get($user->Id);
-        if ($user->motdepasse == "")
-            $user->motdepasse = $userToUpdate->motdepasse;
-        if ($userToUpdate != null) {
-            $user->setAvatar(saveImage(avatarsPath, $user->Avatar, $userToUpdate->Avatar));
-            parent::update($user);
+        if($Avatar=="")
+        {
+            $Avatar="images/no-avatar.png";
         }
+        $sql = "UPDATE dbchevalersk8.Joueurs SET Courriel = '$Courriel', Alias = '$Alias', Password = '$password', Avatar = '$Avatar' WHERE JoueurId = $id;";
+        echo $sql;
+        $this->_DB->nonQuerySqlCmd($sql);
     }
-    public function updateJoueur($user){
+    public function updateJoueusr($user){
         
     }
     public function updateBuy($user)

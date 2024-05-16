@@ -100,7 +100,6 @@ $viewScript = <<<HTML
         <script src='js/validation.js'></script>
         <script src='js/imageControl.js'></script>
         <script defer>
-            initFormValidation();
             $("#addPhotoCmd").hide();
             //addConflictValidation('testConflict.php', 'Email', 'saveUser' );
         </script>
