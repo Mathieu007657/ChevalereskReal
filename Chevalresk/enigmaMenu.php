@@ -141,6 +141,8 @@ $viewContent = <<<HTML
     </style>
 HTML;
 
+$id = $_SESSION["currentUserId"];
+$stats = EnigmesTable() -> getStats($id);
 $viewScript = <<<HTML
     <script defer>
         function AfficherEnigme(type){
@@ -158,12 +160,9 @@ $viewScript = <<<HTML
                     break;
             }
         }
-        function AfficherStats(id){
-            
-        }
     </script>
 HTML;
-$id = $_SESSION["currentUserId"];
+
 $viewContent .= <<<HTML
 <div class="Enigme">
     <div class="text">Choix de l'enigme</div>
@@ -177,7 +176,7 @@ $viewContent .= <<<HTML
         <br>
         <div class="text">
             <br>
-            <button class="button-78" type='button' onclick="AfficherStats(id)">Afficher les Statistique</button>
+            <button class="button-78" type='button' onclick="alert('$stats')">Afficher les Statistiques</button>
         </div>
     </div>
 </div>

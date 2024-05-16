@@ -2,9 +2,6 @@
 require 'php/sessionManager.php';
 require 'DAL/ChevalereskDB.php';
 userAccess();
-JoueursTable()->update(new Joueur($_POST));
 $user = JoueursTable()->get($_SESSION['currentUserId']);
-$_SESSION["name"] = $user->nom;
-$_SESSION["avatar"] = $user->Avatar;
-$_SESSION['Email'] = $user->Email;
+JoueursTable()->updateJoueur($_SESSION['currentUserId'],$_POST['Alias'],$_POST [ 'Password' ],$_POST [ 'Avatar' ],$_POST [ 'Email' ]);
 redirect('itemsList.php');

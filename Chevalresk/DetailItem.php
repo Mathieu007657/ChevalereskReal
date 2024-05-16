@@ -316,14 +316,13 @@ HTML;
         </div>
 HTML;
     }
-
     $commentsHtml .= <<<HTML
     <div class="grid-container">
         <div class="item2 avatar">$avatar</div>
         <div class="item1">$name</div>
         <div class="item4">$supprimerCom</div>
         <div class="item3">$leCommentaire</div>
-        <div class="item5">$nbEtoiles</div>
+        <div class="item5">$nbEtoiles étoiles</div>
     </div>
 HTML;
 }
