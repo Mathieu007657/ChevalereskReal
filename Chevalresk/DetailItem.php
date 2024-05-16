@@ -250,7 +250,7 @@ if ($type == 'Armes') {
 }
 
 $LaisseCommentaire = "";
-if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
+if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id)){
     $LaisseCommentaire = <<<HTML
     <Form action='SaveComment.php?id=$id' method="POST">
       <div class="container box">
