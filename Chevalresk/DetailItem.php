@@ -253,16 +253,19 @@ $LaisseCommentaire = "";
 if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id) || true){
     $LaisseCommentaire = <<<HTML
     <Form action='SaveComment.php?id=$id' method="POST">
-        <div class="container">
-	        <div class="star-group">
-		        <input type="radio" class="star" id="one" name="Star" value="1">
-		        <input type="radio" class="star" id="two" name="Star" value="2">
-		        <input type="radio" class="star" id="three" name="Star" value="3">
-		        <input type="radio" class="star" id="four" name="Star" value="4">
-		        <input type="radio" class="star" id="five" name="Star" value="5">
-	        </div>
-        </div>
-        <textarea id="CommentSection" rows="4" cols="50" maxlength="100" name="Comment"></textarea>
+      <p><span class="star-rating">
+		    <label for="rate-1" style="--i:1"><i class="fa-solid fa-star"></i></label>
+		    <input type="radio" name="rating" id="rate-1" value="1">
+		    <label for="rate-2" style="--i:2"><i class="fa-solid fa-star"></i></label>
+		    <input type="radio" name="rating" id="rate-2" value="2" checked>
+		    <label for="rate-3" style="--i:3"><i class="fa-solid fa-star"></i></label>
+		    <input type="radio" name="rating" id="rate-3" value="3">
+		    <label for="rate-4" style="--i:4"><i class="fa-solid fa-star"></i></label>
+		    <input type="radio" name="rating" id="rate-4" value="4">
+		    <label for="rate-5" style="--i:5"><i class="fa-solid fa-star"></i></label>
+		    <input type="radio" name="rating" id="rate-5" value="5">
+	    </span></p>
+        <textarea id="CommentSection" rows="7" cols="50" maxlength="100" name="Comment" placeholder="Tapez votre commntaire ici..."></textarea>
         <br><br>
         <input type="submit" title="Envoyer le commentaire"/>
         <input type="hidden" name="item_id" value="$id"/>
@@ -418,6 +421,37 @@ $html = <<<HTML
   background-color: #ff9800;
   padding: 0;
 }
+.star-rating {
+	white-space: nowrap;
+}
+.star-rating [type="radio"] {
+	appearance: none;
+}
+.star-rating i {
+	font-size: 1.2em;
+	transition: 0.3s;
+}
+
+.star-rating label:is(:hover, :has(~ :hover)) i {
+	transform: scale(1.35);
+	color: #fffdba;
+	animation: jump 0.5s calc(0.3s + (var(--i) - 1) * 0.15s) alternate infinite;
+}
+.star-rating label:has(~ :checked) i {
+	color: #faec1b;
+	text-shadow: 0 0 2px #ffffff, 0 0 10px #ffee58;
+}
+
+@keyframes jump {
+	0%,
+	50% {
+		transform: translatey(0) scale(1.35);
+	}
+	100% {
+		transform: translatey(-15%) scale(1.35);
+	}
+}
+
 </style>
 HTML;
 $html .= <<<HTML
@@ -494,13 +528,12 @@ $html .= <<<HTML
   <div class="side right">
     <div>$oneStar%</div>
   </div>
-                <br><br>
+                <br><br><br>
                 <a href="itemsList.php"><button class="button-34" role="button">Retour à la liste</button></a>
                 <span style="color: red;">$ajout</span>
             </div>
             <hr>
             <div>
-                <button class="button-34">Laisser un Commentaire</button>
                 <br><br>
                 $LaisseCommentaire
             </div>
