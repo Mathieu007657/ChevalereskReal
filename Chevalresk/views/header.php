@@ -1,5 +1,6 @@
 <?php
 include_once "DAL/MySQLDataBase.php";
+include_once "DAL/ChevalereskDB.php";
 $pageTitle = "Chevaleresk";
 if (!isset($viewTitle))
     $viewTitle = "";
