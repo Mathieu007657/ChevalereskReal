@@ -7,7 +7,6 @@ if (!isset($_GET["id"])){
 }
 
 $id = (int) $_GET["id"];
-$quant = (int) $GET["quant"];
 $totalPrice = 0;
 $panierItems = PanierTable()->findByidPanierPlayer($_SESSION["currentUserId"]); //Return une liste d'objet selon user id
 $Joueur = JoueursTable()->get($_SESSION["currentUserId"]); // Get le user connecter 
@@ -38,7 +37,7 @@ if($solde>=$totalPrice){
         $ItemsAssocier->setQuantite($ItemsAssocier->Quantite - 1);
     }
     PanierTable()->deleteAllPanier($Joueur->JoueurId);
-    //redirect("Paniers.php?Payer=true");
+    redirect("Paniers.php?Payer=true");
 }
 else if($solde < $totalPrice){
     redirect("Paniers.php?Cher=true");
