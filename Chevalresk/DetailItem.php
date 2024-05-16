@@ -56,6 +56,29 @@ HTML;
 echo $style;
 
 $id = (int) $_GET["id"];
+$nbEvals = ItemTable()->findNBEvals($id);
+$fiveStars = 0;
+$fourStars = 0;
+$threeStars = 0;
+$twoStars = 0;
+$oneStar = 0;
+if($nbEvals > 0)
+{
+  $fiveStars = ItemTable()->findNBEvalsParEtoile($id, 5);
+  $fiveStars = number_format($fiveStars / $nbEvals * 100, 2);
+  
+  $fourStars = ItemTable()->findNBEvalsParEtoile($id, 4);
+  $fourStars = number_format($fourStars / $nbEvals * 100, 2);
+  
+  $threeStars = ItemTable()->findNBEvalsParEtoile($id, 3);
+  $threeStars = number_format($threeStars / $nbEvals * 100, 2);
+  
+  $twoStars = ItemTable()->findNBEvalsParEtoile($id, 2);
+  $twoStars = number_format($twoStars / $nbEvals * 100, 2);
+  
+  $oneStar = ItemTable()->findNBEvalsParEtoile($id, 1);
+  $oneStar = number_format($oneStar / $nbEvals * 100, 2);
+}
 $item = ItemTable()->findById($id);
 $photo = $item->Photo;
 $nom = $item->Nom;
@@ -68,6 +91,143 @@ $lienEtoile = "images/Etoile.webp";
 $lienEtoileHalf = "images/EtoileHalf.png";
 $estAlch = ItemTable()->findAlch($_SESSION['currentUserId']);
 $ajout = '<a href="addItemPanier.php?id='. $id . '"><button class="button-34" role="button">Ajouter au panier</button></a>';
+
+$eval = ItemTable()->findNBEtoiles($id);
+$note = 0;
+if($eval > 0 && $eval <= 0.5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoileHalf;
+  $eval .=  '"style="width:30px"/>';
+  $note = 0.5;
+}
+else if($eval >= 0.5 && $eval <= 1)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $note = 1;
+}
+else if($eval >= 1 && $eval <= 1.5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoileHalf;
+  $eval .=  '"style="width:30px"/>';
+  $note = 1.5;
+}
+else if($eval >= 1.5 && $eval <= 2)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $note = 2;
+}
+else if($eval >= 2 && $eval <= 2.5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoileHalf;
+  $eval .=  '"style="width:30px"/>';
+  $note = 2.5;
+}
+else if($eval >= 2.5 && $eval <= 3)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px"/>';
+  $note = 3;
+}
+else if($eval >= 3 && $eval <= 3.5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoileHalf;
+  $eval .=  '"style="width:30px; margin-right: 5px; margin-left: 5px;"/>';
+  $note = 3.5;
+}
+else if($eval >= 3.5 && $eval <= 4)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $note = 4;
+}
+else if($eval >= 4 && $eval <= 4.5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoileHalf;
+  $eval .=  '"style="width:30px; margin-right: 5px; margin-left: 5px;"/>';
+  $note = 4.5;
+}
+else if($eval >= 4.5 && $eval <= 5)
+{
+  $eval = '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $eval .= '<img src="';
+  $eval .= $lienEtoile;
+  $eval .=  '"style="height:57.75px; margin-right: 5px; margin-left: 5px;"/>';
+  $note = 5;
+}
+else
+{
+  $eval = '<span style = "color: white; font-size: 30px;">Aucune évaluation</span>';
+}
 
 if ($type == 'Armes') {
     $query = ItemTable()->findInfosArmes($type, $id);
@@ -250,6 +410,7 @@ $html = <<<HTML
   background-color: #f1f1f1;
   text-align: center;
   color: white;
+  margin-top: 20px;
 }
 .bar {
   width: 4%;
@@ -272,31 +433,67 @@ $html .= <<<HTML
         <div>
             <div style="margin: 0 auto; padding: 20px;">
                 <div class="etoileContainer">
-                    <img src="$lienEtoile" style="height:57.75px"/>
-                    <img src="$lienEtoile" style="height:57.75px"/>
-                    <img src="$lienEtoile" style="height:57.75px"/>
-                    <img src="$lienEtoile" style="height:57.75px"/>
-                    <img src="$lienEtoileHalf" style="width:30px"/>
+                  $eval
                 </div>
-                <p>4.1/5 basé sur 254 évaluations.</p>
-                <hr style="border:3px solid #f1f1f1">
-                <div class="row">
-                    <div class="side"><div>5 étoiles</div></div>
-                    <div class="middle"><div class="bar-container"><div class="bar" style="width: 15%"></div></div></div>
-                    <div class="side right"><div>150%</div></div>
-                    <div class="side"><div>4 étoiles</div></div>
-                    <div class="middle"><div class="bar-container"><div class="bar" style="width: 15%"></div></div></div>
-                    <div class="side right"><div>63%</div></div>
-                    <div class="side"><div>3 étoiles</div></div>
-                    <div class="middle"><div class="bar-container"><div class="bar" style="width: 15%"></div></div></div>
-                    <div class="side right"><div>15%</div></div>
-                    <div class="side"><div>2 étoiles</div></div>
-                    <div class="middle"><div class="bar-container"><div class="bar" style="width: 15%"></div></div></div>
-                    <div class="side right"><div>6%</div></div>
-                    <div class="side"><div>1 étoile</div></div>
-                    <div class="middle"><div class="bar-container"><div class="bar" style="width: 15%"></div></div></div>
-                    <div class="side right"><div>20%</div></div>
-                </div>
+<p>$note/5 basé sur $nbEvals évaluations.</p>
+<hr style="border:3px solid #f1f1f1">
+
+<div class="row">
+  <div class="side">
+    <div>5 étoiles</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar" style="width: $fiveStars%"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div>$fiveStars%</div>
+  </div>
+  <div class="side">
+    <div>4 étoiles</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar"style="width: $fourStars%"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div>$fourStars%</div>
+  </div>
+  <div class="side">
+    <div>3 étoiles</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar"style="width: $threeStars%"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div>$threeStars%</div>
+  </div>
+  <div class="side">
+    <div>2 étoiles</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar"style="width: $twoStars%"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div>$twoStars%</div>
+  </div>
+  <div class="side">
+    <div>1 étoile</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar"style="width: $oneStar%"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div>$oneStar%</div>
+  </div>
                 <br><br>
                 <a href="itemsList.php"><button class="button-34" role="button">Retour à la liste</button></a>
                 <span style="color: red;">$ajout</span>
