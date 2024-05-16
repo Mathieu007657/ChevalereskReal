@@ -92,6 +92,7 @@ $lienEtoileHalf = "images/EtoileHalf.png";
 $estAlch = ItemTable()->findAlch($_SESSION['currentUserId']);
 $ajout = '<a href="addItemPanier.php?id='. $id . '"><button class="button-34" role="button">Ajouter au panier</button></a>';
 
+//region Gérer CSS et HTML selon évaluation
 $eval = ItemTable()->findNBEtoiles($id);
 $note = 0;
 if($eval > 0 && $eval <= 0.5)
@@ -228,7 +229,9 @@ else
 {
   $eval = '<span style = "color: white; font-size: 30px;">Aucune évaluation</span>';
 }
+//endregion
 
+//region Get information from type of item
 if ($type == 'Armes') {
     $query = ItemTable()->findInfosArmes($type, $id);
 } else if ($type == 'Armures') {
@@ -248,13 +251,15 @@ if ($type == 'Armes') {
         $ajout = '<br> <br> Vous ne pouvez acheter cet item tant que vous n\'êtes pas alchimiste';
     }
 }
+//endregion
 
+//region Laisser un Commentaire
 $LaisseCommentaire = "";
 if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id)){
     $LaisseCommentaire = <<<HTML
     <Form action='SaveComment.php?id=$id' method="POST">
       <div class="container box">
-        <div class="col-12 rating">
+        <div class="col-12 rating">★
           1<input type="radio" id="smile5" name="Star" value="1" />
           2<input type="radio" id="smile4" name="Star" value="2" />
           3<input type="radio" id="smile3" name="Star" value="3" />
@@ -269,6 +274,7 @@ if (InventaireTable()->ItemInvenExist($_SESSION['currentUserId'],$id)){
     </form>
 HTML;
 }
+//endregion
 
 $idItem = $id;
 $CommentaireTable = new CommentaireTable();
@@ -297,7 +303,7 @@ foreach ($Commentaires as $CommentaireItem) {
         $supprimerCom = <<<HTML
         <div class="item4">
             <a href="DeleteCommentaire.php?id=$idCommentaire" title="Supprimer le commentaire" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire?');">
-                <i class="fa-solid fa-user-pen logoModif"></i> Admin Delete
+              <img src="data/images/avatars/trash.svg" alt="Trash Logo" class="TrashLogo"/>
             </a>
         </div>
 HTML;
@@ -305,7 +311,7 @@ HTML;
         $supprimerCom = <<<HTML
         <div class="item4">
             <a href="DeleteCommentaire.php?id=$idCommentaire" title="Supprimer le commentaire" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire?');">
-                <i class="fa-solid fa-user-pen logoModif"></i> User Delete
+              <img src="data/images/avatars/trash.svg" alt="Trash Logo" class="TrashLogo"/>
             </a>
         </div>
 HTML;
@@ -324,6 +330,12 @@ HTML;
 
 $html = <<<HTML
 <style>
+.TrashLogo{
+
+}
+.TrashLogo:hover{
+  border: 'solid black 2px';
+}
 .grid-container {
     display: grid;
     grid-template-columns: 35% auto;
