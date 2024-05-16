@@ -28,7 +28,7 @@ class Joueur extends Record
         $this->Password = "";
         $this->Solde=1000;
         $this->Avatar = "";
-        $this->estAdmin = 0;
+        $this->estAdmin;
         $this->estAlch = 0;
         $this->QuestRep = 0;
         $this->PotionMade = 0;
@@ -40,6 +40,12 @@ class Joueur extends Record
     }
     public function setQuestRep($QuestRep){
         $this->QuestRep=$QuestRep;
+    }
+    public function setestAdmin($estAdmin){
+        $this->estAdmin=$estAdmin;
+    }
+    public function getestAdmin(){
+        return $this->estAdmin;
     }
     public function setJoueurId($id){
         $this->JoueurId=$id;
