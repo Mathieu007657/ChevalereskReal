@@ -12,7 +12,7 @@ $viewContent = <<<HTML
             Gestionnaire de chevaliers
         </p>
         <p>
-            Auteur: Thierry Becker, Philippe Robichaud-Gionet Mathieu Lavallée
+            Auteur: Thierry Becker, Philippe Robichaud-Gionet et Mathieu Lavallée
         </p>
         <p>
             Collège Lionel-Groulx, hiver 2024
